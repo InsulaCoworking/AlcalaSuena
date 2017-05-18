@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}band.name{% endblock%}
+
+{% block content %}
+
+{{band.name}}
+
+<h3>Conciertos</h3>
+<ul>
+    {% for event in events %}
+    <li> <a href="{% url 'venue_detail' pk=venue.pk %}">{{event.venue.name}} - {{event.time}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

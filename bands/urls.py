@@ -5,4 +5,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^venues$', views.venues_list, name='venues_list'),
     url(r'^venues/(?P<pk>\d+)$', views.venue_detail, name='venue_detail'),
+
+    url(r'^bands/(?P<pk>\d+)$', views.band_detail, name='band_detail'),
 ]

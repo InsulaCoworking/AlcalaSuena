@@ -25,3 +25,13 @@ def venue_detail(request, pk):
         'venue': venue,
         'events': events,
     })
+
+def band_detail(request, pk):
+
+    band = get_object_or_404(Band, pk=pk)
+    events = Event.objects.filter(band=band)
+    return render(request, 'band'
+                           '/detail.html', {
+        'band': band,
+        'events': events,
+    })
