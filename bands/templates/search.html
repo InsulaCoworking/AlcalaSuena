@@ -11,8 +11,8 @@
         <tbody>
             <tr>
                 <td>{{ event.time }}</td>
-                <td><a href="{% url 'band_detail' %}" class="banda">{{event.band.name}} </a></td>
-                <td><a href="{% url 'venue_detail' %}" class="lugar">{{event.venue.name}}</a></td>
+                <td><a href="{% url 'band_detail' pk=event.band.pk%}" class="banda">{{event.band.name}} </a></td>
+                <td><a href="{% url 'venue_detail' pk=event.venue.pk%}" class="lugar">{{event.venue.name}}</a></td>
                 <td><span class="{{ event.band.tag }}">{{event.band.name}}</span></td>
             </tr>
         </tbody>
