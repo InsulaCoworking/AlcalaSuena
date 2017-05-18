@@ -119,7 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+INTERNAL_IPS = ('127.0.0.1',)
 TASTYPIE_DEFAULT_FORMATS = ['json']
 
 # Static files (CSS, JavaScript, Images)
