@@ -25,13 +25,14 @@ SECRET_KEY = 'zbkckcq9&-n%clm(g45*2nyetxndk7tlysc1&a&b1onf#jwz*r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '10.0.0.52']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'bands.apps.BandsConfig',
+    'tastypie',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,6 +119,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+TASTYPIE_DEFAULT_FORMATS = ['json']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from api.urls import get_api
+
 urlpatterns = [
     url(r'^', include('bands.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(get_api('v1').urls)),
 ]
