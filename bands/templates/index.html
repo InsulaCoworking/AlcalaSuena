@@ -7,17 +7,17 @@
 
 {% block search %}
 
-<form class="form form-inline">
-   <div class="form-group">
+<form class="form">
+   <div class="form-group col-sm-3 col-xs-6">
     <label class="sr-only" for="day">Fecha</label>
-    <select class="form-control" id="day" name="day">
+    <select class="form-control select2" id="day" name="day">
         <option value="">Cualquier día</option>
         <option value="2017-06-02">Viernes 2</option>
         <option value="2017-06-03">Sábado 3</option>
         <option value="2017-06-04">Domingo 4</option>
     </select>
   </div>
-   <div class="form-group">
+   <div class="form-group  col-sm-3 col-xs-6">
     <label class="sr-only" for="venue">Lugar</label>
     <select class="form-control select2" id="venue" name="venue">
         <option value="">Cualquier lugar</option>
@@ -26,15 +26,15 @@
         {% endfor %}
     </select>
   </div>
-   <div class="form-group">
+   <div class="form-group  col-sm-3 col-xs-6">
     <label class="sr-only" for="tag">Estilo musical</label>
-    <select class="form-control" id="tag" name="tag">
+    <select class="form-control select2" id="tag" name="tag">
         <option value="">Cualquier estilo</option>
         <option value="Rock">Rock</option>
         <option value="Samba">Samba</option>
     </select>
   </div>
-   <div class="form-group">
+   <div class="form-group  col-sm-3 col-xs-6">
     <label class="sr-only" for="band">Bandas</label>
     <select class="form-control select2" id="band" name="band">
         <option value="">Cualquier banda</option>
@@ -48,8 +48,6 @@
 {% endblock %}
 
 {% block content %}
-
-
 
 <div class="container" id="resultados">
     <h3>Viernes 2 </h3>
@@ -149,6 +147,4 @@
     </table>
   <hr>
 </div> <!-- /container -->
-
-
 {% endblock %}
