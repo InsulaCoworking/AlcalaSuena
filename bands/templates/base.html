@@ -4,15 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>{% block title %}AlcalaSuena{% endblock %}</title>
+        <title>{% block title %}AlcalaSuena{% endblock title%}</title>
         <link href="{% static "css/styles.css" %}" rel="stylesheet"/>
-        {% block extra_styles %}{% endblock content %}
+        {% block extra_styles %}{% endblock extra_styles %}
     </head>
 
     <body>
     {% block content %}{% endblock content %}
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    {% block scripts %}{% endblock content %}
+    {% block scripts %}{% endblock scripts %}
     </body>
 </html>
