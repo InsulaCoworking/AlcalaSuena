@@ -5,11 +5,13 @@
 {% block content %}
 
 {{band.name}}
-
+{% if band.profile_image %}
+<img src="{{ band.profile_image.url }}" alt="{{band.name}}">
+{% endif %}
 <h3>Conciertos</h3>
 <ul>
     {% for event in events %}
-    <li> <a href="{% url 'venue_detail' pk=venue.pk %}">{{event.venue.name}} - {{event.time}}</a></li>
+    <li> <a href="{% url 'venue_detail' pk=event.venue.pk %}">{{event.venue.name}} - {{event.time}}</a></li>
     {% endfor %}
 </ul>
 

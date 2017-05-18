@@ -9,7 +9,7 @@
 <h3>Conciertos</h3>
 <ul>
     {% for event in events %}
-    <li> <a href="{% url 'venue_detail' pk=venue.pk %}">{{event.band.name}} - {{event.time}}</a></li>
+    <li> <a href="{% url 'band_detail' pk=event.band.pk %}">{{event.band.name}} - {{event.time}}</a></li>
     {% endfor %}
 </ul>
 
