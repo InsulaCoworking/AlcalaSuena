@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Escenarios{% endblock%}
+
+{% block content %}
+
+<ul>
+    {% for venue in venues %}
+    <li> <a href="{% url 'venue_detail' pk=venue.pk %}">{{venue.name}}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
