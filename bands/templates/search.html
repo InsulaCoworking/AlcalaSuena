@@ -1,9 +1,24 @@
 {% block content %}
-
-<ul>
     {% for event in events %}
-        <li> {{event.band.name}} - {{event.venue.name}}</li>
+   <h3>{{ event.day }}</h3>
+    <table class="table table-striped">
+        <thead>
+            <th>Hora</th>
+            <th>Banda</th>
+            <th>Lugar</th>
+            <th>Género</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ event.time }}</td>
+                <td><a href="{% url 'band_detail' %}" class="banda">{{event.band.name}} </a></td>
+                <td><a href="{% url 'venue_detail' %}" class="lugar">{{event.venue.name}}</a></td>
+                <td><span class="{{ event.band.tag }}">{{event.band.name}}</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
     {% endfor %}
-</ul>
+
 
 {% endblock %}
