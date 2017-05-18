@@ -1,8 +1,8 @@
 {% block content %}
 
 <ul>
-    {% for band in bands %}
-        <li> {{band.name}} - {{band.tag}}</li>
+    {% for event in events %}
+        <li> {{event.band.name}} - {{event.venue.name}}</li>
     {% endfor %}
 </ul>
 
