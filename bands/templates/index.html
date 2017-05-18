@@ -2,156 +2,153 @@
 
 {% block title %}Alcalá Suena 2017{% endblock%}
 
+
+
+
+{% block search %}
+
+<form class="form form-inline">
+   <div class="form-group">
+    <label class="sr-only" for="day">Fecha</label>
+    <select class="form-control" id="day" name="day">
+        <option value="">Cualquier día</option>
+        <option value="2017-06-02">Viernes 2</option>
+        <option value="2017-06-03">Sábado 3</option>
+        <option value="2017-06-04">Domingo 4</option>
+    </select>
+  </div>
+   <div class="form-group">
+    <label class="sr-only" for="venue">Lugar</label>
+    <select class="form-control select2" id="venue" name="venue">
+        <option value="">Cualquier lugar</option>
+        {% for venue in venues %}
+        <option value="{{venue.pk}}">{{venue.name}}</option>
+        {% endfor %}
+    </select>
+  </div>
+   <div class="form-group">
+    <label class="sr-only" for="tag">Estilo musical</label>
+    <select class="form-control" id="tag" name="tag">
+        <option value="">Cualquier estilo</option>
+        <option value="Rock">Rock</option>
+        <option value="Samba">Samba</option>
+    </select>
+  </div>
+   <div class="form-group">
+    <label class="sr-only" for="band">Bandas</label>
+    <select class="form-control select2" id="band" name="band">
+        <option value="">Cualquier banda</option>
+        {% for band in bands %}
+        <option value="{{band.pk}}">{{band.name}}</option>
+        {% endfor %}
+    </select>
+  </div>
+
+</form>
+{% endblock %}
+
 {% block content %}
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" data-offset-top="60" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">Alcalá Suena</a>
-            </div>
-            <form action="" class="form form-inline">
-               <div class="form-group">
-                <label class="sr-only" for="dia">Fecha</label>
-                <select class="form-control" id="dia" name="fecha">
-                    <option value="">Cualquier día</option>
-                    <option value="2">Viernes 2</option>
-                    <option value="3">Sábado 3</option>
-                    <option value="4">Domingo 4</option>
-                </select>
-              </div>
-               <div class="form-group">
-                <label class="sr-only" for="lugar">Lugar</label>
-                <select class="form-control" id="lugar" name="lugar">
-                    <option value="">Cualquier lugar</option>
-                    <option value="Plaza Cervantes">Plaza Cervantes</option>
-                    <option value="Plaza Santos Niños">Plaza Santos Niños</option>
-                </select>
-              </div>
-               <div class="form-group">
-                <label class="sr-only" for="tag">Estilo musical</label>
-                <select class="form-control" id="tag" name="tag">
-                    <option value="">Cualquier estilo</option>
-                    <option value="Rock">Rock</option>
-                    <option value="Samba">Samba</option>
-                </select>
-              </div>
-               <div class="form-group">
-                <label class="sr-only" for="banda">Bandas</label>
-                <select class="form-control select2" id="banda" name="banda">
-                    <option value="">Cualquier banda</option>
-                    <option value="Muertos y cobardes">Muertos y cobardes</option>
-                    <option value="Plaza Santos Niños">Plaza Santos Niños</option>
-                </select>
-              </div>
 
-            </form>
-          </div>
-        </nav>
 
-        <div class="container" id="resultados">
-            <h3>Viernes 2 </h3>
-            <table class="table table-striped">
-                <thead>
-                    <th>Hora</th>
-                    <th>Banda</th>
-                    <th>Lugar</th>
-                    <th>Género</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>15:00</td>
-                        <td><a href="" class="banda">Muertos y cobardes</a></td>
-                        <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                        <td><span class="rock">Rock Zombie</span></td>
-                    </tr>
-                    <tr>
-                        <td>16:00</td>
-                        <td><a href="" class="banda">Los destrozayunques</a></td>
-                        <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                        <td><span class="soul">Soul melódico</span></td>
-                    </tr>
-                </tbody>
-            </table>
-          <hr>
-            <h3>Sábado 3 </h3>
-            <table class="table table-striped">
-                <thead>
-                    <th>Hora</th>
-                    <th>Banda</th>
-                    <th>Lugar</th>
-                    <th>Género</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>15:00</td>
-                        <td><a href="" class="banda">Muertos y cobardes</a></td>
-                        <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                        <td>Rock Zombie</td>
-                    </tr>
-                    <tr>
-                        <td>16:00</td>
-                        <td><a href="" class="banda">Los destrozayunques</a></td>
-                        <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                        <td><span class="soul">Soul melódico</span></td>
-                    </tr>
-                    <tr>
-                        <td>15:00</td>
-                        <td><a href="" class="banda">Muertos y cobardes</a></td>
-                        <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                        <td>Rock Zombie</td>
-                    </tr>
-                    <tr>
-                        <td>16:00</td>
-                        <td><a href="" class="banda">Los destrozayunques</a></td>
-                        <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                        <td><span class="soul">Soul melódico</span></td>
-                    </tr>
-                    <tr>
-                        <td>15:00</td>
-                        <td><a href="" class="banda">Muertos y cobardes</a></td>
-                        <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                        <td>Rock Zombie</td>
-                    </tr>
-                    <tr>
-                        <td>16:00</td>
-                        <td><a href="" class="banda">Los destrozayunques</a></td>
-                        <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                        <td><span class="soul">Soul melódico</span></td>
-                    </tr>
-                    <tr>
-                        <td>15:00</td>
-                        <td><a href="" class="banda">Muertos y cobardes</a></td>
-                        <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                        <td>Rock Zombie</td>
-                    </tr>
-                    <tr>
-                        <td>16:00</td>
-                        <td><a href="" class="banda">Los destrozayunques</a></td>
-                        <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                        <td><span class="soul">Soul melódico</span></td>
-                    </tr>
-                    <tr>
-                        <td>15:00</td>
-                        <td><a href="" class="banda">Muertos y cobardes</a></td>
-                        <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                        <td>Rock Zombie</td>
-                    </tr>
-                    <tr>
-                        <td>16:00</td>
-                        <td><a href="" class="banda">Los destrozayunques</a></td>
-                        <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                        <td><span class="soul">Soul melódico</span></td>
-                    </tr>
-                </tbody>
-            </table>
-          <hr>
-        </div> <!-- /container -->
-
-        <div class="container-fluid">
-            <footer>
-                <p>&copy; Alcala Suena</p>
-            </footer>
-        </div>
+<div class="container" id="resultados">
+    <h3>Viernes 2 </h3>
+    <table class="table table-striped">
+        <thead>
+            <th>Hora</th>
+            <th>Banda</th>
+            <th>Lugar</th>
+            <th>Género</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>15:00</td>
+                <td><a href="" class="banda">Muertos y cobardes</a></td>
+                <td><a href="" class="lugar">Plaza Cervantes</a></td>
+                <td><span class="rock">Rock Zombie</span></td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td><a href="" class="banda">Los destrozayunques</a></td>
+                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
+                <td><span class="soul">Soul melódico</span></td>
+            </tr>
+        </tbody>
+    </table>
+  <hr>
+    <h3>Sábado 3 </h3>
+    <table class="table table-striped">
+        <thead>
+            <th>Hora</th>
+            <th>Banda</th>
+            <th>Lugar</th>
+            <th>Género</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>15:00</td>
+                <td><a href="" class="banda">Muertos y cobardes</a></td>
+                <td><a href="" class="lugar">Plaza Cervantes</a></td>
+                <td>Rock Zombie</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td><a href="" class="banda">Los destrozayunques</a></td>
+                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
+                <td><span class="soul">Soul melódico</span></td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+                <td><a href="" class="banda">Muertos y cobardes</a></td>
+                <td><a href="" class="lugar">Plaza Cervantes</a></td>
+                <td>Rock Zombie</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td><a href="" class="banda">Los destrozayunques</a></td>
+                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
+                <td><span class="soul">Soul melódico</span></td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+                <td><a href="" class="banda">Muertos y cobardes</a></td>
+                <td><a href="" class="lugar">Plaza Cervantes</a></td>
+                <td>Rock Zombie</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td><a href="" class="banda">Los destrozayunques</a></td>
+                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
+                <td><span class="soul">Soul melódico</span></td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+                <td><a href="" class="banda">Muertos y cobardes</a></td>
+                <td><a href="" class="lugar">Plaza Cervantes</a></td>
+                <td>Rock Zombie</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td><a href="" class="banda">Los destrozayunques</a></td>
+                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
+                <td><span class="soul">Soul melódico</span></td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+                <td><a href="" class="banda">Muertos y cobardes</a></td>
+                <td><a href="" class="lugar">Plaza Cervantes</a></td>
+                <td>Rock Zombie</td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td><a href="" class="banda">Los destrozayunques</a></td>
+                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
+                <td><span class="soul">Soul melódico</span></td>
+            </tr>
+        </tbody>
+    </table>
+  <hr>
+</div> <!-- /container -->
 
 
 {% endblock %}

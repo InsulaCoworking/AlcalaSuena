@@ -12,7 +12,24 @@
     </head>
 
     <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" data-offset-top="60" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Alcalá Suena</a>
+            </div>
+            {% block search %}{% endblock search %}
+
+          </div>
+        </nav>
+
     {% block content %}{% endblock content %}
+
+    <div class="container-fluid">
+        <footer>
+            <p>&copy; Alcala Suena</p>
+        </footer>
+    </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
