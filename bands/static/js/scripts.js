@@ -1,5 +1,9 @@
 $(document).ready(function() {
-  $(".select2").select2();
+  $(".select2").select2().on('change',function() {
+    data = $('#searchForm').serialize();
+    url = $('#searchForm').attr('action');
+    $("#resultados").load(url + '?' + data);
+  });
 });
 
 

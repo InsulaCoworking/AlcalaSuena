@@ -7,7 +7,7 @@
 
 {% block search %}
 
-<form class="form">
+<form method="post" action="{% url 'search' %}" class="form" id="searchForm">
    <div class="form-group col-sm-3 col-xs-6">
     <label class="sr-only" for="day">Fecha</label>
     <select class="form-control select2" id="day" name="day">
