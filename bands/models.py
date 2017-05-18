@@ -12,8 +12,8 @@ class Band(models.Model):
     band_image = models.ImageField(null=True)
     city = models.CharField(null=False, verbose_name='Ciudad', max_length=140)
     num_members = models.IntegerField(default=1)
-    description = models.TextField(null=True)
-    embed_code = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
+    embed_code = models.TextField(null=True, blank=True)
     # TODO: RSS links
 
     class Meta:
