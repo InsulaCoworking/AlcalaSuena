@@ -9,8 +9,9 @@ from bands.models import Band, Venue, Event
 
 def index(request):
     bands = Band.objects.all()
+    venues = Venue.objects.all()
 
-    return render(request, 'index.html', { 'bands': bands })
+    return render(request, 'index.html', { 'bands': bands, 'venues': venues })
 
 def venues_list(request):
 
@@ -30,8 +31,24 @@ def band_detail(request, pk):
 
     band = get_object_or_404(Band, pk=pk)
     events = Event.objects.filter(band=band)
-    return render(request, 'band'
-                           '/detail.html', {
+    return render(request, 'band/detail.html', {
         'band': band,
         'events': events,
     })
+
+def search(request):
+
+    events = Event.objects.all()
+
+    band_filter = request.GET.get('band', None)
+    print band_filter
+    if band_filter:
+        events = events.filter(band__pk=band_filter)
+
+    venue_filter = request.GET.get('venue', None)
+    if venue_filter:
+        events = events.filter(venue__pk=venue_filter)
+
+    return render(request, 'search.html', {
+                      'events': events,
+                  })
