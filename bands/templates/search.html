@@ -1,0 +1,9 @@
+{% block content %}
+
+<ul>
+    {% for band in bands %}
+        <li> {{band.name}} - {{band.tag}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
