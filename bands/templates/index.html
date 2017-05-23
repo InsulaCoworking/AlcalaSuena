@@ -2,149 +2,81 @@
 
 {% block title %}Alcalá Suena 2017{% endblock%}
 
+{% block home_header %}
+<header>
+    <div class="row text-center">
+        <img src="../static/img/logotipo.png" alt="Logotipo Alcalá Suena" class="logo" />
+    </div>
+    <div class="row text-center">
+        <h1>III Fiesta de la Música de Alcalá de Henares</h1>
+    </div>
+</header>
 
+<section class="banda_negra">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                <a href="#" class="btn btn-default btn-descripcion">Descripción</a>
+            </div>
+            <div class="col-sm-6 text-center">
+                <h2>Del 2 al 4 de Junio 2017</h2>
+            </div>
+            <div class="col-sm-3 text-center">
+                <a href="http://www.facebook.com" class="rrss"><span class="fa fa-facebook"></span></a>
+                <a href="http://www.twitter.com" class="rrss"><span class="fa fa-twitter"></span></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
 
 
 {% block search %}
+<section class="container buscador">
+    <form method="post" action="{% url 'search' %}" class="form" id="searchForm">
+       <div class="form-group col-sm-3 col-xs-6">
+        <label class="sr-only" for="day">Fecha</label>
+        <select class="form-control select2" id="day" name="day">
+            <option value="">Cualquier día</option>
+            <option value="2017-06-02">Viernes 2</option>
+            <option value="2017-06-03">Sábado 3</option>
+            <option value="2017-06-04">Domingo 4</option>
+        </select>
+      </div>
+       <div class="form-group  col-sm-3 col-xs-6">
+        <label class="sr-only" for="venue">Lugar</label>
+        <select class="form-control select2" id="venue" name="venue">
+            <option value="">Cualquier lugar</option>
+            {% for venue in venues %}
+            <option value="{{venue.pk}}">{{venue.name}}</option>
+            {% endfor %}
+        </select>
+      </div>
+       <div class="form-group  col-sm-3 col-xs-6">
+        <label class="sr-only" for="tag">Estilo musical</label>
+        <select class="form-control select2" id="tag" name="tag">
+            <option value="">Cualquier estilo</option>
+            <option value="Rock">Rock</option>
+            <option value="Samba">Samba</option>
+        </select>
+      </div>
+       <div class="form-group  col-sm-3 col-xs-6">
+        <label class="sr-only" for="band">Bandas</label>
+        <select class="form-control select2" id="band" name="band">
+            <option value="">Cualquier banda</option>
+            {% for band in bands %}
+            <option value="{{band.pk}}">{{band.name}}</option>
+            {% endfor %}
+        </select>
+      </div>
 
-<form method="post" action="{% url 'search' %}" class="form" id="searchForm">
-   <div class="form-group col-sm-3 col-xs-6">
-    <label class="sr-only" for="day">Fecha</label>
-    <select class="form-control select2" id="day" name="day">
-        <option value="">Cualquier día</option>
-        <option value="2017-06-02">Viernes 2</option>
-        <option value="2017-06-03">Sábado 3</option>
-        <option value="2017-06-04">Domingo 4</option>
-    </select>
-  </div>
-   <div class="form-group  col-sm-3 col-xs-6">
-    <label class="sr-only" for="venue">Lugar</label>
-    <select class="form-control select2" id="venue" name="venue">
-        <option value="">Cualquier lugar</option>
-        {% for venue in venues %}
-        <option value="{{venue.pk}}">{{venue.name}}</option>
-        {% endfor %}
-    </select>
-  </div>
-   <div class="form-group  col-sm-3 col-xs-6">
-    <label class="sr-only" for="tag">Estilo musical</label>
-    <select class="form-control select2" id="tag" name="tag">
-        <option value="">Cualquier estilo</option>
-        <option value="Rock">Rock</option>
-        <option value="Samba">Samba</option>
-    </select>
-  </div>
-   <div class="form-group  col-sm-3 col-xs-6">
-    <label class="sr-only" for="band">Bandas</label>
-    <select class="form-control select2" id="band" name="band">
-        <option value="">Cualquier banda</option>
-        {% for band in bands %}
-        <option value="{{band.pk}}">{{band.name}}</option>
-        {% endfor %}
-    </select>
-  </div>
-
-</form>
+    </form>
+</section>
 {% endblock %}
 
 {% block content %}
 
 <div class="container" id="resultados">
-    <h3>Viernes 2 </h3>
-    <table class="table table-striped">
-        <thead>
-            <th>Hora</th>
-            <th>Banda</th>
-            <th>Lugar</th>
-            <th>Género</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>15:00</td>
-                <td><a href="" class="banda">Muertos y cobardes</a></td>
-                <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                <td><span class="rock">Rock Zombie</span></td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td><a href="" class="banda">Los destrozayunques</a></td>
-                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                <td><span class="soul">Soul melódico</span></td>
-            </tr>
-        </tbody>
-    </table>
-  <hr>
-    <h3>Sábado 3 </h3>
-    <table class="table table-striped">
-        <thead>
-            <th>Hora</th>
-            <th>Banda</th>
-            <th>Lugar</th>
-            <th>Género</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>15:00</td>
-                <td><a href="" class="banda">Muertos y cobardes</a></td>
-                <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                <td>Rock Zombie</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td><a href="" class="banda">Los destrozayunques</a></td>
-                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                <td><span class="soul">Soul melódico</span></td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td><a href="" class="banda">Muertos y cobardes</a></td>
-                <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                <td>Rock Zombie</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td><a href="" class="banda">Los destrozayunques</a></td>
-                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                <td><span class="soul">Soul melódico</span></td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td><a href="" class="banda">Muertos y cobardes</a></td>
-                <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                <td>Rock Zombie</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td><a href="" class="banda">Los destrozayunques</a></td>
-                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                <td><span class="soul">Soul melódico</span></td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td><a href="" class="banda">Muertos y cobardes</a></td>
-                <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                <td>Rock Zombie</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td><a href="" class="banda">Los destrozayunques</a></td>
-                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                <td><span class="soul">Soul melódico</span></td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td><a href="" class="banda">Muertos y cobardes</a></td>
-                <td><a href="" class="lugar">Plaza Cervantes</a></td>
-                <td>Rock Zombie</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td><a href="" class="banda">Los destrozayunques</a></td>
-                <td><a href="" class="lugar">Plaza Santos Niños</a></td>
-                <td><span class="soul">Soul melódico</span></td>
-            </tr>
-        </tbody>
-    </table>
-  <hr>
+    <p class="text-center">Utiliza el buscador para filtrar los resultados</p>
 </div> <!-- /container -->
 {% endblock %}
