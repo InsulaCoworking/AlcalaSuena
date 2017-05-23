@@ -39,8 +39,16 @@ a.rrss {
     border-radius: 20px;
 }
 
-section.buscador {
-    margin-top: 60px;
+
+section.home-content {
+    background-image: url('../img/fondo-home.jpg');
+    background-position: cover;
+    padding-top: 60px;
+}
+#resultados {
+    background-color: #fff;
+    border: 1px solid #cc0000;
+    border-radius: 10px;
 }
 
 .form-control {
