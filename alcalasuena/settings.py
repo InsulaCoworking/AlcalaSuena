@@ -25,7 +25,7 @@ SECRET_KEY = 'zbkckcq9&-n%clm(g45*2nyetxndk7tlysc1&a&b1onf#jwz*r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '10.0.0.52']
+ALLOWED_HOSTS = ['localhost', '10.0.0.52', 'ec2-34-249-191-239.eu-west-1.compute.amazonaws.com']
 
 
 # Application definition
@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'alcalasuena',
-        'USER': 'root',
-        'PASSWORD': 'cice',
+        'USER': 'insuler',
+        'PASSWORD': 'insula',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
