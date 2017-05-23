@@ -54,3 +54,8 @@ section.home-content {
 .form-control {
     border: 2px solid #cc0000;
 }
+
+.band_header {
+    background-image: url('../img/ficha-default-img.jpg');
+    background-position: cover;
+}

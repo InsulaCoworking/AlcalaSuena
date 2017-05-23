@@ -2,17 +2,55 @@
 
 {% block title %}{{band.name}}{% endblock%}
 
-{% block content %}
+{% block home_header %}
+<header class="band_header" {% if band.band_image %}style="background-image: url('{{ band.band_image.url }}');"{% endif %}>
+    <div class="row">
+        <div class="col-sm-3">
+            {% if band.profile_image %}
+            <img src="{{ band.profile_image.url }}" alt="{{band.name}}">
+            {% endif %}
+        </div>
+        <div class="col-sm-6 text-center">
+            <h1>{{band.name}}</h1>
+            <h4>{{band.tag}}</h4>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</header>
 
-{{band.name}}
-{% if band.profile_image %}
-<img src="{{ band.profile_image.url }}" alt="{{band.name}}">
-{% endif %}
-<h3>Conciertos</h3>
-<ul>
-    {% for event in events %}
-    <li> <a href="{% url 'venue_detail' pk=event.venue.pk %}">{{event.venue.name}} - {{event.time}}</a></li>
-    {% endfor %}
-</ul>
+<section class="banda_negra">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 text-center">
+                <a href="#" class="btn btn-default btn-descripcion">Descripción</a>
+            </div>
+            <div class="col-sm-6 text-center">
+            {% for event in events %}
+                <h2><a href="{% url 'venue_detail' pk=event.venue.pk %}">{{event.venue.name}} - {{event.time}}</a></h2>
+            {% endfor %}
+            </div>
+            <div class="col-sm-3 text-center">
+                <a href="http://www.facebook.com" class="rrss"><span class="fa fa-facebook"></span></a>
+                <a href="http://www.twitter.com" class="rrss"><span class="fa fa-twitter"></span></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% if band.embed_code %}
+            {{ band.profile_image.url }}
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}
