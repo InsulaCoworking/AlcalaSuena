@@ -24,3 +24,17 @@ class Band(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class BandToken(models.Model):
+    token = models.CharField(null=False, verbose_name='Nombre', max_length=40, unique=True)
+    band = models.ForeignKey(Band)
+    expiration_date = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Token'
+        verbose_name_plural = 'Tokens'
+        ordering = ['band']
+
+    def __unicode__(self):
+        return self.band.name
