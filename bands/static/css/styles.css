@@ -57,7 +57,7 @@ section.home-content {
 
 .band_header {
     background-image: url('../img/ficha-default-img.jpg');
-    background-position: cover;
+    padding-top: 120px;
 }
 
 .venue-header{

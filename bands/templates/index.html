@@ -35,7 +35,7 @@
 <section class="home-content">
     <div class="container buscador">
         <form method="post" action="{% url 'search' %}" class="form" id="searchForm">
-           <div class="form-group col-sm-3 col-xs-6">
+           <div class="form-group col-sm-3 col-xs-12">
             <label class="sr-only" for="day">Fecha</label>
             <select class="form-control select2" id="day" name="day">
                 <option value="">Cualquier día</option>
@@ -44,7 +44,7 @@
                 <option value="2017-06-04">Domingo 4</option>
             </select>
           </div>
-           <div class="form-group  col-sm-3 col-xs-6">
+           <div class="form-group  col-sm-3 col-xs-12">
             <label class="sr-only" for="venue">Lugar</label>
             <select class="form-control select2" id="venue" name="venue">
                 <option value="">Cualquier lugar</option>
@@ -53,7 +53,7 @@
                 {% endfor %}
             </select>
           </div>
-           <div class="form-group  col-sm-3 col-xs-6">
+           <div class="form-group  col-sm-3 col-xs-12">
             <label class="sr-only" for="tag">Estilo musical</label>
             <select class="form-control select2" id="tag" name="tag">
                 <option value="">Cualquier estilo</option>
@@ -62,7 +62,7 @@
                 {% endfor %}
             </select>
           </div>
-           <div class="form-group  col-sm-3 col-xs-6">
+           <div class="form-group  col-sm-3 col-xs-12">
             <label class="sr-only" for="band">Bandas</label>
             <select class="form-control select2" id="band" name="band">
                 <option value="">Cualquier banda</option>
@@ -74,12 +74,12 @@
 
         </form>
     </div>
+    <div class="container" id="resultados">
+        <p class="text-center">Utiliza el buscador para filtrar los resultados</p>
+    </div> <!-- /container -->
 </section>
 {% endblock %}
 
 {% block content %}
 
-<div class="container" id="resultados">
-    <p class="text-center">Utiliza el buscador para filtrar los resultados</p>
-</div> <!-- /container -->
 {% endblock %}
