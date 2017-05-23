@@ -57,8 +57,9 @@
             <label class="sr-only" for="tag">Estilo musical</label>
             <select class="form-control select2" id="tag" name="tag">
                 <option value="">Cualquier estilo</option>
-                <option value="Rock">Rock</option>
-                <option value="Samba">Samba</option>
+                 {% for tag in tags %}
+                <option value="{{tag.id}}">{{tag.name}}</option>
+                {% endfor %}
             </select>
           </div>
            <div class="form-group  col-sm-3 col-xs-6">
