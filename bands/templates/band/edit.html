@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{band.name}}{% endblock%}
+
+{% block content %}
+
+{{band.name}}
+{% if band.profile_image %}
+<img src="{{ band.profile_image.url }}" alt="{{band.name}}">
+{% endif %}
+
+
+<form method="POST">
+    {% csrf_token %}
+      {{ form.name.errors }}
+    {{ form.name.label_tag }}
+        {{ form.name }}<br>
+
+      {{ form.tag.errors }}
+    {{ form.tag.label_tag }}
+        {{ form.tag }}
+      <br>
+
+    <button type="submit" class="save btn btn-default">Guardar</button>
+</form>
+
+{% endblock %}

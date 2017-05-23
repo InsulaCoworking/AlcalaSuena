@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -37,4 +38,4 @@ class BandToken(models.Model):
         ordering = ['band']
 
     def __unicode__(self):
-        return self.band.name
+        return self.band.name + ':' + self.token

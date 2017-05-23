@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 # Create your views here.
-from bands.models import Band, Venue, Event
+from bands.forms.band import BandForm
+from bands.models import Band, Venue, Event, BandToken
 
 
 def index(request):
@@ -52,3 +53,20 @@ def search(request):
     return render(request, 'search.html', {
                       'events': events,
                   })
+
+
+def edit_band(request, token):
+    token = BandToken.objects.filter(token=token)
+    if not token or not token[0].band or (token[0].expiration_date and token[0].expiration_date >= timezone.now()):
+        return render(request, 'band/badtoken.html', {'token': token})
+
+    band = token[0].band
+    save_success = False
+    if request.method == "POST":
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            band = form.save()
+            save_success = True
+    else:
+        form = BandForm(instance=band)
+    return render(request, 'band/edit.html', {'band':band, 'form': form, 'save_success': True })
