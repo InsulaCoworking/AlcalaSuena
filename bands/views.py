@@ -50,8 +50,25 @@ def search(request):
     if venue_filter:
         events = events.filter(venue__pk=venue_filter)
 
+    tag_filter = request.GET.get('tag', None)
+    if venue_filter:
+        events = events.filter(tag__pk=tag_filter)
+
+    eventsbyday = []
+    for event in events:
+        day = None
+        for eventsday in eventsbyday:
+            if eventsday['day'] == event.day:
+                day = eventsday
+                break
+
+        if day is None:
+            day = { 'day': event.day, 'events':[] }
+            eventsbyday.append(day)
+        day['events'].append(event)
+
     return render(request, 'search.html', {
-                      'events': events,
+                      'days': eventsbyday,
                   })
 
 
