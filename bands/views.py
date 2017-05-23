@@ -5,14 +5,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 # Create your views here.
 from bands.forms.band import BandForm
-from bands.models import Band, Venue, Event, BandToken
+from bands.models import Band, Venue, Event, BandToken, Tag
 
 
 def index(request):
     bands = Band.objects.all()
     venues = Venue.objects.all()
+    tags = Tag.objects.all()
 
-    return render(request, 'index.html', { 'bands': bands, 'venues': venues })
+    return render(request, 'index.html', { 'bands': bands, 'venues': venues, 'tags':tags })
 
 def venues_list(request):
 
@@ -51,8 +52,8 @@ def search(request):
         events = events.filter(venue__pk=venue_filter)
 
     tag_filter = request.GET.get('tag', None)
-    if venue_filter:
-        events = events.filter(tag__pk=tag_filter)
+    if tag_filter:
+        events = events.filter(band__tag__pk=tag_filter)
 
     eventsbyday = []
     for event in events:
