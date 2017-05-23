@@ -1,16 +1,35 @@
 {% extends "base.html" %}
 
-{% block title %}Escenarios{% endblock%}
+{% block title %} {{venue.name}} {% endblock%}
 
 {% block content %}
-
-{{venue.name}}
+<div class="venue-header" style="background-image:url('{{venue.image.url}}')">
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>{{venue.name}}</h1>
+        <p class="description">{{venue.description}}</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+      </div>
+    </div>
+</div>
+<div class="container">
 
 <h3>Conciertos</h3>
-<ul>
-    {% for event in events %}
-    <li> <a href="{% url 'band_detail' pk=event.band.pk %}">{{event.band.name}} - {{event.time}}</a></li>
+
+    <div class="row">
+    {% for date in events %}
+    <div class="col-md-4 day-events">
+        <h3>{{ date.day }}</h3>
+        {% for event in date.events %}
+        <a href="{% url 'band_detail' pk=event.band.pk %}">
+            <div class="band-event" style="background-color:{{event.band.tag.color}}">
+            {{event.band.name}} - {{event.time}}
+                </div>
+        </a>
+        {% endfor %}
+    </div>
     {% endfor %}
-</ul>
+    </div>
+</div>
 
 {% endblock %}

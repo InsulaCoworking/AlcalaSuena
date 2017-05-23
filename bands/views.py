@@ -24,9 +24,23 @@ def venue_detail(request, pk):
 
     venue = get_object_or_404(Venue, pk=pk)
     events = Event.objects.filter(venue=venue)
+
+    eventsbyday = []
+    for event in events:
+        day = None
+        for eventsday in eventsbyday:
+            if eventsday['day'] == event.day:
+                day = eventsday
+                break
+
+        if day is None:
+            day = {'day': event.day, 'events': []}
+            eventsbyday.append(day)
+        day['events'].append(event)
+
     return render(request, 'venue/detail.html', {
         'venue': venue,
-        'events': events,
+        'events': eventsbyday,
     })
 
 def band_detail(request, pk):

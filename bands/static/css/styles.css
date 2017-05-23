@@ -59,3 +59,18 @@ section.home-content {
     background-image: url('../img/ficha-default-img.jpg');
     background-position: cover;
 }
+
+.venue-header{
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+}
+.venue-header .jumbotron{
+    background-color:rgba(0,0,0,0.4);
+    color:#fff;
+    text-shadow: 0 0 3px #111;
+    font-size:0.9rem;
+}
+.venue-header .description{
+    font-size:14px;
+}

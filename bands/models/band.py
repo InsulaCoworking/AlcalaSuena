@@ -17,6 +17,7 @@ class Band(models.Model):
     num_members = models.IntegerField(default=1)
     description = models.TextField(null=True, blank=True)
     embed_code = models.TextField(null=True, blank=True)
+    
     # TODO: RSS links
 
     class Meta:
