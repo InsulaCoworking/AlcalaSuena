@@ -3,7 +3,7 @@
 {% block title %} {{venue.name}} {% endblock%}
 
 {% block content %}
-<div class="venue-header" style="background-image:url('{{venue.image.url}}')">
+<div class="venue-header" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}>
     <div class="jumbotron">
       <div class="container text-center">
         <h1>{{venue.name}}</h1>
