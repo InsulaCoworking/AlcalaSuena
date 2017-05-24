@@ -21,10 +21,9 @@
     <div class="col-md-4 day-events">
         <h3>{{ date.day }}</h3>
         {% for event in date.events %}
-        <a href="{% url 'band_detail' pk=event.band.pk %}">
-            <div class="band-event" style="background-color:{{event.band.tag.color}}">
-            {{event.band.name}} - {{event.time}}
-                </div>
+        <a class="band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
+            <span class="hour">{{event.time}}</span>
+            <span class="band">{{event.band.name}}</span>
         </a>
         {% endfor %}
     </div>

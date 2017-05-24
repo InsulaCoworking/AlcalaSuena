@@ -17,8 +17,12 @@ class Band(models.Model):
     num_members = models.IntegerField(default=1)
     description = models.TextField(null=True, blank=True)
     embed_code = models.TextField(null=True, blank=True)
-    
-    # TODO: RSS links
+
+    facebook_link = models.CharField(null=True, blank=True, verbose_name='Página de Facebook', max_length=250)
+    youtube_link = models.CharField(null=True, blank=True, verbose_name='Canal de Youtube', max_length=250)
+    twitter_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Twitter', max_length=250)
+    bandcamp_link = models.CharField(null=True, blank=True, verbose_name='Página de BandCamp', max_length=250)
+    presskit_link = models.CharField(null=True, blank=True, verbose_name='Presskit', max_length=250)
 
     class Meta:
         verbose_name = 'Banda'
