@@ -8,6 +8,7 @@ class Event(models.Model):
     venue = models.ForeignKey(Venue, related_name="venue")
     day = models.DateField(null=False)
     time = models.TimeField(null=False)
+    duration = models.IntegerField(null=True, default=60)
 
     class Meta:
         verbose_name = 'Concierto'
