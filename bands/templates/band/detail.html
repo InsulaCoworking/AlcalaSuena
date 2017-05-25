@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<div class="jumbo-header" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
     <div class="jumbotron">
       <div class="container text-center">
         <h1>{{band.name}}</h1>
@@ -34,6 +34,7 @@
         <div class="col-sm-6">{%if band.profile_image %} <img src="{{band.profile_image.url}}" class="img-responsive">{% endif %}</div>
         <div class="col-sm-6">
             <p>{{band.description}}</p>
+            {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
             {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
             <div class="social-links">
                 {%if band.facebook_link %} <a href="{{band.facebook_link}}" target="_blank" class="card"><i class="fa fa-facebook" aria-hidden="true"></i></a> {% endif %}

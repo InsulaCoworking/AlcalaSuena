@@ -41,11 +41,6 @@ a.rrss {
     border-radius: 20px;
 }
 
-
-section.home-content {
-    background-position: cover;
-    padding-top: 60px;
-}
 #resultados {
     background-color: #fff;
     border: 1px solid #cc0000;
@@ -75,6 +70,9 @@ section.home-content {
     padding-top:100px;
     padding-bottom:60px;
 }
+.jumbo-header.jumbo-band{
+    background-image: url('../img/band-header.jpg'); }
+}
 .jumbo-header.home .jumbotron{ background-color:transparent; }
 .jumbo-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
 }
@@ -102,6 +100,16 @@ section.home-content {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 6px 5px 0 rgba(0,0,0,0.18), 0 3px 1px -2px rgba(0,0,0,0.2);
     text-decoration: none;
 }
+.card.main{
+    transform:none;
+    background-color:#fff;
+    margin-top:-25px;
+    position:relative;
+    z-index:10;
+    max-width:95%;
+    padding: 3em 2em 1em 2em;
+}
+
 
 .band-event{
     padding:10px 5px 20px 5px;

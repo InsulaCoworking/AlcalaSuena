@@ -13,8 +13,8 @@ class Band(models.Model):
     genre = models.CharField(null=True, blank=True, verbose_name='etiqueta', max_length=240)
     profile_image = models.ImageField(null=True, blank=True, upload_to=RandomFileName('band/'))
     band_image = models.ImageField(null=True, blank=True, upload_to=RandomFileName('band/'))
-    city = models.CharField(null=False, verbose_name='Ciudad', max_length=140)
-    num_members = models.IntegerField(default=1)
+    city = models.CharField(null=True, blank=True, verbose_name='Ciudad', max_length=140)
+    num_members = models.IntegerField(null=True, blank=True, default=1)
     description = models.TextField(null=True, blank=True)
     embed_code = models.TextField(null=True, blank=True)
 

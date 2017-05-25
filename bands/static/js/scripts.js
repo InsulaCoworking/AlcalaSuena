@@ -12,6 +12,11 @@ $(document).ready(function() {
     navbarScroll();
     $(document).scroll(navbarScroll);
 
+    function formatTag (tag) {
+      console.log(tag);
+      return tag;
+    };
+
 });
 
 

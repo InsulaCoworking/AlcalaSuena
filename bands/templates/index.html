@@ -12,16 +12,18 @@
         </div>
     </div>
 
-<section class="header-bar">
+<section class="header-bar no-margin">
 </section>
 {% endblock %}
 
 {% block content %}
 <section class="home-content">
     <a name="more"></a>
-    <div class="container buscador">
+    <div class="container main card">
+
+        <h3>¡Encuentra los conciertos que te interesan!</h3>
         <form method="post" action="{% url 'search' %}" class="form" id="searchForm">
-           <div class="form-group col-sm-3 col-xs-12">
+           <div class="form-group col-sm-4 col-xs-12">
             <label class="sr-only" for="day">Fecha</label>
             <select class="form-control select2" id="day" name="day">
                 <option value="">Cualquier día</option>
@@ -30,7 +32,7 @@
                 <option value="2017-06-04">Domingo 4</option>
             </select>
           </div>
-           <div class="form-group  col-sm-3 col-xs-12">
+           <div class="form-group  col-sm-4 col-xs-12">
             <label class="sr-only" for="venue">Lugar</label>
             <select class="form-control select2" id="venue" name="venue">
                 <option value="">Cualquier lugar</option>
@@ -39,7 +41,7 @@
                 {% endfor %}
             </select>
           </div>
-           <div class="form-group  col-sm-3 col-xs-12">
+           <div class="form-group  col-sm-4 col-xs-12">
             <label class="sr-only" for="tag">Estilo musical</label>
             <select class="form-control select2" id="tag" name="tag">
                 <option value="">Cualquier estilo</option>

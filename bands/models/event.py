@@ -6,9 +6,9 @@ from bands.models import Band, Venue
 class Event(models.Model):
     band = models.ForeignKey(Band, related_name="events")
     venue = models.ForeignKey(Venue, related_name="venue")
-    day = models.DateField(null=False)
-    time = models.TimeField(null=False)
-    duration = models.IntegerField(null=True, default=60)
+    day = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
+    duration = models.IntegerField(null=True, blank=True, default=60)
 
     class Meta:
         verbose_name = 'Concierto'

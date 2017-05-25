@@ -1,12 +1,11 @@
 from tastypie import fields
+from tastypie.fields import IntegerField
 from tastypie.resources import ModelResource
 
 from bands.models import Band, Venue, Event
 
 
 class BandResource(ModelResource):
-
-
     class Meta:
         queryset = Band.objects.all()
         list_allowed_methods = ['get']
@@ -23,6 +22,7 @@ class BandResource(ModelResource):
             return []
 
 class VenueResource(ModelResource):
+    events = fields.ToManyField('api.resources.EventResource', 'venue', full=True, null=True)
 
     class Meta:
         queryset = Venue.objects.all()
@@ -40,7 +40,7 @@ class VenueResource(ModelResource):
             return []
 
 class EventResource(ModelResource):
-    band = fields.ForeignKey('api.resources.BandResource', 'xxx', full=True, null=True)
+    band = IntegerField(attribute="band__pk")
 
     class Meta:
         queryset = Event.objects.all()
