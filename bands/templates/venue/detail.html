@@ -2,24 +2,27 @@
 
 {% block title %} {{venue.name}} {% endblock%}
 
+{% block bodyattrs %}class="venue"{% endblock%}
+
 {% block content %}
 <div class="venue-header" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}>
     <div class="jumbotron">
       <div class="container text-center">
         <h1>{{venue.name}}</h1>
         <p class="description">{{venue.description}}</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Cómo llegar <i class="fa right fa-external-link" aria-hidden="true"></i></a></p>
       </div>
     </div>
 </div>
+<div class="header-bar text-center">
+    <h2>Conciertos</h2>
+</div>
+
 <div class="container">
-
-<h3>Conciertos</h3>
-
     <div class="row">
     {% for date in events %}
     <div class="col-md-4 day-events">
-        <h3>{{ date.day }}</h3>
+        <h3>{{ date.day|date:"l, d F" }}</h3>
         {% for event in date.events %}
         <a class="band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
             <span class="hour">{{event.time}}</span>
