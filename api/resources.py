@@ -1,9 +1,11 @@
+from tastypie import fields
 from tastypie.resources import ModelResource
 
-from bands.models import Band, Venue
+from bands.models import Band, Venue, Event
 
 
 class BandResource(ModelResource):
+
 
     class Meta:
         queryset = Band.objects.all()
@@ -36,3 +38,13 @@ class VenueResource(ModelResource):
             return data[self.Meta.collection_name]
         else:
             return []
+
+class EventResource(ModelResource):
+    band = fields.ForeignKey('api.resources.BandResource', 'xxx', full=True, null=True)
+
+    class Meta:
+        queryset = Event.objects.all()
+        include_resource_uri = False
+        list_allowed_methods = ['get']
+        resource_name = 'events'
+        collection_name = 'events'
