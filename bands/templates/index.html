@@ -6,8 +6,7 @@
     <div class="jumbo-header" style="background-image:url('{% static "img/cabecera-home.jpg" %}')">
         <div class="jumbotron">
           <div class="container text-center">
-              <img src="{% static "img/logotipo.png" %}" alt="Logotipo Alcalá Suena" class="logo" />
-            <h1>III Fiesta de la Música de Alcalá de Henares</h1>
+              <img class="img-responsive" src="{% static "img/logo_insula.png" %}">
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Cómo llegar <i class="fa right fa-external-link" aria-hidden="true"></i></a></p>
           </div>
         </div>
@@ -63,22 +62,13 @@
                 {% endfor %}
             </select>
           </div>
-           <div class="form-group  col-sm-3 col-xs-12">
-            <label class="sr-only" for="band">Bandas</label>
-            <select class="form-control select2" id="band" name="band">
-                <option value="">Cualquier banda</option>
-                {% for band in bands %}
-                <option value="{{band.pk}}">{{band.name}}</option>
-                {% endfor %}
-            </select>
-          </div>
-
         </form>
     </div>
     <div class="container" id="resultados">
         <p class="text-center">Utiliza el buscador para filtrar los resultados</p>
     </div> <!-- /container -->
 </section>
+
 {% endblock %}
 
 {% block content %}

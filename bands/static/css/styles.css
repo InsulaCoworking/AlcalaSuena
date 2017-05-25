@@ -43,7 +43,6 @@ a.rrss {
 
 
 section.home-content {
-    background-image: url('../img/fondo-home.jpg');
     background-position: cover;
     padding-top: 60px;
 }
@@ -132,25 +131,33 @@ section.home-content {
 
 body{
     background-color: #19323e;
-    background-image: url('../img/band-bg.jpg');
+    background-image: url('../img/main_bg.png');
     background-repeat: no-repeat;
-    background-position: fixed;
+    background-position: center bottom;
+    background-size:cover;
     background-attachment: fixed;
 }
 
 .header-bar{
-    background-color: #d7dbdd;
-    color: #19323e;
+    background-color: #c00812;
+    color: #f1f1f1;
     padding: 25px 0;
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
     margin-bottom:3em;
 }
 .header-bar h2{ font-weight: 700; font-size:38px;}
 
+footer{
+    margin-top:3em;
+    padding: 3em 0;
+    background-color: #40474a;
+    color:#f9f9f9;
+}
 
+footer .img-responsive{ max-width:80%; margin:auto; }
 .btn.btn-primary{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-    background-color: #f95e57;
+    background-color: #40474a;
     border-radius:2px;
     border:none;
     text-transform: uppercase;
@@ -165,10 +172,10 @@ body{
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
     transition: all 600ms;
 }
-.navbar.scrolled{ background-color: #19323e; box-shadow: 0 3px 4px rgba(0,0,0,0.4); }
+.navbar.scrolled{ background-color: #211916; box-shadow: 0 3px 4px rgba(0,0,0,0.4); }
 .navbar-default .navbar-nav>li>a{ color:#fff; font-size:1.05em; transition: all 600ms; }
 .navbar-default .navbar-nav>li>a:hover{ color:#9fd2eb; }
-.navbar-default .navbar-nav>li.active>a{ background-color:#f95e57; }
+.navbar-default .navbar-nav>li.active>a{ background-color:#c00812; color:#fff; }
 
 .venue-card{
     background-color:#e8e8e8;
@@ -200,3 +207,15 @@ body{
     font-weight:bold;
 }
 .venue-card:hover .title, .venue-card:hover .address{ color:#fff; }
+.double-sep{ margin-top: 40px !important;}
+.no-margin{ margin: 0; }
+.insula img, .insula p{ display:inline-block; vertical-align:middle;}
+.insula p{ text-align:left; padding-left:20px;}
+.insula .btn{ margin-top:14px; }
+.insula a{ color:#fff; font-weight:bold; }
+#map{ position:relative; overflow:hidden;}
+#map .container{ background-color:#f3f3f3; }
+#map .map-container{ float:left;width:70%; }
+#map .legend{ float:left; width:30%; }
+#map  img{ width:100%; }
+#map .point{ font-size:16px; text-spacing:-3px; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; position:absolute; width:30px; height:30px; background-color:#c00812; border-radius:50%; color:#fff; text-align:center; line-height:30px; font-weight:bold;}
