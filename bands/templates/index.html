@@ -1,18 +1,19 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block title %}Alcalá Suena 2017{% endblock%}
 
 {% block home_header %}
-<header>
-    <div class="row text-center">
-        <img src="../static/img/logotipo.png" alt="Logotipo Alcalá Suena" class="logo" />
+    <div class="jumbo-header" style="background-image:url('{% static "img/cabecera-home.jpg" %}')">
+        <div class="jumbotron">
+          <div class="container text-center">
+              <img src="{% static "img/logotipo.png" %}" alt="Logotipo Alcalá Suena" class="logo" />
+            <h1>III Fiesta de la Música de Alcalá de Henares</h1>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Cómo llegar <i class="fa right fa-external-link" aria-hidden="true"></i></a></p>
+          </div>
+        </div>
     </div>
-    <div class="row text-center">
-        <h1>III Fiesta de la Música de Alcalá de Henares</h1>
-    </div>
-</header>
 
-<section class="banda_negra">
+<section class="header-bar">
     <div class="container">
         <div class="row">
             <div class="col-sm-3 text-center">

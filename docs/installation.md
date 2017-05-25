@@ -17,7 +17,8 @@ Instalar Python
 wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz
 tar xzf Python-2.7.13.tgz
 cd Python-2.7.13
-sudo ./configure
+./configure
+make
 sudo make install
 ```
 
@@ -90,6 +91,7 @@ Dentro de este fichero, tenemos que añadir las reglas para configurar nuestra a
          <Files wsgi.py>
             Require all granted
          </Files>
+         </Directory>
 
 		 <Directory /home/username/static>
            Require all granted

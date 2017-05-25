@@ -1,13 +1,31 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}Escenarios{% endblock%}
 
 {% block content %}
+<div class="jumbo-header" style="background-image:url('{% static "img/venues-header.jpg" %}')" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Escenarios</h1>
+        <p class="description">Lorem ipsum dolor sit amet</p>
 
-<ul>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center">
+</div>
+
+<div class="container">
+<div class="row">
     {% for venue in venues %}
-    <li> <a href="{% url 'venue_detail' pk=venue.pk %}">{{venue.name}}</a></li>
+    <div class="col-md-6 col-lg-4">
+        <a class="card venue-card" href="{% url 'venue_detail' pk=venue.pk %}">
+            <div class="venue-image" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}></div>
+            <span class="title">{{venue.name}}</span>
+            <span class="address">{{venue.address}}</span>
+        </a></div>
     {% endfor %}
-</ul>
-
+</div>
+    </div>
 {% endblock %}

@@ -4,6 +4,14 @@ $(document).ready(function() {
     url = $('#searchForm').attr('action');
     $("#resultados").load(url + '?' + data);
   });
+
+    var $nav = $(".navbar-fixed-top");
+    function navbarScroll(){
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    }
+    navbarScroll();
+    $(document).scroll(navbarScroll);
+
 });
 
 

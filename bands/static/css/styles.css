@@ -62,12 +62,12 @@ section.home-content {
     padding-top: 120px;
 }
 
-.venue-header{
+.jumbo-header{
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center;
 }
-.venue-header .jumbotron{
+.jumbo-header .jumbotron{
     background-color:rgba(0,0,0,0.4);
     color:#fff;
     text-shadow: 0 0 3px #111;
@@ -76,10 +76,10 @@ section.home-content {
     padding-top:60px;
     padding-bottom:60px;
 }
-.venue-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
+.jumbo-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
 }
 
-.venue-header .description{
+.jumbo-header .description{
     font-size:14px;
 }
 
@@ -89,23 +89,30 @@ section.home-content {
     font-weight:bolder;
     color:#eaeaea;
     text-align:center;
-    margin-top:3em;
+}
+
+.card{
+    display: block;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    transition: all 400ms;
+    border-radius:2px;
+}
+.card:hover{
+    transform: scale(1.02);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 6px 5px 0 rgba(0,0,0,0.18), 0 3px 1px -2px rgba(0,0,0,0.2);
+    text-decoration: none;
 }
 
 .band-event{
-    display: block;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     padding:10px 5px 20px 5px;
     margin-bottom:1em;
     text-align:center;
-    transition: all 400ms;
+
     color:#222;
 }
 .band-event:hover{
-    text-decoration: none;
+
     opacity:0.9;
-    transform: scale(1.02);
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 6px 5px 0 rgba(0,0,0,0.18), 0 3px 1px -2px rgba(0,0,0,0.2);
     color:#eee;
 }
 .band-event .hour{
@@ -123,7 +130,7 @@ section.home-content {
     font-size:1.3em;
 }
 
-body.venue{
+body{
     background-color: #19323e;
     background-image: url('../img/band-bg.jpg');
     background-repeat: no-repeat;
@@ -136,6 +143,7 @@ body.venue{
     color: #19323e;
     padding: 25px 0;
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
+    margin-bottom:3em;
 }
 .header-bar h2{ font-weight: 700; font-size:38px;}
 
@@ -150,3 +158,45 @@ body.venue{
 }
 .btn.btn-primary .fa.left{ margin-right:10px;}
 .btn.btn-primary .fa.right{ margin-left:10px;}
+
+.navbar{
+    background: transparent;
+    border:none;
+    font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
+    transition: all 600ms;
+}
+.navbar.scrolled{ background-color: #19323e; box-shadow: 0 3px 4px rgba(0,0,0,0.4); }
+.navbar-default .navbar-nav>li>a{ color:#fff; font-size:1.05em; transition: all 600ms; }
+.navbar-default .navbar-nav>li>a:hover{ color:#9fd2eb; }
+.navbar-default .navbar-nav>li.active>a{ background-color:#f95e57; }
+
+.venue-card{
+    background-color:#e8e8e8;
+    text-transform:uppercase;
+    margin-bottom:1em;
+    text-align:center;
+    padding-bottom:16px;
+}
+.venue-card:hover{
+    background-color:#f95e57;
+}
+.venue-image{
+    height:180px;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-color:#ddd;
+    margin-bottom:1em;
+}
+.venue-card .title{
+    font-size:1.5em;
+    display:block;
+    color:#111;
+    text-align:center;
+    font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
+}
+.venue-card .address{
+    color:#777;
+    font-weight:bold;
+}
+.venue-card:hover .title, .venue-card:hover .address{ color:#fff; }

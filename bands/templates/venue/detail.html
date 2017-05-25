@@ -5,7 +5,7 @@
 {% block bodyattrs %}class="venue"{% endblock%}
 
 {% block content %}
-<div class="venue-header" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}>
+<div class="jumbo-header" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}>
     <div class="jumbotron">
       <div class="container text-center">
         <h1>{{venue.name}}</h1>
@@ -24,7 +24,7 @@
     <div class="col-md-4 day-events">
         <h3>{{ date.day|date:"l, d F" }}</h3>
         {% for event in date.events %}
-        <a class="band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
+        <a class="card band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
             <span class="hour">{{event.time}}</span>
             <span class="band">{{event.band.name}}</span>
         </a>
