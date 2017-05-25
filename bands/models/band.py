@@ -10,7 +10,7 @@ from bands.models import Tag
 class Band(models.Model):
     name = models.CharField(null=False, verbose_name='Nombre', max_length=240)
     tag = models.ForeignKey(Tag, related_name="band")
-    genre = models.CharField(null=False, verbose_name='etiqueta', max_length=240)
+    genre = models.CharField(null=True, blank=True, verbose_name='etiqueta', max_length=240)
     profile_image = models.ImageField(null=True, blank=True, upload_to=RandomFileName('band/'))
     band_image = models.ImageField(null=True, blank=True, upload_to=RandomFileName('band/'))
     city = models.CharField(null=False, verbose_name='Ciudad', max_length=140)
