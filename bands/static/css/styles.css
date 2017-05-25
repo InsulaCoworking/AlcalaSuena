@@ -72,9 +72,10 @@ section.home-content {
     text-shadow: 0 0 3px #111;
     font-size:0.9rem;
     margin-bottom:0;
-    padding-top:60px;
+    padding-top:100px;
     padding-bottom:60px;
 }
+.jumbo-header.home .jumbotron{ background-color:transparent; }
 .jumbo-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
 }
 
@@ -130,7 +131,7 @@ section.home-content {
 }
 
 body{
-    background-color: #19323e;
+    background-color: #dadada;
     background-image: url('../img/main_bg.png');
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -161,8 +162,10 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     border-radius:2px;
     border:none;
     text-transform: uppercase;
+    transition: all 500ms;
     font-family: 'Oswald';
 }
+.btn.btn-primary:hover{ background-color: #5e686d; }
 .btn.btn-primary .fa.left{ margin-right:10px;}
 .btn.btn-primary .fa.right{ margin-left:10px;}
 
@@ -176,6 +179,12 @@ footer .img-responsive{ max-width:80%; margin:auto; }
 .navbar-default .navbar-nav>li>a{ color:#fff; font-size:1.05em; transition: all 600ms; }
 .navbar-default .navbar-nav>li>a:hover{ color:#9fd2eb; }
 .navbar-default .navbar-nav>li.active>a{ background-color:#c00812; color:#fff; }
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{ border:none;}
+.navbar-brand{ padding-top: 1px; }
+.navbar-brand-text{ color:#fff; line-height:50px; height:50px;}
+@media (max-width: 768px){
+.nav.navbar-nav{ background-color: #211916; }
+}
 
 .venue-card{
     background-color:#e8e8e8;
@@ -219,3 +228,57 @@ footer .img-responsive{ max-width:80%; margin:auto; }
 #map .legend{ float:left; width:30%; }
 #map  img{ width:100%; }
 #map .point{ font-size:16px; text-spacing:-3px; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; position:absolute; width:30px; height:30px; background-color:#c00812; border-radius:50%; color:#fff; text-align:center; line-height:30px; font-weight:bold;}
+
+@keyframes pull-down {
+    from {top: 0px;}
+    to {top: 15px;}
+}
+@-webkit-keyframes pull-down {
+    from {top: 0px;}
+    to {top: 15px;}
+}
+.showmore{
+    position: relative;
+    font-size: 70px;
+    color: #fff;
+    -webkit-animation: pull-down 700ms infinite alternate;
+    animation: pull-down 700ms infinite alternate;
+    text-shadow: 0 3px 3px #c00812;
+}
+.showmore:hover{ color:#f1f1f1; }
+
+.band-venue img, .band-venue p{ display:inline-block; vertical-align:middle; }
+.band-venue p{ padding-left:20px; text-align:left;}
+
+.venue-image.venue-icon{
+    border-radius: 50%;
+    margin:0;
+    height: 70px;
+    width:70px;
+ }
+.header-band .day{ font-size:3rem; display:block;}
+.header-band .hour{ display:block;
+    margin:auto;
+    font-size:2.5rem;
+    letter-spacing: 0.2em;
+    opacity:0.7;
+    color:#111;
+    font-family: 'Raleway', sans-serif;
+    font-weight:bold;
+    }
+
+.social-links{
+    margin: 2em 0;
+}
+.social-links a{
+    border-radius:50%;
+    height:50px;
+    width:50px;
+    text-align:center;
+    line-height:50px;
+    font-size:30px;
+    color:#fff;
+    display:inline-block;
+    background-color:  #c00812;
+    margin-left:1rem;
+}

@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     var $nav = $(".navbar-fixed-top");
     function navbarScroll(){
-        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.find('.navbar-header').height());
     }
     navbarScroll();
     $(document).scroll(navbarScroll);

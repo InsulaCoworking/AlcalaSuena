@@ -3,36 +3,22 @@
 {% block title %}Alcalá Suena 2017{% endblock%}
 
 {% block home_header %}
-    <div class="jumbo-header" style="background-image:url('{% static "img/cabecera-home.jpg" %}')">
+    <div class="jumbo-header home" style="background-image:url('{% static "img/band-bg.jpg" %}')">
         <div class="jumbotron">
           <div class="container text-center">
-              <img class="img-responsive" src="{% static "img/logo_insula.png" %}">
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Cómo llegar <i class="fa right fa-external-link" aria-hidden="true"></i></a></p>
+              <img class="img-responsive" src="{% static "img/fiesta_musica.png" %}">
+                <a class="showmore" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
           </div>
         </div>
     </div>
 
 <section class="header-bar">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 text-center">
-                <a href="#" class="btn btn-default btn-descripcion">Descripción</a>
-            </div>
-            <div class="col-sm-6 text-center">
-                <h2>Del 2 al 4 de Junio 2017</h2>
-            </div>
-            <div class="col-sm-3 text-center">
-                <a href="http://www.facebook.com" class="rrss"><span class="fa fa-facebook"></span></a>
-                <a href="http://www.twitter.com" class="rrss"><span class="fa fa-twitter"></span></a>
-            </div>
-        </div>
-    </div>
 </section>
 {% endblock %}
 
-
-{% block search %}
+{% block content %}
 <section class="home-content">
+    <a name="more"></a>
     <div class="container buscador">
         <form method="post" action="{% url 'search' %}" class="form" id="searchForm">
            <div class="form-group col-sm-3 col-xs-12">
@@ -68,9 +54,4 @@
         <p class="text-center">Utiliza el buscador para filtrar los resultados</p>
     </div> <!-- /container -->
 </section>
-
-{% endblock %}
-
-{% block content %}
-
 {% endblock %}

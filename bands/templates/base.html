@@ -24,21 +24,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Brand</a>
+              <a class="navbar-brand" href="#"><img class="img-responsive" src="{% static "img/icon-logo.png" %}"></a>
+                <span class="navbar-brand-text hidden-sm hidden-md hidden-lg"> Fiesta de la Música 2017</span>
             </div>
 
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio</a></li>
                     <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
-                      <li><a href="#">Bandas</a></li>
+                  <li><a href="#">Bandas</a></li>
+                      <li><a href="#">La App</a></li>
                   </ul>
           </div>
         </nav>
 
         {% block home_header %}{% endblock home_header %}
-
-        {% block search %}{% endblock search %}
 
 
         {% block content %}{% endblock content %}
