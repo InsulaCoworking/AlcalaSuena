@@ -121,6 +121,7 @@ USE_TZ = True
 
 INTERNAL_IPS = ('127.0.0.1',)
 TASTYPIE_DEFAULT_FORMATS = ['json']
+API_LIMIT_PER_PAGE = 250
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
