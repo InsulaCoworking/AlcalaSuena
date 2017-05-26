@@ -3,25 +3,29 @@
 {% block title %}{{band.name}}{% endblock%}
 
 {% block content %}
+<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>{{band.name}}</h1>
+        <p class="description">{{band.tag.name}}</p>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center ">
+    <h2>Editar</h2>
+</div>
 
+<div class="container">
 {{band.name}}
 {% if band.profile_image %}
 <img src="{{ band.profile_image.url }}" alt="{{band.name}}">
 {% endif %}
 
 
-<form method="POST">
+<form method="post"  enctype="multipart/form-data">
     {% csrf_token %}
-      {{ form.name.errors }}
-    {{ form.name.label_tag }}
-        {{ form.name }}<br>
-
-      {{ form.tag.errors }}
-    {{ form.tag.label_tag }}
-        {{ form.tag }}
-      <br>
-
+      {{form.as_p}}
     <button type="submit" class="save btn btn-default">Guardar</button>
 </form>
-
+</div>
 {% endblock %}

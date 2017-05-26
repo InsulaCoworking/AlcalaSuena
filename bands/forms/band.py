@@ -8,5 +8,5 @@ class BandForm(forms.ModelForm):
 
     class Meta:
         model = Band
-        fields = ['name', 'tag', 'genre', 'profile_image', 'band_image', 'city', 'num_members', 'description', 'embed_code']
+        exclude=[]
 
