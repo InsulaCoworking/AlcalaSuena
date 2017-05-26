@@ -45,6 +45,13 @@ def venue_detail(request, pk):
         'events': eventsbyday,
     })
 
+def bands_list(request):
+
+    bands = Band.objects.all()
+    return render(request, 'band/list.html', {
+        'bands': bands
+    })
+
 def band_detail(request, pk):
 
     band = get_object_or_404(Band, pk=pk)

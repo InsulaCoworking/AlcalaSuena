@@ -18,5 +18,24 @@
 
 <div class="container">
 
+        <table class="table table-striped">
+        <thead>
+            <th>Banda</th>
+            <th>Origen</th>
+            <th>Género</th>
+        </tr></thead>
+        <tbody>
+            {% for band in bands %}
+            <tr>
+                <td><a href="{% url 'band_detail' pk=band.pk%}" class="banda">{{band.name}} </a></td>
+                <td>{{band.city}}</td>
+                <td><span class="{{ event.band.tag }}">{{band.tag.name}}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+
+
 </div>
 {% endblock %}

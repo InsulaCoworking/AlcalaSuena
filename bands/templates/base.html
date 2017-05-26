@@ -32,7 +32,7 @@
                   <ul class="nav navbar-nav">
                     <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio</a></li>
                     <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
-                  <li><a href="#">Bandas</a></li>
+                  <li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>
                       <li><a href="#">La App</a></li>
                   </ul>
           </div>
