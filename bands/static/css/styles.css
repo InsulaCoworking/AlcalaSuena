@@ -64,7 +64,7 @@ a.rrss {
     padding-bottom:60px;
 }
 .jumbo-header.jumbo-band{
-    background-image: url('../img/band-header.jpg'); }
+    background-image: url('../img/band-header.jpg');
 }
 .jumbo-header.home .jumbotron{ background-color:transparent; }
 .jumbo-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
