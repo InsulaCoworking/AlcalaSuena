@@ -180,7 +180,7 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
     transition: all 600ms;
 }
-.navbar.scrolled{ background-color: #211916; box-shadow: 0 3px 4px rgba(0,0,0,0.4); }
+.navbar.scrolled{ background-color: #211916; box-shadow: 0 3px 4px rgba(0,0,0,0.4); z-index:4000;}
 .navbar-default .navbar-nav>li>a{ color:#fff; font-size:1.05em; transition: all 600ms; }
 .navbar-default .navbar-nav>li>a:hover{ color:#9fd2eb; }
 .navbar-default .navbar-nav>li.active>a{ background-color:#c00812; color:#fff; }
@@ -190,6 +190,7 @@ footer .img-responsive{ max-width:80%; margin:auto; }
 @media (max-width: 768px){
 .nav.navbar-nav{ background-color: #211916; }
 }
+.heading{ font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase; text-align:center; margin:1.4em 0; font-size:1.4em; color:#777;}
 .dossier{ text-aligm:center; color:#f9f9f9; background-color: #211916;   font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase; text-align:center;}
 .dossier:hover{ background-color: #c00812; color:#fff;}
 .dossier p{ padding:5px 0; }
@@ -331,4 +332,17 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
     display:block;
     margin:auto;
     color:#aaa;
+}
+
+.modal-dialog.venue-card{
+    top:50%;
+    margin-top:-120px;
+}
+
+.navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+    border:none;
+    background-color:transparent;
+    }
+.navbar-default .navbar-toggle .icon-bar {
+    background-color:#fff;
 }
