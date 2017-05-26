@@ -8,7 +8,7 @@
     <div class="jumbotron">
       <div class="container text-center">
         <h1>Escenarios</h1>
-        <p class="description">Los espacios más emblemáticos de esta ciudad patrimonio se visten de fiesta en un festival particular en el que además de buena música disfrutar de un entorno inigualable</p>
+        <p class="description">Los espacios más emblemáticos de esta ciudad patrimonio se visten de fiesta en un festival particular en el que además de buena música, poder disfrutar de un entorno inigualable</p>
       </div>
     </div>
 </div>
@@ -23,7 +23,8 @@
             <div class="venue-image" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}></div>
             <span class="title">{{venue.name}}</span>
             <span class="address">{{venue.address}}</span>
-        </a></div>
+        </a>
+    </div>
     {% endfor %}
 </div>
 </div>

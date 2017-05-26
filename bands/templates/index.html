@@ -21,6 +21,23 @@
     <a name="more"></a>
     <div class="container main card">
 
+        <div class="row">
+            <div class="col-sm-3 col-md-2 hidden-xs"><a href="#" class="card dossier">
+                <img src="{% static "img/As2.jpg" %}" alt="dossier" class="img-responsive">
+                <p>
+                    ver dossier
+                </p>
+            </a> </div>
+            <div class="col-sm-9 col-md-10">
+                <p class="lead"><span>
+                    Más de 140 conciertos gratuitos en 11 escenarios repartidos por un casco histórico patrimonio de la Humanidad.
+                    Alcala de Henares se llena de música en un proyecto creado por los artistas de la ciudad en el que se mezclan todo tipo de estilos, grupos profesionales y amateurs, noveles y cabezas de cartel en una producción con más de 800 músicos, técnicos, profesionales y voluntarios implicados en la producción.
+              </span>
+                </p>
+            </div>
+        </div>
+
+
         <h3>¡Encuentra los conciertos que te interesan!</h3>
         <form method="post" action="{% url 'search' %}" class="form" id="searchForm">
            <div class="form-group col-sm-4 col-xs-12">

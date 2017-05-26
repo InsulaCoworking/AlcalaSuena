@@ -3,7 +3,7 @@
 <div class="no-results">
     <h3 class="text-center">
             <i class="fa fa-refresh" aria-hidden="true"></i><br>
-             Oh, no hay resultados que satisfagan tus criterios de búsqueda.<br>
+             Ouch, no hay resultados que satisfagan tus criterios de búsqueda.<br>
             Prueba a realizar una nueva búsqueda
         </h3>
 
@@ -21,6 +21,7 @@
             <a class="card band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
                 <span class="hour">{{event.time}}</span>
                 <span class="band">{{event.band.name}}</span>
+                <span class="venue">{{event.venue.name}}</span>
             </a>
             {% endfor %}
 
