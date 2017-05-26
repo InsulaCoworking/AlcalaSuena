@@ -44,9 +44,9 @@
             <label class="sr-only" for="day">Fecha</label>
             <select class="form-control select2" id="day" name="day">
                 <option value="">Cualquier día</option>
-                <option value="2017-06-02">Viernes 2</option>
-                <option value="2017-06-03">Sábado 3</option>
-                <option value="2017-06-04">Domingo 4</option>
+                {% for day in days %}
+                <option value="{{day|date:"Y-m-d"}}">{{ day|date:"l, d F" }}</option>
+                {% endfor %}
             </select>
           </div>
            <div class="form-group  col-sm-4 col-xs-12">

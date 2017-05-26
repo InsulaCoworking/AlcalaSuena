@@ -11,7 +11,6 @@ $(document).ready(function() {
 
   $('#viewall').on('click', function(e){
     e.preventDefault();
-    console.log('sss');
     searchForm[0].reset();
     data = searchForm.serialize();
     results.load(url + '?' + data);

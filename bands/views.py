@@ -12,8 +12,10 @@ def index(request):
     bands = Band.objects.all()
     venues = Venue.objects.all()
     tags = Tag.objects.all()
+    days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
 
-    return render(request, 'index.html', { 'bands': bands, 'venues': venues, 'tags':tags })
+    print days
+    return render(request, 'index.html', { 'bands': bands, 'venues': venues, 'tags':tags, 'days':days })
 
 def venues_list(request):
 
@@ -68,6 +70,10 @@ def search(request):
     tag_filter = request.GET.get('tag', None)
     if tag_filter:
         events = events.filter(band__tag__pk=tag_filter)
+
+    day_filter= request.GET.get('day', None)
+    if day_filter:
+        events = events.filter(day=day_filter)
 
     eventsbyday = []
     for event in events:
