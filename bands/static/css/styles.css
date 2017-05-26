@@ -75,11 +75,11 @@ a.rrss {
     font-size:14px;
 }
 
-.day-events h3{
+h3.eventsday{
     font-size:1.4rem;
     text-transform: uppercase;
     font-weight:bolder;
-    color:#eaeaea;
+    color:#333;
     text-align:center;
 }
 

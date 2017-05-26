@@ -15,7 +15,7 @@
     {%if num_days == 1 %}<div class="col-md-12"> {%endif%}
     {%if num_days == 2 %}<div class="col-md-6"> {%endif%}
     {%if num_days == 3 %}<div class="col-md-4"> {%endif%}
-    <h3>{{ dia.day }}</h3>
+    <h3 class="eventsday">{{ dia.day }}</h3>
 
             {% for event in dia.events %}
             <a class="card band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
