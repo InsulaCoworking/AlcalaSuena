@@ -16,12 +16,6 @@
 </div>
 
 <div class="container">
-{{band.name}}
-{% if band.profile_image %}
-<img src="{{ band.profile_image.url }}" alt="{{band.name}}">
-{% endif %}
-
-
 <form method="post"  enctype="multipart/form-data">
     {% csrf_token %}
       {{form.as_p}}
