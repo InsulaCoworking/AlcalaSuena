@@ -1,5 +1,4 @@
-body{ font-family: 'Raleway', sans-serif; }
-
+body{ font-family: 'Raleway', sans-serif; padding-right: 0 !important }
 header {
     background: url('../img/cabecera-home.jpg') no-repeat top center;
 }
@@ -201,8 +200,8 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     text-align:center;
     padding-bottom:16px;
 }
-.venue-card:hover{
-    background-color:#f95e57;
+a.venue-card:hover{
+    background-color:#c00812;
 }
 .venue-image{
     height:180px;
@@ -223,7 +222,20 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     color:#777;
     font-weight:bold;
 }
-.venue-card:hover .title, .venue-card:hover .address{ color:#fff; }
+.fab{
+    position: absolute;
+    right: 20px;
+    margin-top: -50px;
+    height: 70px;
+    width: 70px;
+    line-height:70px;
+    background-color:#c00812;
+    cursor:pointer;
+    font-size:30px;
+    border-radius:50%;
+    color:#fff;
+}
+a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
 .double-sep{ margin-top: 40px !important;}
 .no-margin{ margin: 0; }
 .insula img, .insula p{ display:inline-block; vertical-align:middle;}
@@ -236,7 +248,28 @@ footer .img-responsive{ max-width:80%; margin:auto; }
 #map .legend{ float:left; width:30%; }
 #map  img{ width:100%; }
 #map .point{ font-size:16px; text-spacing:-3px; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; position:absolute; width:30px; height:30px; background-color:#c00812; border-radius:50%; color:#fff; text-align:center; line-height:30px; font-weight:bold;}
-
+#map .point::after{
+    content:'';
+    width:30px; height:30px;
+    position:absolute;
+    margin-left:-20px;
+    border-radius:50%;
+}
+#map .point:hover{ cursor: pointer; opacity:0.9;}
+#map .point:hover:after{
+	border: 5px solid #c00812;
+    -webkit-animation: pulsate 1.8s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0
+}
+.modal, .modal-backdrop {
+    position: absolute !important;
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(1, 1); opacity: 0.3;}
+    50% {opacity: 0.7;}
+    100% {-webkit-transform: scale(1.8, 1.8); opacity: 0.0;}
+}
 @keyframes pull-down {
     from {top: 0px;}
     to {top: 15px;}

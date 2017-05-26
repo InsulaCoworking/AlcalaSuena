@@ -19,8 +19,10 @@
 <div class="row">
     {% for venue in venues %}
     <div class="col-md-6 col-lg-4">
-        <a class="card venue-card" href="{% url 'venue_detail' pk=venue.pk %}">
+        <a class="card venue-card venue-{{venue.pk}}" href="{% url 'venue_detail' pk=venue.pk %}">
+
             <div class="venue-image" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}></div>
+            <div data-href="{% url 'venue_detail' pk=venue.pk %}" class="card fab" style="display:none;"><i class="fa right fa-search" aria-hidden="true"></i></div>
             <span class="title">{{venue.name}}</span>
             <span class="address">{{venue.address}}</span>
         </a>
@@ -36,20 +38,59 @@
 
 <section id="map">
         <img src="{% static "img/drawn_map.jpg" %}" alt="Mapa">
-        <div class="point" style="left:57%;top:43%;">1</div>
-    <div class="point" style="left:63%;top:28%;">2</div>
-    <div class="point" style="left:59%;top:23%;">3</div>
-    <div class="point" style="left:54%;top:16%;">4</div>
-    <div class="point" style="left:54%;top:52%;">5</div>
-    <div class="point" style="left:46%;top:57%;">6</div>
-    <div class="point" style="left:34%;top:73%;">7</div>
-    <div class="point" style="left:25%;top:87%;">8</div>
-    <div class="point" style="left:28%;top:59%;">9</div>
-    <div class="point" style="left:26%;top:78%;">10</div>
-    <div class="point" style="left:15%;top:83%;">11</div>
+    <div class="point" style="left:57%;top:43%;" data-venue="8">1</div>
+    <div class="point" style="left:63%;top:28%;" data-venue="1">2</div>
+    <div class="point" style="left:59%;top:23%;" data-venue="10">3</div>
+    <div class="point" style="left:54%;top:16%;" data-venue="2">4</div>
+    <div class="point" style="left:54%;top:52%;" data-venue="11">5</div>
+    <div class="point" style="left:46%;top:57%;" data-venue="7">6</div>
+    <div class="point" style="left:34%;top:73%;" data-venue="5">7</div>
+    <div class="point" style="left:25%;top:87%;" data-venue="9">8</div>
+    <div class="point" style="left:28%;top:59%;" data-venue="6">9</div>
+    <div class="point" style="left:26%;top:78%;" data-venue="4">10</div>
+    <div class="point" style="left:15%;top:83%;" data-venue="3">11</div>
+
+    <div class="modal fade" id="venue-dialog" tabindex="-1" role="dialog" aria-labelledby="dialog_confirm_mapLabel" aria-hidden="true">
+        <div class="modal-dialog card venue-card">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You didn't move the map pin, are you sure it is on your address/house?</p>
+                </div>
+                <div class="modal-footer"> <span style="float:left"><button type="button" class="btn btn-default" data-dismiss="modal">No, I'll do it now </button></span>
+            <span style="float:right"><button type="button" class="btn btn-primary" data-dismiss="modal" onclick="jQuery('#mapchanged').val(1);jQuery('#registration').submit();">Yes, I am sure</button></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 <div class="header-bar text-center no-margin">
 </div>
 
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    var venue_dialog = $('#venue-dialog');
+    var map = $('#map')
+    map.on('click', '.point', function(){
+        $marker = $(this);
+        if ($marker.attr('data-venue') !== ''){
+            var data = $('.venue-'+$marker.attr('data-venue'));
+            console.log(data.html());
+            venue_dialog.find('.modal-dialog').html(data.html());
+            venue_dialog.find('.fab').show();
+        }
+        venue_dialog.modal();
+        $('.modal-backdrop').appendTo(map);
+        //removing body classes to able click events
+        $('body').removeClass();
+
+     });
+     map.on('click', '.fab', function(){
+        console.log(this);
+        window.location = $(this).attr('data-href');
+     });
+</script>
+{% endblock scripts %}
