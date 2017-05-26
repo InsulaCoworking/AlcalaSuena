@@ -84,6 +84,8 @@ def search(request):
 
     return render(request, 'search.html', {
                       'days': eventsbyday,
+                      'num_days': len(eventsbyday),
+                        'no_results':len(eventsbyday)==0
                   })
 
 

@@ -41,12 +41,6 @@ a.rrss {
     border-radius: 20px;
 }
 
-#resultados {
-    background-color: #fff;
-    border: 1px solid #cc0000;
-    border-radius: 10px;
-}
-
 .form-control {
     border: 2px solid #cc0000;
 }
@@ -289,4 +283,13 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     display:inline-block;
     background-color:  #c00812;
     margin-left:1rem;
+}
+#results{
+    padding:4em 1em;
+}
+#results i.fa{
+    font-size:60px;
+    display:block;
+    margin:auto;
+    color:#aaa;
 }

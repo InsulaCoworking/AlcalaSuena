@@ -14,19 +14,20 @@
 </div>
 <div class="header-bar text-center header-band">
     <div class="container">
-        <div class="row">
+
     {% for event in events %}
+        <div class="row">
             <div class="col-sm-6"><span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l, d F" }}</span></div>
                 <div class="col-sm-6"><div class="band-venue" >
                     <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}>
                     <p>
                     {{event.venue.name}}<br>
-                        <a class="btn btn-primary btn-lg" href="{% url 'venue_detail' pk=event.venue.pk %}" role="button">Ver detalles de sala</a>
+                        <a class="btn btn-primary btn-lg" href="{% url 'venue_detail' pk=event.venue.pk %}" role="button">Ver detalles del escenario</a>
                     </p>
                 </div></div>
-
+        </div>
             {% endfor %}
-        </div></div>
+        </div>
 </div>
 
 <div class="container">

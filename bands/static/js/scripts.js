@@ -1,8 +1,20 @@
 $(document).ready(function() {
-  $(".select2").select2().on('change',function() {
-    data = $('#searchForm').serialize();
-    url = $('#searchForm').attr('action');
-    $("#resultados").load(url + '?' + data);
+
+    var searchForm = $('#searchForm');
+    var url = searchForm.attr('action');
+    var results = $("#results")
+
+  $(".select2").on('change',function() {
+    data = searchForm.serialize();
+    results.load(url + '?' + data);
+  });
+
+  $('#viewall').on('click', function(e){
+    e.preventDefault();
+    console.log('sss');
+    searchForm[0].reset();
+    data = searchForm.serialize();
+    results.load(url + '?' + data);
   });
 
     var $nav = $(".navbar-fixed-top");
