@@ -346,3 +346,55 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
 .navbar-default .navbar-toggle .icon-bar {
     background-color:#fff;
 }
+
+.mosaicflow__column {
+  float: left;
+}
+.mosaicflow__item{
+	padding: 4px;
+}
+.mosaicflow__item a {
+  display: block;
+  border:5px solid #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  transition: 700ms all;
+  -webkit-transform: translateZ(0);
+   -moz-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   -o-transform: translateZ(0);
+   transform: translateZ(0);
+}
+.mosaicflow__item img{  width: 100%;
+  height: auto; }
+.mosaicflow__item a:hover{
+	-webkit-transform: scale(1.04);
+	box-shadow: 0 11px 24px rgba(0,0,0,0.5);
+}
+.mosaicflow__item a{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+}
+.mosaicflow__item a:before{
+    position:absolute;
+    content:'';
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.4);
+    z-index:200;
+}
+.band_link span{
+    position:absolute;
+    padding:0 10px;
+    top:40%;
+    text-align:center;
+    margin-top:-20px;
+    width:100%;
+    display:block;
+    left:0;
+    z-index:2000;
+    color: #e8e8e8 !important;
+    font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
+    text-transform: uppercase;
+    font-size:1.15em;
+}

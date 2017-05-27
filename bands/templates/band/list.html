@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block title %}{{band.name}}{% endblock%}
 
 
@@ -8,7 +8,7 @@
     <div class="jumbotron">
       <div class="container text-center">
         <h1>BANDAS</h1>
-        <p class="description">Un festival participativo con más de 140 grupos actuando en calles y plazas del casco histórico</p>
+        <p class="description">Un festival participativo con más de 140 grupos actuando en calles y plazas del Casco Histórico de Alcalá, Patromonio de la Humanidad</p>
       </div>
     </div>
 </div>
@@ -18,24 +18,19 @@
 
 <div class="container">
 
-        <table class="table table-striped">
-        <thead>
-            <th>Banda</th>
-            <th>Origen</th>
-            <th>Género</th>
-        </tr></thead>
-        <tbody>
-            {% for band in bands %}
-            <tr>
-                <td><a href="{% url 'band_detail' pk=band.pk%}" class="banda">{{band.name}} </a></td>
-                <td>{{band.city}}</td>
-                <td><span class="{{ event.band.tag }}">{{band.tag.name}}</span></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <hr>
-
-
+    <div class="clearfix gallery">
+        {% for band in bands %}
+        <div class="mosaicflow__item">
+          <a href="{% url 'band_detail' pk=band.pk%}" class="band_link" title="{{band.name}}" style="border-color:{{band.tag.color}}">
+              <img src="{% if band.band_image %}{{band.band_image.url}}{%else%}{%static "img/band-header.jpg"%}{%endif%}" alt="{{band.name}}">
+              <span>{{band.name}}</span>
+          </a>
+        </div>
+         {% endfor %}
+    </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static "js/jquery.mosaicflow.min.js" %}"></script>
 {% endblock %}
