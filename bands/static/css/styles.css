@@ -410,6 +410,6 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
 }
 .tag:before{ content:'·'; position:absolute; font-weight:bold; left:5px; color:#cecece; font-size:30px;font-family:serif; top:-5px;}
 
-.filtered .tag{ opacity:0.6; }
+.filtered .tag{ opacity:0.4; }
 .tag:hover{ opacity:1; cursor:pointer; }
 .filtered .tag.active{ opacity:1; font-weight:bold;}
