@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('.gallery').mosaicflow({
     minColumns: 2,
     minItemWidth: 260
-  }).on('mosaicflow-layout', function(){ $('.loading').fadeOut(); }).find('.swipe').swipebox();;
+  }).on('mosaicflow-layout', function(){ $('.loading').fadeOut(); });
 
 });
 

@@ -50,8 +50,9 @@ def venue_detail(request, pk):
 def bands_list(request):
 
     bands = Band.objects.all()
+    tags = Tag.objects.all()
     return render(request, 'band/list.html', {
-        'bands': bands
+        'bands': bands, 'tags': tags
     })
 
 def band_detail(request, pk):
