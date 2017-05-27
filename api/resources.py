@@ -2,10 +2,22 @@ from tastypie import fields
 from tastypie.fields import IntegerField
 from tastypie.resources import ModelResource
 
-from bands.models import Band, Venue, Event
+from bands.models import Band, Venue, Event, Tag
 
+
+class TagResource(ModelResource):
+
+    class Meta:
+        queryset = Tag.objects.all()
+        include_resource_uri = False
+        list_allowed_methods = ['get']
+        resource_name = 'tag'
+        collection_name = 'tag'
+        excludes = ['description']
 
 class BandResource(ModelResource):
+    tag = fields.ForeignKey(TagResource, 'tag', full=True, null=True)
+
     class Meta:
         queryset = Band.objects.all()
         list_allowed_methods = ['get']
