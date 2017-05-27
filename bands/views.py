@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 # Create your views here.
 from bands.forms.band import BandForm
 from bands.models import Band, Venue, Event, BandToken, Tag
 
+LATENIGHT_HOURS = datetime.time(3,0,0)
 
 def index(request):
     bands = Band.objects.all()
@@ -85,16 +87,15 @@ def search(request):
     eventsbyday = []
     for event in events:
         day = None
+
+        #we reduce the day to the previous one
+        if event.time < LATENIGHT_HOURS:
+            event.day = event.day - datetime.timedelta(days=1)
+
         for eventsday in eventsbyday:
             if eventsday['day'] == event.day:
                 day = eventsday
                 break
-
-        #Aquí podríamos comprobar la hora y realizar el cambio de dia si la hora es menor que las 2 de la mañana
-        #if day is None:
-            #if event.time<time(2,0,0) and event.time>=time(0,0,0):   evidentemente esto no es así
-                #event.day = eventsday['day']
-                #day = eventsday
 
         if day is None:
             day = { 'day': event.day, 'events':[] }
