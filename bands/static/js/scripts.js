@@ -24,14 +24,8 @@ $(document).ready(function() {
     $(document).scroll(navbarScroll);
 
     function formatTag (tag) {
-      console.log(tag);
       return tag;
     };
-
-  $('.gallery').mosaicflow({
-    minColumns: 2,
-    minItemWidth: 260
-  }).on('mosaicflow-layout', function(){ $('.loading').fadeOut(); });
 
 });
 

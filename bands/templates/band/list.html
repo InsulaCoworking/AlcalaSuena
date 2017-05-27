@@ -44,6 +44,11 @@
 var tags = $('.tags');
 var bands = $('.mosaicflow__item');
 
+  $('.gallery').mosaicflow({
+    minColumns: 2,
+    minItemWidth: 260
+  }).on('mosaicflow-layout', function(){ $('.loading').fadeOut(); });
+
 tags.on('click', '.tag', function(){
     var tag = $(this);
     if (tag.hasClass('active')){
@@ -56,10 +61,7 @@ tags.on('click', '.tag', function(){
         tag.addClass('active');
         var filter = tag.attr('data-tag');
         $('.mosaicflow__item').hide().filter('.'+filter).show();
-        console.log(filter);
     }
-
-
 });
 
 
