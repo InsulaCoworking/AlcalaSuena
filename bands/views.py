@@ -90,9 +90,17 @@ def search(request):
                 day = eventsday
                 break
 
+        #Aquí podríamos comprobar la hora y realizar el cambio de dia si la hora es menor que las 2 de la mañana
+        #if day is None:
+            #if event.time<2:00 and event.time>00:00:   evidentemente esto no es así
+                #event.day = eventsday['day']
+                #day = eventsday
+
         if day is None:
             day = { 'day': event.day, 'events':[] }
             eventsbyday.append(day)
+
+
         day['events'].append(event)
 
     return render(request, 'search.html', {
