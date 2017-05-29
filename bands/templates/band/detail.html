@@ -45,8 +45,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">{%if band.profile_image %} <img src="{{band.profile_image.url}}" class="img-responsive band-profile-image">{% endif %}</div>
-        <div class="col-sm-6">
+        <div class="col-sm-5">{%if band.profile_image %} <img src="{{band.profile_image.url}}" class="img-responsive band-profile-image">{% endif %}</div>
+        <div class="col-sm-7">
             <p>{{band.description|linebreaks}}</p>
             {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
             {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
