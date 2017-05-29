@@ -69,9 +69,29 @@ a.rrss {
 .jumbo-header.home .jumbotron{ background-color:transparent; }
 .jumbo-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
 }
+.jumbo-header.app .jumbotron{ min-height:55vh; }
 
 .jumbo-header .description{
     font-size:14px;
+}
+
+.app-info img{
+    margin:auto; max-width:90%;
+    margin-bottom:-180px;
+}
+
+@media (max-width: 992px){
+    .app-info img{
+        margin:auto; max-width:100%;
+        margin-bottom:-280px;
+    }
+    .app-info{ margin-bottom:-50px;}
+}
+@media (max-width: 768px){
+    .app-info img{
+        margin:auto; max-width:80%;
+        margin-bottom:-60px;
+    }
 }
 
 h3.eventsday{
@@ -168,12 +188,16 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     border:none;
     text-transform: uppercase;
     transition: all 500ms;
+    white-space: normal;
+    margin-bottom:1em;
     font-family: 'Oswald';
 }
 .btn.btn-primary:hover{ background-color: #5e686d; }
 .btn.btn-primary .fa.left{ margin-right:10px;}
 .btn.btn-primary .fa.right{ margin-left:10px;}
-
+.btn.btn-primary.red{
+    background-color:#c00812;
+}
 .navbar{
     background: transparent;
     border:none;
@@ -287,7 +311,7 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
     animation: pull-down 700ms infinite alternate;
     text-shadow: 0 3px 3px #c00812;
 }
-.showmore:hover{ color:#f1f1f1; }
+.showmore:hover, .showmore:active{ color:#f1f1f1; }
 
 .band-venue img, .band-venue p{ display:inline-block; vertical-align:middle; }
 .band-venue p{ padding-left:20px; text-align:left;}

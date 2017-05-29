@@ -70,5 +70,4 @@ class SettingsResource(ModelResource):
         collection_name = 'settings'
 
     def dehydrate(self, bundle):
-
         return bundle.data['value']

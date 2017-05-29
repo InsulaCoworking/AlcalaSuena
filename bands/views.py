@@ -13,18 +13,19 @@ from bands.models import Band, Venue, Event, BandToken, Tag
 LATENIGHT_HOURS = datetime.time(3,0,0)
 
 def index(request):
-    bands = Band.objects.all()
     venues = Venue.objects.all()
     tags = Tag.objects.all()
     days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
 
-    print days
-    return render(request, 'index.html', { 'bands': bands, 'venues': venues, 'tags':tags, 'days':days })
+    return render(request, 'index.html', { 'venues': venues, 'tags':tags, 'days':days })
 
 def venues_list(request):
 
     venues = Venue.objects.all()
     return render(request, 'venue/list.html', {'venues': venues})
+
+def app_info(request):
+    return render(request, 'app_info.html', {})
 
 def venue_detail(request, pk):
 
