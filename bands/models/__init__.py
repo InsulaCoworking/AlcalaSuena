@@ -6,12 +6,4 @@ from venue import Venue
 from band import Band
 from event import Event
 from band import BandToken
-
-from django.db import models
-
-# Create your models here.
-
-
-
-
-
+from settings import Settings

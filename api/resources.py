@@ -2,7 +2,7 @@ from tastypie import fields
 from tastypie.fields import IntegerField
 from tastypie.resources import ModelResource
 
-from bands.models import Band, Venue, Event, Tag
+from bands.models import Band, Venue, Event, Tag, Settings
 
 
 class TagResource(ModelResource):
@@ -60,3 +60,15 @@ class EventResource(ModelResource):
         list_allowed_methods = ['get']
         resource_name = 'events'
         collection_name = 'events'
+
+class SettingsResource(ModelResource):
+    class Meta:
+        queryset = Settings.objects.all()
+        include_resource_uri = False
+        list_allowed_methods = ['get']
+        resource_name = 'settings'
+        collection_name = 'settings'
+
+    def dehydrate(self, bundle):
+
+        return bundle.data['value']
