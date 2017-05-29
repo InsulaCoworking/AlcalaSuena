@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 import datetime
+import random
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 # Create your views here.
@@ -49,8 +51,9 @@ def venue_detail(request, pk):
 
 def bands_list(request):
 
-    bands = Band.objects.all()
+    bands = list(Band.objects.all())
     tags = Tag.objects.all()
+    random.shuffle(bands)
     return render(request, 'band/list.html', {
         'bands': bands, 'tags': tags
     })
