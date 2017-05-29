@@ -27,7 +27,6 @@
 </div>
 <div class="header-bar text-center header-band">
     <div class="container">
-
     {% for event in events %}
         <div class="row">
             <div class="col-sm-6"><span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l, d F" }}</span></div>
@@ -45,7 +44,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">{%if band.profile_image %} <img src="{{band.profile_image.url}}" class="img-responsive">{% endif %}</div>
+        <div class="col-sm-6">{%if band.profile_image %} <img src="{{band.profile_image.url}}" class="img-responsive band-profile-image">{% endif %}</div>
         <div class="col-sm-6">
             <p>{{band.description}}</p>
             {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}

@@ -413,3 +413,17 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
 .filtered .tag{ opacity:0.4; }
 .tag:hover{ opacity:1; cursor:pointer; }
 .filtered .tag.active{ opacity:1; font-weight:bold;}
+
+.band-profile-image{ margin-bottom: 1.5em; }
+
+@media (max-width:768px){
+    .header-band .col-sm-6:first-child{ margin-bottom:1em; }
+     .header-band .col-sm-6:first-child:after{
+        content:'';
+        display:block;
+        margin:auto;
+        width:70px;
+        padding-top:0.5em;
+        border-bottom:2px solid #fff;
+     }
+}
