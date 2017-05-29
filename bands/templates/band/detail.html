@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}{{band.name}}{% endblock%}
+{% block bodyattrs %}{%if view %} class="{{view}}"{%endif%}{% endblock%}
 
 {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">

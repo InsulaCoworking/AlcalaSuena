@@ -59,12 +59,12 @@ def bands_list(request):
     })
 
 def band_detail(request, pk):
-
     band = get_object_or_404(Band, pk=pk)
     events = Event.objects.filter(band=band)
     return render(request, 'band/detail.html', {
         'band': band,
         'events': events,
+        'view': request.GET.get('view', None)
     })
 
 def search(request):
@@ -72,7 +72,6 @@ def search(request):
     events = Event.objects.all()
 
     band_filter = request.GET.get('band', None)
-    print band_filter
     if band_filter:
         events = events.filter(band__pk=band_filter)
 

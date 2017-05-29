@@ -427,3 +427,19 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
         border-bottom:2px solid #fff;
      }
 }
+
+body.snapshot .navbar-toggle, body.snapshot .navbar-brand, body.snapshot .band-venue .btn{ display:none; }
+body.snapshot .navbar-brand-text
+{
+    font-size: 18px;
+    display: block;
+    text-align: center;
+}
+body.snapshot .navbar-brand-text:before{ content:'#AlcalaSuena: '; color:#aaa;}
+body.snapshot .band-venue p{
+        padding-left: 20px;
+    text-align: left;
+    font-size: 26px;
+    padding-right: 50px;
+}
+body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
