@@ -13,6 +13,15 @@ from bands.models import Band, Venue, Event, BandToken, Tag
 LATENIGHT_HOURS = datetime.time(3,0,0)
 
 def index(request):
+    share_filter = request.GET.get('share', None)
+    if share_filter:
+        try:
+            events_list = map(lambda x: int(x), share_filter.split(','))
+            events = Event.objects.filter(pk__in=events_list)
+            return render(request, 'share.html', {'events':events})
+        except ValueError:
+            pass
+
     venues = Venue.objects.all()
     tags = Tag.objects.all()
     days = Event.objects.order_by('day').values_list('day', flat=True).distinct()

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Lista compartida{% endblock%}
+
+{% block social_meta %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@aemusica">
+        <meta name="twitter:title" content="Lista Compartida | Alcalá Suena - Fiesta de la Música 2017">
+        <meta name="twitter:description" content="Selección de conciertos desde la app de AlcalaSuena">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner.jpg" %}">
+
+        <meta property="og:url" content="{{request.build_absolute_uri}}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Lista Compartida | Alcalá Suena - Fiesta de la Música 2017" />
+        <meta property="og:description" content="Selección de conciertos desde la app de AlcalaSuena" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner.jpg" %}" />
+        {% endblock %}
+
+{% block content %}
+<div class="jumbo-header" style="background-image:url('{% static "img/venues-header.jpg" %}')" >
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Lista compartida</h1>
+            <p class="description">Parece que alguien ha compartido contigo una lista de conciertos para la app de AlcalaSuena...</p>
+        </div>
+    </div>
+</div>
+<div class="header-bar text-center">
+    <h2>Conciertos</h2>
+</div>
+
+<div class="container">
+    {% for event in events %}
+    <a class="card band-event row text-left" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
+        <div class="col-xs-3 col-sm-1">
+        <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}></div>
+        <div class="col-xs-9 col-sm-11">
+        <span class="hour">{{event.time}}</span>
+        <strong class="band">{{event.band.name}}</strong>
+        <span class="band">{{event.venue.name}}</span>
+            </div>
+    </a>
+    {% endfor %}
+
+    {% if not events %}
+        <p class="lead">Ouch, parece que no hay ningún concierto en el enlace que has mandado...</p>
+    {% endif %}
+</div>
+
+{% endblock %}
