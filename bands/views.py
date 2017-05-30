@@ -35,6 +35,11 @@ def venue_detail(request, pk):
     eventsbyday = []
     for event in events:
         day = None
+
+        # we reduce the day to the previous one
+        if event.time < LATENIGHT_HOURS:
+            event.day = event.day - datetime.timedelta(days=1)
+
         for eventsday in eventsbyday:
             if eventsday['day'] == event.day:
                 day = eventsday
