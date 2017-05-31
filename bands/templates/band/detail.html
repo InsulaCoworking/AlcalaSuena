@@ -17,6 +17,8 @@
         <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}" />
         {% endblock %}
 
+{% block extra_styles %}<style> .embed iframe{ width:100%; } </style>{% endblock extra_styles %}
+
 {% block content %}
 <div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
     <div class="jumbotron">
@@ -58,6 +60,7 @@
                 {%if band.presskit_link %} <a href="{{band.presskit_link}}" target="_blank" class="card"><i class="fa fa-newspaper-o" aria-hidden="true"></i></a> {% endif %}
             </div>
         </div>
+        <div class="col-md-12 embed">{% if band.embed_code %} {{band.embed_code|safe}} {% endif %}</div>
     </div>
 </div>
 {% endblock %}
