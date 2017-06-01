@@ -12,6 +12,21 @@ from bands.models import Band, Venue, Event, BandToken, Tag
 
 LATENIGHT_HOURS = datetime.time(5,0,0)
 
+def order_latenight(event_a, event_b):
+    print event_a.time
+    print event_b.time
+    if event_a.time == event_b.time:
+        return 0
+    elif event_a.time < LATENIGHT_HOURS:
+        if event_b.time < LATENIGHT_HOURS:
+            return 1 if event_a.time < event_b.time else -1
+        else:
+            return -1
+    elif event_b.time < LATENIGHT_HOURS:
+        return -1
+    else:
+        return 1 if event_a.time < event_b.time else -1
+
 def index(request):
     share_filter = request.GET.get('share', None)
     if share_filter:
@@ -45,10 +60,6 @@ def venue_detail(request, pk):
     for event in events:
         day = None
 
-        # we reduce the day to the previous one
-        if event.time < LATENIGHT_HOURS:
-            event.day = event.day - datetime.timedelta(days=1)
-
         for eventsday in eventsbyday:
             if eventsday['day'] == event.day:
                 day = eventsday
@@ -58,6 +69,9 @@ def venue_detail(request, pk):
             day = {'day': event.day, 'events': []}
             eventsbyday.append(day)
         day['events'].append(event)
+
+    for day in eventsbyday:
+        day['events'].sort(order_latenight)
 
     return render(request, 'venue/detail.html', {
         'venue': venue,
@@ -106,10 +120,6 @@ def search(request):
     for event in events:
         day = None
 
-        #we reduce the day to the previous one
-        if event.time < LATENIGHT_HOURS:
-            event.day = event.day + datetime.timedelta(days=1)
-
         for eventsday in eventsbyday:
             if eventsday['day'] == event.day:
                 day = eventsday
@@ -121,6 +131,9 @@ def search(request):
 
 
         day['events'].append(event)
+
+    for day in eventsbyday:
+        day['events'].sort(order_latenight)
 
     return render(request, 'search.html', {
                       'days': eventsbyday,
