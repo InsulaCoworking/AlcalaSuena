@@ -10,7 +10,7 @@ from django.utils import timezone
 from bands.forms.band import BandForm
 from bands.models import Band, Venue, Event, BandToken, Tag
 
-LATENIGHT_HOURS = datetime.time(3,0,0)
+LATENIGHT_HOURS = datetime.time(5,0,0)
 
 def index(request):
     share_filter = request.GET.get('share', None)
@@ -108,7 +108,7 @@ def search(request):
 
         #we reduce the day to the previous one
         if event.time < LATENIGHT_HOURS:
-            event.day = event.day - datetime.timedelta(days=1)
+            event.day = event.day + datetime.timedelta(days=1)
 
         for eventsday in eventsbyday:
             if eventsday['day'] == event.day:
