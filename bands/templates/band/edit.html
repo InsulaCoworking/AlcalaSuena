@@ -15,11 +15,37 @@
     <h2>Editar</h2>
 </div>
 
-<div class="container">
-<form method="post"  enctype="multipart/form-data">
-    {% csrf_token %}
-      {{form.as_p}}
-    <button type="submit" class="save btn btn-default">Guardar</button>
-</form>
+<div class="container card main">
+
+    <blockquote>
+        Por favor, para no recargar al servidor, intenta subir archivos de un peso inferior a 1MB.
+    </blockquote>
+
+    <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Ficha de la banda</a></li>
+    <li role="presentation"><a href="#billing" aria-controls="profile" role="tab" data-toggle="tab">Datos de facturación</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content double-sep">
+    <div role="tabpanel" class="tab-pane active" id="profile">
+        <form method="post"  enctype="multipart/form-data" class="edit-form">
+            {% csrf_token %}
+            <table>
+              {{form.as_table}}
+                <tr><td colspan="2"><button type="submit" class="save btn btn-primary pull-right btn-lg red double-sep">Guardar</button></td> </tr>
+                </table>
+        </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="billing">
+        <form class="edit-form">
+        Próximamente...
+        </form>
+        <br><br><br>
+    </div>
+  </div>
+
+
+
 </div>
 {% endblock %}

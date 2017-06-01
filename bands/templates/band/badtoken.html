@@ -1,8 +1,27 @@
 {% extends "base.html" %}
-
-{% block title %}Ouch!{% endblock%}
+{% load staticfiles %}
+{% block title %}AlcalaSuena - Token incorrecto{% endblock%}
 
 {% block content %}
+<div class="jumbo-header jumbo-band">
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Ouch!</h1>
+        <p class="description">Token no válido</p>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center header-band">
+</div>
 
-Bad token!
+<div class="container main card">
+    <p class="lead">
+        El token de seguridad utilizado para editar una banda no se encuentra registrado actualmente. ¿Estás seguro de haberlo introducido correctamente?
+        <br><br>
+        <strong>Contacta con el administrador para conseguir un enlace válido.</strong>
+    </p>
+    <div class="text-center"><img class="img-responsive" src="{% static "img/logo_alcalasuena.png" %}"></div>
+    <br><br>
+</div>
+
 {% endblock %}
