@@ -19,13 +19,15 @@ def order_latenight(event_a, event_b):
         return 0
     elif event_a.time < LATENIGHT_HOURS:
         if event_b.time < LATENIGHT_HOURS:
-            return 1 if event_a.time < event_b.time else -1
+            return -1 if event_a.time < event_b.time else 1
         else:
+            print 'menor!'
             return -1
     elif event_b.time < LATENIGHT_HOURS:
+        print 'menor!'
         return -1
     else:
-        return 1 if event_a.time < event_b.time else -1
+        return -1 if event_a.time < event_b.time else 1
 
 def index(request):
     share_filter = request.GET.get('share', None)
