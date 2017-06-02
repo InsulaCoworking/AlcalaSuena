@@ -13,9 +13,9 @@ class News(models.Model):
     btn_link = models.CharField(null=True, blank=True, max_length=200)
     native_code  = models.IntegerField(null=True, blank=True)
 
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    caducity = models.DateField(null=True, blank=True)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
+    caducity = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Noticia'
