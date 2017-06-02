@@ -3,6 +3,7 @@ from tastypie.fields import IntegerField
 from tastypie.resources import ModelResource
 
 from bands.models import Band, Venue, Event, Tag, Settings
+from bands.models.news import News
 
 
 class TagResource(ModelResource):
@@ -71,3 +72,19 @@ class SettingsResource(ModelResource):
 
     def dehydrate(self, bundle):
         return bundle.data['value']
+
+class NewsResource(ModelResource):
+    class Meta:
+        queryset = News.objects.all()
+        include_resource_uri = False
+        list_allowed_methods = ['get']
+        resource_name = 'news'
+        collection_name = 'news'
+
+    # Remove the wrapper
+    def alter_list_data_to_serialize(self, request, data):
+        if self.Meta.collection_name in data and len(data[self.Meta.collection_name]) > 0:
+            # only return the first result, avoid the "meta" field
+            return data[self.Meta.collection_name]
+        else:
+            return []
