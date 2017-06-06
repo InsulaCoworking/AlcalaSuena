@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Facturación{% endblock%}
+
+{% block content %}
+<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Facturación</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center ">
+</div>
+
+<div class="container card main">
+    <h3 class="heading">Facturas</h3>
+    <table class="table-responsive table table-striped">
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Banda</th>
+            <th>Email</th>
+            <th>Importe</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="billings" >
+    {%for bill in bills %}
+        <tr>
+
+            <td>{{bill.uploaded|date:"d/m/Y"}}</td>
+            <td>{{bill.band}}</td>
+            <td>{{bill.contact_email}}</td>
+            <td>{{bill.billing_total}} €</td>
+            <td><a href="{{bill.billing_file.url}}" target="_blank" class="btn btn-primary">Descargar factura</a> </td>
+        </tr>
+    {%endfor%}
+        </tbody>
+</table>
+
+    <hr>
+    <div class="text-center">
+        <a id="download-csv" href="{% url 'download_csv' %}" class="btn btn-primary red btn-lg"><i class="fa left fa-download" aria-hidden="true"></i>Descargar datos completos en CSV</a>
+    </div>
+    <h3 class="heading">Bandas pendientes</h3>
+
+<table class="table-responsive table table-striped">
+        <thead>
+        <tr>
+            <th>Banda</th>
+            <th>Nº miembros</th>
+            <th>Origen</th>
+        </tr>
+        </thead>
+    {%for band in pending %}
+        <tr>
+
+            <td>{{band.name}}</td>
+            <td>{{band.num_members}}</td>
+            <td>{{band.city}}</td>
+        </tr>
+    {%endfor%}
+</table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+$(function(){
+<script type="text/javascript">
+    $('#download-csv').on('click', function(){
+        console.log("AAAA");
+        var tableContents = $('#billings tr');
+        var dataset = [];
+        tableContents.each(function(){
+            var data = $(this).find('td');
+            console.log(data.eq(0).text());
+        });
+    });
+</script>
+{% endblock %}

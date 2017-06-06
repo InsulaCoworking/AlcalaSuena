@@ -32,19 +32,6 @@ def app_info(request):
 def survey(request):
     return render(request, 'survey.html', {})
 
-def billing(request):
-    save_success = False
-    if request.method == "POST":
-        form = BillingForm(request.POST, request.FILES)
-        print form.is_valid()
-        if form.is_valid():
-            bill = form.save()
-            print bill
-            save_success = True
-    else:
-        form = BillingForm()
-    return render(request, 'billing.html', { 'form': form, 'save_success': save_success})
-
 def search(request):
 
     events = Event.objects.all()

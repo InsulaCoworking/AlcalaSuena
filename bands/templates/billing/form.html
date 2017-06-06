@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{band.name}}{% endblock%}
+{% block title %}Facturación{% endblock%}
 
 {% block content %}
 <div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
@@ -18,7 +18,7 @@
     <blockquote>
         Por favor, para no recargar al servidor, intenta subir archivos de un peso inferior a 1MB.
     </blockquote>
-    
+
 
         <form method="post"  enctype="multipart/form-data" class="edit-form">
             {% csrf_token %}

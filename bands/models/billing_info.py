@@ -9,6 +9,7 @@ from bands.models import Tag, Band, Venue
 
 class BillingInfo(models.Model):
     band = models.ForeignKey(Band, verbose_name='Banda')
+    cif = models.CharField(null=True, blank=True, verbose_name='NIF/CIF', max_length=250)
     uploaded = models.DateTimeField(auto_now_add=True)
     contact_name = models.CharField(null=True, blank=True, verbose_name='Persona de contacto', max_length=250)
     contact_email = models.CharField(null=True, blank=True, verbose_name='Email de contacto', max_length=250)

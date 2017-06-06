@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+    <div class="jumbotron">
+    </div>
+</div>
+<div class="header-bar text-center "><h2>Login</h2>
+</div>
+
+<div class="container card main">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+</div>
+{% endblock %}
