@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}{{band.name}}{% endblock%}
+{% block title %}{{band.name}} en Alcala Suena 2017{% endblock%}
 {% block bodyattrs %}{%if view %} class="{{view}}"{%endif%}{% endblock%}
 
 {% block social_meta %}
@@ -15,7 +15,7 @@
         <meta property="og:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2017" />
         <meta property="og:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}" />
         <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}" />
-        {% endblock %}
+{% endblock %}
 
 {% block extra_styles %}<style> .embed iframe{ width:100%; } </style>{% endblock extra_styles %}
 
