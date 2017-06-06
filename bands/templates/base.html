@@ -48,6 +48,7 @@
                     <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
                   <li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>
                       <li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>
+                      <li {% if request.resolver_match.url_name == "survey" %}class="active"{% endif %}><a href="{% url 'survey' %}">Encuesta</a></li>
                   </ul>
           </div>
         </nav>

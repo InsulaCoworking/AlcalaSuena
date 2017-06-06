@@ -28,7 +28,8 @@ def index(request):
 def app_info(request):
     return render(request, 'app_info.html', {})
 
-
+def survey(request):
+    return render(request, 'survey.html', {})
 
 def search(request):
 

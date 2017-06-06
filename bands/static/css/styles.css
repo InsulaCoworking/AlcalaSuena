@@ -1,10 +1,19 @@
 body{ font-family: 'Raleway', sans-serif; padding-right: 0 !important }
-header {
-    background: url('../img/cabecera-home.jpg') no-repeat top center;
-}
 
 header .logo {
     padding: 60px;
+}
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+    background-color:#40474a;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #c00812;
 }
 
 header h1 {
@@ -207,7 +216,7 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
     transition: all 600ms;
 }
-.navbar.scrolled{ background-color: #211916; box-shadow: 0 3px 4px rgba(0,0,0,0.4); z-index:4000;}
+.navbar.scrolled, body.visible-bar .navbar{ background-color: #211916; box-shadow: 0 3px 4px rgba(0,0,0,0.4); z-index:4000;}
 .navbar-default .navbar-nav>li>a{ color:#fff; font-size:1.05em; transition: all 600ms; }
 .navbar-default .navbar-nav>li>a:hover{ color:#9fd2eb; }
 .navbar-default .navbar-nav>li.active>a{ background-color:#c00812; color:#fff; }
