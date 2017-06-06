@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{band.name}}{% endblock%}
+
+{% block content %}
+<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Facturación</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center ">
+</div>
+
+<div class="container card main">
+
+    <blockquote>
+        Por favor, para no recargar al servidor, intenta subir archivos de un peso inferior a 1MB.
+    </blockquote>
+    
+
+        <form method="post"  enctype="multipart/form-data" class="edit-form">
+            {% csrf_token %}
+            <table>
+              {{form.as_table}}
+                <tr><td colspan="2"><button type="submit" class="save btn btn-primary pull-right btn-lg red double-sep">Guardar</button></td> </tr>
+                </table>
+        </form>
+
+
+</div>
+{% endblock %}

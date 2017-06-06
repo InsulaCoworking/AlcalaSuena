@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 
 from bands import helpers
+from bands.forms.billing_info import BillingForm
 from bands.models import Event, Venue, Tag
 
 
@@ -31,39 +32,47 @@ def app_info(request):
 def survey(request):
     return render(request, 'survey.html', {})
 
+def billing(request):
+    save_success = False
+    if request.method == "POST":
+        form = BillingForm(request.POST, request.FILES)
+        print form.is_valid()
+        if form.is_valid():
+            bill = form.save()
+            print bill
+            save_success = True
+    else:
+        form = BillingForm()
+    return render(request, 'billing.html', { 'form': form, 'save_success': save_success})
+
 def search(request):
 
     events = Event.objects.all()
-
     band_filter = request.GET.get('band', None)
+    venue_filter = request.GET.get('venue', None)
+    tag_filter = request.GET.get('tag', None)
+    day_filter = request.GET.get('day', None)
+
     if band_filter:
         events = events.filter(band__pk=band_filter)
-
-    venue_filter = request.GET.get('venue', None)
     if venue_filter:
         events = events.filter(venue__pk=venue_filter)
-
-    tag_filter = request.GET.get('tag', None)
     if tag_filter:
         events = events.filter(band__tag__pk=tag_filter)
-
-    day_filter= request.GET.get('day', None)
     if day_filter:
         events = events.filter(day=day_filter)
 
     eventsbyday = []
     for event in events:
         day = None
-
         for eventsday in eventsbyday:
             if eventsday['day'] == event.day:
                 day = eventsday
                 break
 
         if day is None:
-            day = { 'day': event.day, 'events':[] }
+            day = {'day': event.day, 'events': []}
             eventsbyday.append(day)
-
 
         day['events'].append(event)
 
@@ -71,7 +80,7 @@ def search(request):
         day['events'].sort(helpers.order_latenight)
 
     return render(request, 'search.html', {
-                      'days': eventsbyday,
-                      'num_days': len(eventsbyday),
-                        'no_results':len(eventsbyday)==0
+                    'days': eventsbyday,
+                    'num_days': len(eventsbyday),
+                    'no_results': len(eventsbyday)==0
                   })
