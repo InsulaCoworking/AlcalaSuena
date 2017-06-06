@@ -64,18 +64,3 @@
 </table>
 </div>
 {% endblock %}
-
-{% block scripts %}
-$(function(){
-<script type="text/javascript">
-    $('#download-csv').on('click', function(){
-        console.log("AAAA");
-        var tableContents = $('#billings tr');
-        var dataset = [];
-        tableContents.each(function(){
-            var data = $(this).find('td');
-            console.log(data.eq(0).text());
-        });
-    });
-</script>
-{% endblock %}

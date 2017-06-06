@@ -487,6 +487,7 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
 .edit-form input, .edit-form textarea{ width:100%; outline:none; border:none; padding:5px 10px; border-left: 1px solid #ddd; border-bottom:1px solid #AAA; }
 .edit-form input:focus, .edit-form textarea:focus{ border-bottom: 2px solid #c00812; }
 .edit-form input[type="file"]{ border:none; padding-left:0; }
+.edit-form input[type="checkbox"]{ width:auto; }
 
 .nav-tabs>li>a{
     text-transform:uppercase;

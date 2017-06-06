@@ -18,6 +18,8 @@ class BillingInfo(models.Model):
     num_members = models.IntegerField(null=True, blank=True, default=1, verbose_name='Número de componentes')
     billing_total = models.FloatField(null=True, blank=True, verbose_name='Importe TOTAL Factura')
     billing_file = models.FileField(upload_to=RandomFileName('bills/'), verbose_name='Factura')
+    multiple_bands = models.BooleanField(null=False, default=False, verbose_name='Factura a más de una banda')
+    additional_text = models.TextField(null=True, blank=True, verbose_name='Observaciones')
 
     class Meta:
         verbose_name = 'Factura'

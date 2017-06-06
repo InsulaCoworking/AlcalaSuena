@@ -39,11 +39,11 @@ def download_csv(request):
     output.write(u'\ufeff'.encode('utf8'))
     writer = csv.writer(output, delimiter=';', dialect='excel')
     writer.writerow(['Subido', 'Banda', 'CIF/NIF', 'Contacto', 'Email', 'Teléfono',
-                     'Escenario', 'Num miembros', 'Total', 'Factura'])
+                     'Escenario', 'Num miembros', 'Total', 'Factura', 'Más de una banda', 'Comentarios'])
 
     for bill in bills:
         writer.writerow([bill.uploaded, bill.band.name, bill.cif, bill.contact_name, bill.contact_email, bill.contact_phone,
-                         bill.venue.name, bill.num_members, bill.billing_total, request.scheme + '://' + request.META['HTTP_HOST']  + bill.billing_file.url])
+                         bill.venue.name, bill.num_members, bill.billing_total, request.scheme + '://' + request.META['HTTP_HOST']  + bill.billing_file.url, bill.multiple_bands, bill.additional_text])
 
     response = HttpResponse(output.getvalue(), content_type='application/csv')
     response['Content-Disposition'] = 'attachment; filename="billing.csv"'
