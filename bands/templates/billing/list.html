@@ -21,18 +21,17 @@
             <th>Fecha</th>
             <th>Banda</th>
             <th>Email</th>
-            <th>Importe</th>
+            <th class="text-center">Más de una banda</th>
             <th></th>
         </tr>
         </thead>
         <tbody id="billings" >
     {%for bill in bills %}
         <tr>
-
             <td>{{bill.uploaded|date:"d/m/Y"}}</td>
             <td>{{bill.band}}</td>
             <td>{{bill.contact_email}}</td>
-            <td>{{bill.billing_total}} €</td>
+            <td class="text-center">{%if bill.multiple_bands %} <i class="fa fa-check-square-o fa-2x" aria-hidden="true"></i> {%else%} <i class="fa fa-square-o fa-2x" aria-hidden="true"></i> {%endif%}</td>
             <td><a href="{{bill.billing_file.url}}" target="_blank" class="btn btn-primary">Descargar factura</a> </td>
         </tr>
     {%endfor%}
