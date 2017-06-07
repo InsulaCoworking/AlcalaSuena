@@ -1,10 +1,90 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
 {% block bodyattrs %} class="visible-bar"{% endblock%}
 {% block title %}Alcala Suena - Encuesta de satisfacción{% endblock%}
 {% block extra_styles %}
-<style>footer{ margin-top:0; } iframe{ width:100%; height:98vh; outline:none; margin:0; margin-bottom:-1em; line-height:1em; }</style>{% endblock %}
+<style>
+    body{ background: rgb(226, 179, 181); }
+    footer{ margin-top:0; } iframe{ width:100%; height:98vh; outline:none; margin:0; margin-bottom:-1em; line-height:1em; }
+    @media (min-width: 630px){  iframe{ height:3710px; } }
+    @media (min-width: 702px){  iframe.reload{ height:540px; } }
+    @media (min-width: 568px) and (max-width: 702px){ iframe.reload{ height:470px; } }
+    @media (max-width: 567px){ iframe.reload{ height:585px; } }
+    .card.donate{ margin-top: -120px; margin-bottom:100px; }
+    @media (max-width: 629px){ .card.donate{ margin-top: -10px; } }
+    .donate .social-links a{ margin-left:0; margin-bottom:10px; width:80px; height:80px; line-height:80px;}
+    .donate p a{ color:#333; font-weight:bold; }
+</style>
+{% endblock %}
 {% block content %}
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScCrpj2deSl9FY1ivqxPC9nPKNQX_LYahOUFeWt_8mvSdMH-g/viewform?embedded=true" height="500" frameborder="0" marginheight="0" marginwidth="0">Cargando...</iframe>
+<iframe id="myIframe" src="https://docs.google.com/forms/d/e/1FAIpQLScCrpj2deSl9FY1ivqxPC9nPKNQX_LYahOUFeWt_8mvSdMH-g/viewform?embedded=true" frameborder="0" scrolling="auto">Cargando...</iframe>
 
+<div class="container card main donate text-center">
+    <h3 class="heading">Apóyanos!</h3>
+    Te apetece apoyar a los desarrolladores de este proyecto? Pues invítales a algo ;)
+
+    <div class="row double-sep">
+        <div class="col-sm-4 text-center">
+             <div class="social-links text-center no-margin">
+                <a href="https://www.paypal.me/InsulaCoworking/1" target="_blank" class="card"><i class="fa fa-coffee" aria-hidden="true"></i></a>
+            </div>
+            <p class="lead no-margin">Un café</p><p>1€</p>
+        </div>
+
+        <div class="col-sm-4 text-center">
+             <div class="social-links text-center no-margin">
+                <a href="https://www.paypal.me/InsulaCoworking/2,50" target="_blank" class="card"><i class="fa fa-beer" aria-hidden="true"></i></a>
+            </div>
+            <p class="lead no-margin">Una caña con tapa</p><p>2,5€</p>
+        </div>
+
+        <div class="col-sm-4 text-center">
+             <div class="social-links text-center no-margin">
+                <a href="https://www.paypal.me/InsulaCoworking/" target="_blank" class="card"><i class="fa fa-gift" aria-hidden="true"></i></a>
+            </div>
+            <p class="lead no-margin">¡Lo que quieras!</p><p>(Elige cantidad)</p>
+        </div>
+    </div>
+
+    <p class="double-sep">Si no tienes PayPal también lo puedes hacer por:</p>
+
+    <div class="row double-sep">
+        <div class="col-sm-4 text-center">
+             <div class="social-links text-center no-margin">
+                <a href="#" class="card"><i class="fa fa-credit-card" aria-hidden="true"></i></a>
+            </div>
+            <p class="lead no-margin">Transferencia</p><p> ES37 3017 0553 1923 0562 2421</p>
+        </div>
+
+        <div class="col-sm-4 text-center">
+             <div class="social-links text-center no-margin">
+                <a href="#"  class="card"><i class="fa fa-money" aria-hidden="true"></i></a>
+            </div>
+            <p class="lead no-margin"><a href="http://halcash.com" target="_blank">HalCash</a></p><p> al teléfono 717716882</p>
+        </div>
+
+        <div class="col-sm-4 text-center">
+             <div class="social-links text-center no-margin">
+                <a href="#" class="card"><i  aria-hidden="true">h</i></a>
+            </div>
+            <p class="lead no-margin">en <a href="http://monedaalcala.org/" target="_blank"> Henares</a></p><p> (moneda social de Alcalá)<br><strong> usuario:ínsula</strong></p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    var iframe = $('#myIframe');
+    var loaded = false;
+    iframe.load(function(){
+        if (loaded){
+            iframe.addClass('reload');
+        }
+        loaded = true;
+    });
+</script>
 {% endblock %}

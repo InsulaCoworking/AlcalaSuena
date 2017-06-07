@@ -273,8 +273,7 @@ a.venue-card:hover{
     color:#fff;
 }
 a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
-.double-sep{ margin-top: 40px !important;}
-.no-margin{ margin: 0; }
+
 .insula img, .insula p{ display:inline-block; vertical-align:middle;}
 .insula p{ text-align:left; padding-left:20px;}
 .insula .btn{ margin-top:14px; }
@@ -359,6 +358,10 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
     display:inline-block;
     background-color:  #c00812;
     margin-left:1rem;
+}
+.social-links.inline{
+    display:inline-block;
+    vertical-align:middle;
 }
 #results{
     padding:4em 1em;
@@ -501,3 +504,5 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     color:#c00812;
     border-bottom: 3px solid #c00812;
 }
+.double-sep{ margin-top: 40px !important;}
+.no-margin{ margin: 0; }
