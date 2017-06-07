@@ -27,10 +27,12 @@ def billing_form(request):
             bill = form.save()
             print bill
             save_success = True
+            form = BillingForm()
     else:
         form = BillingForm()
     return render(request, 'billing/form.html', { 'form': form, 'save_success': save_success})
 
+@login_required
 def download_csv(request):
     bills = BillingInfo.objects.all()
 
