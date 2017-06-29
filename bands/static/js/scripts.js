@@ -4,7 +4,13 @@ $(document).ready(function() {
     var url = searchForm.attr('action');
     var results = $("#results")
 
-  $(".select2").on('change',function() {
+ /* $(".select2").on('change',function() {
+    data = searchForm.serialize();
+    results.load(url + '?' + data);
+  });
+*/
+  $('#filter').on('click', function(e){
+    e.preventDefault();
     data = searchForm.serialize();
     results.load(url + '?' + data);
   });
