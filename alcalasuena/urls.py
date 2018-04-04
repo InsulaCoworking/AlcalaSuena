@@ -19,9 +19,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from api.urls import get_api
 
+from bands import urls as bands_urls
+from contest import urls as contest_urls
 
 urlpatterns = [
-    url(r'^', include('bands.urls')),
+    url(r'^', include(bands_urls)),
+    url(r'^', include(contest_urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(get_api('v1').urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

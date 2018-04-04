@@ -46,8 +46,10 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio</a></li>
-                    <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
-                    <li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>
+                      <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
+                      <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
+                    <!--<li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>-->
+                    <!--<li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>-->
                       <!--<li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>-->
 
                   </ul>
