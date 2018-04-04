@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['localhost', '10.0.0.52', 'ec2-52-211-39-126.eu-west-1.compute.
 # Application definition
 
 INSTALLED_APPS = [
-    'bands.apps.BandsConfig',
+    'bands',
     'tastypie',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'alcalasuena.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,12 +112,10 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
-USE_TZ = True
+USE_TZ = False
+SITE_ID = 1
 
 INTERNAL_IPS = ('127.0.0.1',)
 TASTYPIE_DEFAULT_FORMATS = ['json']
@@ -126,8 +124,21 @@ API_LIMIT_PER_PAGE = 250
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 STATIC_ROOT = ROOT_DIR + '/static'
 MEDIA_ROOT = ROOT_DIR + '/media'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'width':'100%',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Format', 'FontSize','TextColor', 'BGColor'],
+            ['NumberedList', 'BulletedList', '-',  '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Link', 'Unlink'],
+        ]
+    },
+}

@@ -13,7 +13,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #c00812;
+  background-color: #bf478e;
 }
 
 header h1 {
@@ -75,7 +75,11 @@ a.rrss {
 .jumbo-header.jumbo-band{
     background-image: url('../img/band-header.jpg');
 }
-.jumbo-header.home .jumbotron{ background-color:transparent; }
+.jumbo-header.home .jumbotron{ background-color:transparent; padding-top:50px;
+    padding-bottom:35px; }
+h1, h2, h3, h4{
+    font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
+}
 .jumbo-header h1{ color:#e8e8e8 !important; font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
 }
 .jumbo-header.app .jumbotron{ min-height:55vh; }
@@ -129,9 +133,11 @@ h3.eventsday{
     position:relative;
     z-index:10;
     max-width:95%;
-    padding: 3em 2em 1em 2em;
+    padding: 3em 5em 1em 5em;
 }
-
+@media(max-width:768px){
+    .card.main{ padding: 3em 2em 1em 2em; }
+}
 
 .band-event{
     padding:10px 5px 20px 5px;
@@ -177,6 +183,11 @@ body{
 
 .header-bar{
     background-color: #c00812;
+    background: rgb(215,62,124); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(215,62,124,1) 0%, rgba(170,79,158,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(215,62,124,1) 0%,rgba(170,79,158,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(215,62,124,1) 0%,rgba(170,79,158,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d73e7c', endColorstr='#aa4f9e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     color: #f1f1f1;
     padding: 25px 0;
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
@@ -219,7 +230,7 @@ footer .img-responsive{ max-width:80%; margin:auto; }
 .navbar.scrolled, body.visible-bar .navbar{ background-color: #211916; box-shadow: 0 3px 4px rgba(0,0,0,0.4); z-index:4000;}
 .navbar-default .navbar-nav>li>a{ color:#fff; font-size:1.05em; transition: all 600ms; }
 .navbar-default .navbar-nav>li>a:hover{ color:#9fd2eb; }
-.navbar-default .navbar-nav>li.active>a{ background-color:#c00812; color:#fff; }
+.navbar-default .navbar-nav>li.active>a{ background-color:#bf478e; color:#fff; }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form{ border:none;}
 .navbar-brand{ padding-top: 1px; }
 .navbar-brand-text{ color:#fff; line-height:50px; height:50px;}
@@ -320,7 +331,7 @@ a.venue-card:hover .title, a.venue-card:hover .address{ color:#fff; }
     color: #fff;
     -webkit-animation: pull-down 700ms infinite alternate;
     animation: pull-down 700ms infinite alternate;
-    text-shadow: 0 3px 3px #c00812;
+    text-shadow: 0 3px 3px #bf478e;
 }
 .showmore:hover, .showmore:active{ color:#f1f1f1; }
 
