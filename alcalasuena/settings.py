@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost', '10.0.0.52', 'ec2-52-211-39-126.eu-west-1.compute.
 
 INSTALLED_APPS = [
     'bands',
+    'contest',
     'tastypie',
     'django.contrib.admin',
     'django.contrib.auth',
