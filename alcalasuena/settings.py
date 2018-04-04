@@ -75,17 +75,6 @@ WSGI_APPLICATION = 'alcalasuena.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'alcalasuena',
-        'USER': 'insuler',
-        'PASSWORD': 'insula',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -142,3 +131,5 @@ CKEDITOR_CONFIGS = {
         ]
     },
 }
+
+from settings_secret import *
