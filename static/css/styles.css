@@ -517,3 +517,35 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
 }
 .double-sep{ margin-top: 40px !important;}
 .no-margin{ margin: 0; }
+
+.contest-conditions{
+    counter-reset: step-counter;
+}
+.contest-conditions ol{
+  list-style:none;
+  margin:2em auto;
+  padding:0;
+}
+.contest-conditions ol > li {
+  counter-increment: step-counter;
+  margin-bottom: 1.4em;
+  padding-left:40px;
+  padding-top:3px;
+  position:relative;
+}
+.contest-conditions ol > li::before {
+  content: counter(step-counter);
+  display:inline-block;
+  position:absolute;
+  left:0;
+  top:0;
+  background-color: rgb(180, 180, 180);
+  font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
+  color: white;
+  font-weight: bold;
+  width:28px;
+  height:28px;
+  line-height:28px;
+  text-align:center;
+  border-radius: 50%;
+}
