@@ -61,7 +61,8 @@ a.rrss {
     background-position:center;
 }
 .jumbo-header .jumbotron{
-    background-color:rgba(0,0,0,0.4);
+
+    background-color:transparent;
     color:#fff;
     text-shadow: 0 0 3px #111;
     font-size:0.9rem;
