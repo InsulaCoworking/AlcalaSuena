@@ -16,10 +16,221 @@
 </div>
 
 <div class="container main card">
-    <h3></h3>
-    <p class="text-center">
-        Las inscripciones se abrirán a partir del día 6 de abril.<br><br>
-    </p>
+
+    <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}
+
+        <h3>Información general</h3>
+        <div class="row">
+
+          <div class="col-md-6">
+
+              {% include "common/forms/field.html" with field=form.name required=True %}
+
+              {% include "common/forms/field.html" with field=form.genre required=True %}
+
+              {% include "common/forms/field.html" with field=form.description required=True %}
+
+              {% include "common/forms/field.html" with field=form.city required=True %}
+
+              {% include "common/forms/field.html" with field=form.num_members required=True %}
+
+                <div class="social-links">
+                        <h4>Enlaces a redes sociales</h4>
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Página de Facebook"><i class="fa fa-facebook " aria-hidden="true"></i></span>
+                          {{form.facebook_link}}
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon" data-toggle="tooltip" data-placement="bottom" title="Perfil de Twitter"><i class="fa fa-twitter " aria-hidden="true"></i></span>
+                          {{form.twitter_link}}
+                        </div></div>
+
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span data-toggle="tooltip" data-placement="bottom" title="Página web" class="input-group-addon" ><i class="fa fa-globe " aria-hidden="true"></i></span>
+                          {{form.webpage_link}}
+                        </div></div>
+
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span data-toggle="tooltip" data-placement="bottom" title="Página de Bandcamp" class="input-group-addon" ><i class="fa fa-bandcamp " aria-hidden="true"></i></span>
+                          {{form.bandcamp_link}}
+                        </div></div>
+
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span data-toggle="tooltip" data-placement="bottom" title="Canal de Youtube" class="input-group-addon" ><i class="fa fa-youtube " aria-hidden="true"></i></span>
+                          {{form.youtube_link}}
+                        </div></div>
+
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span data-toggle="tooltip" data-placement="bottom" title="Perfil de Spotify" class="input-group-addon" ><i class="fa fa-spotify " aria-hidden="true"></i></span>
+                          {{form.spotify_link}}
+                        </div></div>
+
+                        <div class="form-group">
+                        <div class="input-group">
+                          <span data-toggle="tooltip" data-placement="bottom" title="Presskit" class="input-group-addon" ><i class="fa fa-newspaper-o " aria-hidden="true"></i></span>
+                          {{form.presskit_link}}
+                        </div></div>
+
+                    </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <h4>Tu música</h4>
+                Añade uno o varios vídeos de Youtube o Vimeo para la valoración por parte del jurado. Se valorará especialmente si alguno de ellos es una grabación en vivo de un directo.<br>
+                <br>
+                {% include "common/forms/field.html" with field=form.embed_media required=True %}
+
+                {% include "common/forms/field.html" with field=form.embed_code required=True %}
+
+                {% include "common/forms/field.html" with field=form.rider_doc required=True %}
+
+                <br>
+                <h4>Contacto</h4>
+                {% include "common/forms/field.html" with field=form.contact_email required=True %}
+                {% include "common/forms/field.html" with field=form.contact_phone1 required=True %}
+                {% include "common/forms/field.html" with field=form.contact_phone2 required=True %}
+
+            </div>
+
+        </div>
+
+        <h4>Imágenes</h4>
+
+        <div class="jumbo-header jumbo-band" id="band-image" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+    <div class="jumbotron">
+        <div class="file-field image-field absolute-pos" data-ref="#band-image" data-ref-type="background" style="left:50%;top:50%;">
+        <div class="btn fab">
+            <span><i class="fa fa-file-image-o" aria-hidden="true"></i></span>
+            {{form.band_image}}
+        </div>
+    </div>
+    </div>
 
 </div>
+
+        <div class="header-bar profile header-band">
+    <div class="container">
+        <div class="file-field image-field absolute-pos" data-ref="#profile-image" data-ref-type="image" style="left:130px;top:-40px;z-index: 1000;">
+            <div class="btn fab">
+                <span><i class="fa fa-file-image-o" aria-hidden="true"></i></span>
+                {{form.profile_image}}
+            </div>
+        </div>
+        <div class="profile-circle"><img id="profile-image" src="{%if band.profile_image %} {{band.profile_image.url}}{% endif %}"></div>
+        <h1 id="band-name">Nueva banda</h1>
+        <p id="band-genre" class="description">Estilo</p>
+
+    </div>
+</div>
+
+        <hr>
+        <h3>Información para el concurso</h3>
+
+        La inscripción en el concurso se puede presentar por personas físicas o jurídicas, indicando los datos a continuación.
+        El interesado será el receptor del premio en un número de cuenta del que sea titular.
+        <br><br>
+        <div class="row">
+            <div class="col-md-7">
+                {% include "common/forms/field.html" with field=form.receiver_fullname required=True %}
+            </div>
+             <div class="col-md-5">
+{% include "common/forms/field.html" with field=form.receiver_cif required=True %}
+            </div>
+        </div>
+
+        {% include "common/forms/field.html" with field=form.tag required=True %}
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" >{{form.has_local_member}}
+              </span>
+            <div class="input-group-text"><strong>Algún miembro de la banda es de Alcalá de Henares</strong><br>Se potenciará la participación de bandas o solistas pertenecientes a la escena musical local de Alcalá.<br><br>
+            Si algún miembro es de Alcalá, además de marcar la casilla de la derecha, sube a continuación algún documento que acredite que esa persona ha nacido, trabaja, estudia o reside aquí.<br>
+             {% include "common/forms/field.html" with field=form.local_member_docs required=True %}
+            </div>
+        </div></div>
+
+        <hr>
+
+        <h4 class="double">Miembros de la banda</h4>
+        Por favor, rellena los datos de todos los componentes de la banda (o una sola ficha si eres un solista). Pulsa en el botón "añadir miembro" para añadir tantas fichas como necesites.<br><br>
+
+        {{ members_formset.management_form }}
+        {% for member_form in members_formset %}
+            <div class="member-form">
+                <div class="row">
+                    <div class="col-md-7">{% include "common/forms/field.html" with field=member_form.full_name required=True %}</div>
+                    <div class="col-md-5">{% include "common/forms/field.html" with field=member_form.dni required=True %}</div>
+
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon" >{{member_form.is_underage}}
+                          </span>
+                        <div class="input-group-text"><strong>Es menor de edad</strong><br><small>Para menores de edad, deberán presentar documento firmado por su padre, madre o tutor legal expresando la autorización para su participación en el concurso según las condiciones de sus bases y autorizando la reproducción de su imagen.</small>
+                        </div>
+                    </div></div>
+                </div>
+                    <div class="col-sm-4 delete-container text-right"></div>
+                    </div>
+
+                </div>
+
+
+
+        {% endfor %}
+
+
+
+
+
+        {% include "common/forms/field.html" with field=form.comments required=True %}
+        <small>Rellena este campo si tienes alguna observación especial (días dentro de las fechas del concurso que ya tengas algún concierto cerrado, alguna cuestión logística o del rider
+            que sea peculiar y haya que tener en cuenta, etc)</small>
+
+        <br><br>
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" >{{form.read_terms}}
+              </span>
+            <div class="input-group-text">He leído y acepto las <a href="{% url 'bases' %}"> bases del concurso</a>.
+            </div>
+        </div></div>
+
+
+        <div class="text-center"><input type="submit" class="btn btn-primary btn-lg"></div>
+    </form>
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/jquery.formset.js' %}"></script>
+
+<script type="text/javascript">
+
+    function moveDeleteBtn(row){
+        var btn = row.find('.delete-btn');
+        btn.appendTo(row.find('.delete-container'));
+    }
+
+    $('.member-form').formset({
+        prefix: '{{ members_formset.prefix }}',
+        addText: '<div class="btn btn-primary btn-lg">+ Añadir miembro</div>',
+        deleteText: '<div class="btn delete-btn btn-primary btn-float btn-small" href="#!" data-toggle="tooltip">Eliminar miembro</div>',
+    });
+    </script>
+
 {% endblock %}
