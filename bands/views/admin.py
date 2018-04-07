@@ -22,10 +22,10 @@ def billing_form(request):
     save_success = False
     if request.method == "POST":
         form = BillingForm(request.POST, request.FILES)
-        print form.is_valid()
+        #print form.is_valid()
         if form.is_valid():
             bill = form.save()
-            print bill
+            #print bill
             save_success = True
             form = BillingForm()
     else:

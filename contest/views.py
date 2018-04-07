@@ -28,8 +28,9 @@ def signup(request):
 
             return redirect('form_success')
         else:
-            print form.errors.as_data()
-            print members_formset.errors
+            pass
+            #print form.errors.as_data()
+            #print members_formset.errors
     else:
         form = BandForm(initial={'is_new': True})
         members_formset = members_factory()

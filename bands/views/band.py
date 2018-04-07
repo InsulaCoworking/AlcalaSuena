@@ -37,10 +37,10 @@ def edit_band(request, token):
     save_success = False
     if request.method == "POST":
         form = BandForm(request.POST, request.FILES, instance=band)
-        print form.is_valid()
+        #print form.is_valid()
         if form.is_valid():
             band = form.save()
-            print band.band_image
+            #print band.band_image
             save_success = True
     else:
         form = BandForm(instance=band)

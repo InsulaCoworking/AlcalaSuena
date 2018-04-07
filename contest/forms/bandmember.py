@@ -23,11 +23,10 @@ class BandMemberForm(forms.ModelForm):
 
         if band is None:
             return
-        print formset
+        #print formset
         # Remove previous members to save new ones
         BandMember.objects.filter(band=band).delete()
         for member_form in formset:
-            print 'aaaaa'
             member = member_form.save(commit=False)
             member.band = band
             member.save()
