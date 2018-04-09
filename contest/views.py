@@ -1,9 +1,14 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.urls import reverse
+
+from bands.helpers import get_query
 from bands.models import Tag
 from contest.forms.band import BandForm
 from contest.forms.bandmember import BandMemberForm
+from contest.models import ContestBand
 
 
 def bases(request):
@@ -42,3 +47,46 @@ def signup(request):
         'form': form,
         'members_formset': members_formset
     })
+
+
+def contest_entries_list(request):
+    bands = ContestBand.objects.all()
+    band_count = bands.count()
+    tag_filter = request.GET.get('tag', None)
+    if tag_filter:
+        bands = bands.filter(tag__pk=tag_filter)
+
+    query_string = ''
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        entry_query = get_query(query_string, ['name', 'genre', 'city'])
+        if entry_query:
+            bands = bands.filter(entry_query)
+
+    paginator = Paginator(bands, 9)
+    page = request.GET.get('page')
+    try:
+        bands = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        bands = paginator.page(1)
+    except (EmptyPage, InvalidPage):
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        bands = paginator.page(paginator.num_pages)
+
+    params = {
+        'ajax_url': reverse('contest_entries_list'),
+        'query_string': query_string,
+        'band_count': band_count,
+        'bands': bands,
+        'page': page
+    }
+
+    if request.is_ajax():
+        response = render(request, 'contest/search_results.html', params)
+        response['Cache-Control'] = 'no-cache'
+        response['Vary'] = 'Accept'
+        return response
+    else:
+        params['tags'] = Tag.objects.all()
+        return render(request, 'contest/list.html', params)

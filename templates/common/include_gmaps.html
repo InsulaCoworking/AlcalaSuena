@@ -1,0 +1,13 @@
+{% load settings_value %}
+{% load staticfiles %}
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={% settings_value "GMAPS_APIKEY" %}">
+</script>
+<script type="text/javascript">
+  $(window).on('load', function(){
+    var scriptTag = document.createElement('script');
+    scriptTag.onload = initMap;
+    scriptTag.src = '{% static "js/gmaps.richmarker.js" %}';
+    document.body.appendChild(scriptTag);
+  });
+</script>

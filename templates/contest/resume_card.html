@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<div class="card profile-resume" {% if band.band_image %}
+                style="background-image:url('{{band.band_image.url}}')"
+            {% endif %}>
+    <div class="profile-body">
+        <div class="profile-circle small">
+            <img src="{%if band.profile_image %}{{band.profile_thumbnail.url}}{% else %}{% static "img/pro-icon.png" %}{% endif %}" alt="{{pro.name}}">
+        </div>
+
+        <span class="profile-title">{{band.name}}</span>
+        <span class="profile-desc">{{band.genre}}</span>
+    </div>
+
+</div>

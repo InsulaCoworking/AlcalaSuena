@@ -1,3 +1,47 @@
+
+(function( $ ) {
+
+    function loadResults(resultsContainer, url){
+        if (url == null || url == '' || url.startsWith('#')){
+            return;
+        }
+        resultsContainer.addClass('loading-container');
+        $.get(url, {}, function(data){
+            resultsContainer.find('.results').html(data);
+            resultsContainer.removeClass('loading-container');
+            var preserveHistory = resultsContainer.attr('data-preservehistory');
+            if (!preserveHistory || preserveHistory != 'true')
+                window.history.replaceState({}, '', url);
+        });
+    }
+
+    $.fn.ajaxLoader = function( url ) {
+
+        if ( url != null) {
+            loadResults(this, url);
+            return this;
+        }
+        var initialUrl = this.attr('data-initial');
+        if ((initialUrl != null) && (initialUrl!='')){
+            loadResults(this, initialUrl);
+        }
+
+        var self = this;
+        self.on('click', '.pagination a', function(e){
+            e.preventDefault();
+            if ($(this).parent().hasClass('active'))
+                return;
+            var url = $(this).attr('href')
+            loadResults(self, url);
+        });
+
+        return this;
+
+    };
+}( jQuery ));
+
+
+
 $(document).ready(function() {
 
     var searchForm = $('#searchForm');
