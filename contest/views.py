@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse
@@ -90,3 +90,11 @@ def contest_entries_list(request):
     else:
         params['tags'] = Tag.objects.all()
         return render(request, 'contest/list.html', params)
+
+
+def contest_band_detail(request, pk):
+    band = get_object_or_404(ContestBand, pk=pk)
+    return render(request, 'contest/band_detail.html', {
+        'band': band,
+        'view': request.GET.get('view', None)
+    })

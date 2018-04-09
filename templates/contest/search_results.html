@@ -2,7 +2,7 @@
     {% if bands %}
         {% for band in bands %}
         <div class="{% if bigger %} col-sm-6 col-md-6 col-md-6 {% else %} col-sm-6 col-md-4 col-lg-4 {% endif %} resume-card-container">
-          <a href="{% url 'band_detail' pk=band.pk%}" class="resume_link" data-id="{{band.pk}}"  title="{{band.name}}" style="border-color:{{band.tag.color}}">
+          <a href="{% url 'contest_band_detail' pk=band.pk%}" class="resume_link" data-id="{{band.pk}}"  title="{{band.name}}" style="border-color:{{band.tag.color}}">
               {% include 'contest/resume_card.html' with band=band %}
           </a>
         </div>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{{band.name}} en Alcala Suena 2017{% endblock%}
+{% block bodyattrs %}{%if view %} class="{{view}}"{%endif%}{% endblock%}
+
+{% block social_meta %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@aemusica">
+        <meta name="twitter:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2017">
+        <meta name="twitter:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}">
+
+        <meta property="og:url" content="{{request.build_absolute_uri}}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2017" />
+        <meta property="og:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}" />
+{% endblock %}
+
+{% block extra_styles %}<style> .embed iframe{ width:100% !important; max-width:100%; } </style>{% endblock extra_styles %}
+
+{% block content %}
+<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+    <div class="jumbotron">
+      <div class="container text-center">
+
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center header-band profile">
+    <div class="container">
+        {%if band.profile_image %}<div class="profile-circle"> <img src="{{band.profile_image.url}}"></div>{% endif %}
+    <h1>{{band.name}}</h1>
+        <p class="description">{{band.tag.name}}</p>
+    </div>
+
+</div>
+
+
+<div class="container {% if events or can_edit %} top-padding {%endif%}">
+
+    <div class="row">
+        <div class="col-md-7">
+            {% if band.embed_code %} <div class="embed">{{band.embed_media|safe}} </div> {% endif %}
+            <p>{{band.description|linebreaks}}</p>
+            {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
+            {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
+            {% include 'common/social_links.html' with obj=band %}
+        </div>
+        <div class="col-md-5">
+            {% if band.embed_code %} <div class="embed">{{band.embed_code|safe}} </div>{% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

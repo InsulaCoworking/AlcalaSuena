@@ -125,6 +125,9 @@ a.rrss {
 }
 .jumbo-header.home .jumbotron{ padding-top:70px; background:transparent;
     padding-bottom:5px; }
+.jumbo-header.jumbo-band .jumbotron{
+    min-height:35vh;
+}
 h1, h2, h3, h4{
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
 }
@@ -787,7 +790,7 @@ a:hover .profile-resume, a:hover .profile-resume span{
     font-size: 1.18em;
 }
 .profile-resume .profile-body{
-    background-color:rgba(255,255,255,0.87);
+    background-color:rgba(255,255,255,0.67);
     padding:30px 10px;
 }
 .event-resume .profile-circle, .profile-resume .profile-circle{
@@ -904,8 +907,6 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
   border-radius: 50%;
 }
 
-
- .header-bar.profile { padding-top:0; }
  .header-bar.profile .container{
     padding-left: 170px;
     position:relative;
@@ -930,6 +931,12 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     border: 2px solid #fdfdfd;
     background-color:#ddd;
 }
+.header-bar.profile .container {
+    padding-left: 170px;
+    position: relative;
+}
+
+
 .profile-circle.small{
     width:90px;
     height:90px;
@@ -943,7 +950,7 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
 .header-bar .profile-circle{
     position: absolute;
     left:10px;
-    margin-top:-90px;
+    margin-top:-70px;
 }
 #search_results{
     position:relative;
