@@ -29,8 +29,8 @@ class ContestBand(models.Model):
     comments = models.TextField(null=True, blank=True, verbose_name='Observaciones/Comentarios')
 
     embed_code = models.TextField(null=True, blank=True,
-                                  verbose_name='Códido embed para escucha (Bandcamp, Soundcloud, Spotify...)')
-    embed_media = models.TextField(null=True, blank=True, verbose_name='Códido embed de vídeo (Youtube, Vimeo...)')
+                                  verbose_name='Códido embed (enlace o iframe) para escucha (Bandcamp, Soundcloud, Spotify...)')
+    embed_media = models.TextField(null=True, blank=True, verbose_name='Códido embed (enlace o iframe) de vídeo (Youtube, Vimeo...)')
 
     receiver_fullname = models.CharField(null=True, blank=True, verbose_name='Nombre de interesado', max_length=350)
     receiver_cif = models.CharField(null=True, blank=True, verbose_name='Documento (DNI/NIF/CIF)', max_length=30)
