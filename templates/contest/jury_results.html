@@ -24,7 +24,7 @@
                 </a>
         </td>
         <td class="text-center">{{band.num_members}}</td>
-        <td class="text-center">{%if band.has_local_member %} <i class="fa fa-check"></i> {% endif %}</td>
+        <td class="text-center">{%if band.has_local_member %} <i class="fa fa-check" style="color:#33aa33;"></i> {% else %} <i class="fa fa-times" style="color:#aa3333;"></i>  {% endif %}</td>
           <td>
               {% if request.user.is_staff %}
                 {% include 'contest/jury_vote.html' with band=band %}
