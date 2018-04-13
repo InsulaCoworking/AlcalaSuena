@@ -196,11 +196,10 @@ def contest_csv_votes(request):
     for jury in juries:
         first_row.append(jury.get_full_name() if jury.first_name else jury.username)
 
-    print first_row
     writer.writerow(first_row)
 
     for band in bands:
-        results = [band.name, band.num_members, band.city, band.has_local_member]
+        results = [band.name.encode('utf-8').strip(), band.num_members, band.city.encode('utf-8').strip(), band.has_local_member]
         for jury in juries:
             jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=jury).first()
 
