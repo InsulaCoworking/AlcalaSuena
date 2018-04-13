@@ -13,5 +13,5 @@
         <label class="btn btn-primary vote-5 disabled {% if jury_vote.vote == 5 %}active {% endif %}">5
         </label>
     </div><br>
-    {% if band.jury_vote %} <small><strong>Votado:</strong> {{band.jury_vote.timestamp|date:'d/m/Y H:i'}}</small> {% endif %}
+    {% if jury_vote %} <small><strong>Votado:</strong> {{jury_vote.timestamp|date:'d/m/Y H:i'}}</small> {% endif %}
 </div>

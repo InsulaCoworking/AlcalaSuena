@@ -88,7 +88,7 @@
                         {% for vote in jury_votes %}
                         <tr>
                             <td>{{vote.voted_by}}</td>
-                            <td>{% include 'contest/contest_vote.html' with vote=vote %}</td>
+                            <td>{% include 'contest/contest_vote.html' with jury_vote=vote %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
