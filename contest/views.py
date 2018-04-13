@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -8,7 +10,7 @@ from bands.helpers import get_query
 from bands.models import Tag
 from contest.forms.band import BandForm
 from contest.forms.bandmember import BandMemberForm
-from contest.models import ContestBand
+from contest.models import ContestBand, ContestJuryVote
 
 
 def bases(request):
@@ -94,7 +96,59 @@ def contest_entries_list(request):
 
 def contest_band_detail(request, pk):
     band = get_object_or_404(ContestBand, pk=pk)
+    if request.user.is_staff:
+        band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
+
     return render(request, 'contest/band_detail.html', {
         'band': band,
         'view': request.GET.get('view', None)
     })
+
+@login_required
+def contest_jury_list(request):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    bands = ContestBand.objects.all()
+    band_count = bands.count()
+    tag_filter = request.GET.get('tag', None)
+    if tag_filter:
+        bands = bands.filter(tag__pk=tag_filter)
+
+    query_string = ''
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        entry_query = get_query(query_string, ['name', 'genre', 'city'])
+        if entry_query:
+            bands = bands.filter(entry_query)
+
+    paginator = Paginator(bands, 9)
+    for band in bands:
+        band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
+
+    page = request.GET.get('page')
+    try:
+        bands = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        bands = paginator.page(1)
+    except (EmptyPage, InvalidPage):
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        bands = paginator.page(paginator.num_pages)
+
+    params = {
+        'ajax_url': reverse('contest_jury_list'),
+        'query_string': query_string,
+        'band_count': band_count,
+        'bands': bands,
+        'page': page
+    }
+
+    if request.is_ajax():
+        response = render(request, 'contest/jury_results.html', params)
+        response['Cache-Control'] = 'no-cache'
+        response['Vary'] = 'Accept'
+        return response
+    else:
+        params['tags'] = Tag.objects.all()
+        return render(request, 'contest/jury_list.html', params)

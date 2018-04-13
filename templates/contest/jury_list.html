@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Bandas{% endblock%}
+
+
+{% block content %}
+<div class="jumbo-header jumbo-band" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Jurado</h1>
+      </div>
+    </div>
+</div>
+
+<div class="header-bar text-center contest-list">
+
+</div>
+
+<div class="container schedule">
+
+    <div class="row">
+        <div class="col-md-3 col-lg-2 events-searchbox panel">
+            <i class="fa fa-search panel-icon hidden-md hidden-lg" aria-hidden="true" data-toggle="collapse" data-target="#event-filter" aria-expanded="false" aria-controls="event-filter"></i>
+            <i class="fa fa-search panel-icon hidden-xs hidden-sm" aria-hidden="true" ></i>
+            <div id="event-filter" class="top-padding collapse">
+
+                <div class="filter margin-top">
+                    <input class="form-control" id="search" value="{{query_string}}" type="text" name="q" placeholder="Buscar...">
+                </div>
+
+                <div class="secondary header-bar margin-top"> <h5><i class="fa fa-tag right-margin" aria-hidden="true"></i> Por etiqueta</h5> </div>
+                <div class="clearfix tags margin-top margin-bottom text-center">
+                    {%for tag in tags %}
+                        <div class="tag-filter card" style="border-color:{{tag.color}}" data-tag="{{tag.id}}">{{tag.name}}</div>
+                    {% endfor %}
+                </div>
+                <br>
+
+            </div>
+        </div>
+
+
+    <div class="col-md-9 col-lg-10" id="search_results">
+        <div id="bands-list">
+            <div class="results">
+                {% include 'contest/jury_results.html' with bands=bands %}
+            </div>
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw loading-spinner"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static "js/jquery.mosaicflow.min.js" %}"></script>
+<script type="text/javascript">
+
+var tags = $('.tags');
+var list = $('#bands-list');
+var search = $('#search');
+
+function reloadResults(){
+    var filters = {}
+    var tag = tags.find('.tag-filter.active');
+    if (tag.size()>0){
+        filters['tag'] = tag.attr('data-tag');
+    }
+    var q = search.val();
+    if (q && q !== ''){
+        filters['q'] = q;
+    }
+    list.ajaxLoader('?' + $.param(filters));
+}
+
+tags.on('click', '.tag-filter', function(){
+    var tag = $(this);
+    if (tag.hasClass('active')){
+        tag.removeClass('active');
+        tags.removeClass('filtered');
+    }
+    else{
+        tags.addClass('filtered').find('.tag-filter').removeClass('active');
+        tag.addClass('active');
+    }
+    reloadResults();
+});
+
+search.on('change', reloadResults);
+list.ajaxLoader();
+
+</script>
+{% endblock %}

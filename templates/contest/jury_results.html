@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<div class="panel no-margin" {% if ajax_url %} data-ajax-url="{{ajax_url}}" {% endif %}>
+    <table class="table mb-no">
+    <thead>
+      <tr>
+        <th scope="col">Banda</th>
+        <th scope="col">Num. miembros</th>
+        <th scope="col">De Alcalá</th>
+          <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for band in bands %}
+      <tr>
+        <td>
+            <a class="jury-band" href="{% url 'contest_band_detail' pk=band.pk%}" class="resume_link" data-id="{{band.pk}}" >
+            <div class="profile-circle small">
+                <img src="{%if band.profile_image %}{{band.profile_thumbnail.url}}{% else %}{% static "img/pro-icon.png" %}{% endif %}" alt="{{pro.name}}">
+            </div>
+
+            <h4 class="profile-title">{{band.name}}</h4>
+            <span class="profile-desc">{{band.genre}}</span><br>
+                <span style="color:grey;font-size:0.8em;">{{band.city}}</span>
+                </a>
+        </td>
+        <td>{{band.num_members}}</td>
+        <td>{%if band.has_local_member %} <i class="fa fa-check"></i> {% endif %}</td>
+          <td>{% include 'contest/jury_vote.html' with band=band %}</td>
+      </tr>
+
+
+    {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+{% include 'common/pagination.html' with page=bands %}

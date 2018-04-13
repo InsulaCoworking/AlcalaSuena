@@ -808,6 +808,30 @@ a:hover .profile-resume, a:hover .profile-resume span{
     transform:scale(1.1);
 }
 
+.jury-band{
+    padding-left: 110px;
+    min-height:100px;
+    position:relative;
+    display:block;
+    color:#000;
+}
+ .jury-band:hover{
+    color:#333;
+    text-decoration:none;
+}
+.jury-band .profile-circle{
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+
+.header-band .jury-vote{
+    position:absolute;
+    right:0;
+    bottom:5px;
+}
+
 body.snapshot .navbar-toggle, body.snapshot .navbar-brand, body.snapshot .band-venue .btn{ display:none; }
 body.snapshot .navbar-brand-text
 {

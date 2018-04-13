@@ -33,12 +33,16 @@
         {%if band.profile_image %}<div class="profile-circle"> <img src="{{band.profile_image.url}}"></div>{% endif %}
     <h1>{{band.name}}</h1>
         <p class="description">{{band.tag.name}}</p>
+
+        {% if request.user.is_staff %} {% include 'contest/jury_vote.html' with band=band %} {% endif %}
     </div>
 
 </div>
 
 
 <div class="container {% if events or can_edit %} top-padding {%endif%}">
+
+
 
     <div class="row">
         <div class="col-md-7">

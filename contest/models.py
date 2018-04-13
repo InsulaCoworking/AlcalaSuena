@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-
+from django.contrib.auth.models import User
 from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
@@ -75,3 +75,18 @@ class BandMember(models.Model):
 
     def __unicode__(self):
         return self.band.name + ': ' + self.full_name
+
+
+class ContestJuryVote(models.Model):
+    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='jury_votes')
+    voted_by = models.ForeignKey(User, verbose_name='Jurado', related_name='contest_votes')
+    timestamp = models.DateTimeField(null=True, verbose_name='Timestamp')
+    vote = models.IntegerField(default=0, verbose_name='Voto')
+
+    class Meta:
+        verbose_name = 'Voto del jurado'
+        verbose_name_plural = 'Votos del jurado'
+        ordering = ['band']
+
+    def __unicode__(self):
+        return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.vote)
