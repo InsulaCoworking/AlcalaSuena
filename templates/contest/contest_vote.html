@@ -1,16 +1,16 @@
-<div class="jury-vote" data-vote="{% url 'contest_band_vote' band.pk %}">
+<div class="jury-vote">
 
     <div class="btn-group">
-      <label class="btn btn-primary vote-1 {% if band.jury_vote.vote == 1 %} active {% endif %}">1
+      <label class="btn btn-primary vote-1 {% if jury_vote.vote == 1 %} active {% endif %}">1
         </label>
-      <label class="btn btn-primary vote-2 {% if band.jury_vote.vote == 2 %}active {% endif %}">2
+      <label class="btn btn-primary vote-2 {% if jury_vote.vote == 2 %}active {% endif %}">2
         </label>
-      <label class="btn btn-primary vote-3 disabled {% if band.jury_vote.vote == 3 %}active {% endif %}" >3
+      <label class="btn btn-primary vote-3 disabled {% if jury_vote.vote == 3 %}active {% endif %}" >3
         </label>
 
-      <label class="btn btn-primary vote-4 disabled {% if band.jury_vote.vote == 4 %}active {% endif %}">4
+      <label class="btn btn-primary vote-4 disabled {% if jury_vote.vote == 4 %}active {% endif %}">4
         </label>
-        <label class="btn btn-primary vote-5 disabled {% if band.jury_vote.vote == 5 %}active {% endif %}">5
+        <label class="btn btn-primary vote-5 disabled {% if jury_vote.vote == 5 %}active {% endif %}">5
         </label>
     </div><br>
     {% if band.jury_vote %} <small><strong>Votado:</strong> {{band.jury_vote.timestamp|date:'d/m/Y H:i'}}</small> {% endif %}
