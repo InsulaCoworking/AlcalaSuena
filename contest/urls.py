@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^contest/bands/(?P<pk>\d+)$', views.contest_band_detail, name='contest_band_detail'),
     url(r'^contest/jury/$', views.contest_jury_list, name='contest_jury_list'),
     url(r'^contest/bands/(?P<pk>\d+)/vote/$', views.contest_band_vote, name='contest_band_vote'),
+    url(r'^contest/jury/csv_votes/$', views.contest_csv_votes, name='contest_csv_votes'),
+
 ]

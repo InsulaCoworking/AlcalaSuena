@@ -1,5 +1,7 @@
+import csv
 import datetime
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -124,8 +126,7 @@ def contest_jury_list(request):
             bands = bands.filter(entry_query)
 
     paginator = Paginator(bands, 9)
-    for band in bands:
-        band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
+
 
     page = request.GET.get('page')
     try:
@@ -136,6 +137,9 @@ def contest_jury_list(request):
     except (EmptyPage, InvalidPage):
         # If page is out of range (e.g. 9999), deliver last page of results.
         bands = paginator.page(paginator.num_pages)
+
+    for band in bands:
+        band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
 
     params = {
         'ajax_url': reverse('contest_jury_list'),
@@ -174,3 +178,34 @@ def contest_band_vote(request, pk):
     else:
         return HttpResponse('Unauthorized', status=401)
 
+
+@login_required
+def contest_csv_votes(request):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="votos_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    writer = csv.writer(response)
+
+    bands = ContestBand.objects.all()
+    first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina']
+
+    juries = User.objects.filter(is_staff=True)
+    for jury in juries:
+        first_row.append(jury.get_full_name() if jury.first_name else jury.username)
+
+    print first_row
+    writer.writerow(first_row)
+
+    for band in bands:
+        results = [band.name, band.num_members, band.city, band.has_local_member]
+        for jury in juries:
+            jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=jury).first()
+
+            results.append('' if not jury_vote else str(jury_vote.vote))
+
+        writer.writerow(results)
+
+    return response
