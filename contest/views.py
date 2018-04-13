@@ -109,10 +109,11 @@ def contest_band_detail(request, pk):
 
 @login_required
 def contest_jury_list(request):
-    if not request.user.is_staff:
-        return HttpResponse('Unauthorized', status=401)
+
 
     bands = ContestBand.objects.all()
+    jury_count = User.objects.filter(is_staff=True).count()
+
     band_count = bands.count()
     tag_filter = request.GET.get('tag', None)
     if tag_filter:
@@ -138,12 +139,18 @@ def contest_jury_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         bands = paginator.page(paginator.num_pages)
 
+
     for band in bands:
-        band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
+        if request.user.is_staff:
+            band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
+        else:
+            band.num_votes = ContestJuryVote.objects.filter(band=band).count()
+
 
     params = {
         'ajax_url': reverse('contest_jury_list'),
         'query_string': query_string,
+        'jury_count': jury_count,
         'band_count': band_count,
         'bands': bands,
         'page': page
