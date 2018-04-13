@@ -55,6 +55,22 @@
         <div class="col-md-5">
             {% if band.embed_code %} <div class="embed">{% create_embed band.embed_code %} </div>{% endif %}
 
+            {% if request.user.is_authenticated %}
+                <h3>Contacto</h3>
+                {{band.contact_email}}<br>
+                {{band.contact_phone1}}<br>
+                {{band.contact_phone2}}
+
+                <h3>Rider técnico</h3>
+                <a href="{{band.rider_doc.url}}" target="_blank" class="btn btn-primary red btn-lg"><span><i class="fa fa-download" aria-hidden="true"></i>  Descargar archivo</span></a>
+
+            <h3>Concurso</h3>
+            <strong>Nombre interesado</strong><br>
+            {{band.receiver_fullname}}<br><br>
+            <strong>Documento identidad interesado</strong><br>
+            {{band.receiver_cif}}<br>
+
+            {% endif %}
         </div>
 
     </div>

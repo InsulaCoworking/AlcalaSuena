@@ -18,5 +18,5 @@
         <input type="radio" name="options{{band.pk}}" class="option5" value="5" autocomplete="off" {% if band.jury_vote.vote == 5 %} checked {% endif %}> 5
       </label>
     </div><br>
-    {% if band.jury_vote %} <small><strong>Votado:</strong> {{band.jury_vote.timestamp|date:'d/m/Y H:i'}}<small> {% endif %}
+    {% if band.jury_vote %} <small><strong>Votado:</strong> {{band.jury_vote.timestamp|date:'d/m/Y H:i'}}</small> {% endif %}
 </div>
