@@ -4,8 +4,8 @@
     <thead>
       <tr>
         <th scope="col">Banda</th>
-        <th scope="col">Num. miembros</th>
-        <th scope="col">De Alcalá</th>
+        <th scope="col"  class="text-center">Num. miembros</th>
+        <th scope="col"  class="text-center">De Alcalá</th>
           <th scope="col"></th>
       </tr>
     </thead>
@@ -23,8 +23,8 @@
                 <span style="color:grey;font-size:0.8em;">{{band.city}}</span>
                 </a>
         </td>
-        <td>{{band.num_members}}</td>
-        <td>{%if band.has_local_member %} <i class="fa fa-check"></i> {% endif %}</td>
+        <td class="text-center">{{band.num_members}}</td>
+        <td class="text-center">{%if band.has_local_member %} <i class="fa fa-check"></i> {% endif %}</td>
           <td>{% include 'contest/jury_vote.html' with band=band %}</td>
       </tr>
 

@@ -78,8 +78,8 @@ class BandMember(models.Model):
 
 
 class ContestJuryVote(models.Model):
-    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='jury_votes')
-    voted_by = models.ForeignKey(User, verbose_name='Jurado', related_name='contest_votes')
+    band = models.ForeignKey(ContestBand, primary_key=True, verbose_name='Banda', related_name='jury_votes')
+    voted_by = models.ForeignKey(User, primary_key=True, verbose_name='Jurado', related_name='contest_votes')
     timestamp = models.DateTimeField(null=True, verbose_name='Timestamp')
     vote = models.IntegerField(default=0, verbose_name='Voto')
 

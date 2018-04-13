@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from django.http import HttpResponse
@@ -152,3 +153,24 @@ def contest_jury_list(request):
     else:
         params['tags'] = Tag.objects.all()
         return render(request, 'contest/jury_list.html', params)
+
+
+
+def contest_band_vote(request, pk):
+    band = get_object_or_404(ContestBand, pk=pk)
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    if request.method == "POST":
+        jury_vote, created = ContestJuryVote.objects.get_or_create(band=band, voted_by=request.user)
+        jury_vote.timestamp = datetime.datetime.now()
+
+        vote = request.POST.get('vote', 1)
+        jury_vote.vote = vote
+        jury_vote.save()
+
+        return HttpResponse('Yeah!', status=200)
+            #print members_formset.errors
+    else:
+        return HttpResponse('Unauthorized', status=401)
+

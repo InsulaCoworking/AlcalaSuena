@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^contest/list/$', views.contest_entries_list, name='contest_entries_list'),
     url(r'^contest/bands/(?P<pk>\d+)$', views.contest_band_detail, name='contest_band_detail'),
     url(r'^contest/jury/$', views.contest_jury_list, name='contest_jury_list'),
+    url(r'^contest/bands/(?P<pk>\d+)/vote/$', views.contest_band_vote, name='contest_band_vote'),
 ]

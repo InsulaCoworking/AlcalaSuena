@@ -825,6 +825,31 @@ a:hover .profile-resume, a:hover .profile-resume span{
     top:0;
 }
 
+.jury-vote .btn-primary{
+    background-color:#aaa;
+    color:#111;
+}
+.jury-vote .btn-primary.active{
+    box-shadow:0 6px 8px rgba(0,0,0,0.6);
+    padding:10px 15px;
+    margin-top:-5px;
+}
+
+.jury-vote .vote-1{
+    background-color:#f03d44;
+}
+.jury-vote .vote-2{
+    background-color:#f0bf3d;
+}
+.jury-vote .vote-3{
+    background-color:#f1eb3d;
+}
+.jury-vote .vote-4{
+    background-color:#a9d278;
+}
+.jury-vote .vote-5{
+    background-color:#39b56e;
+}
 
 .header-band .jury-vote{
     position:absolute;

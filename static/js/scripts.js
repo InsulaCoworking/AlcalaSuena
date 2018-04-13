@@ -9,6 +9,8 @@
         $.get(url, {}, function(data){
             resultsContainer.find('.results').html(data);
             resultsContainer.removeClass('loading-container');
+            loadVotes(resultsContainer);
+            resultsContainer.find('[data-toggle="tooltip"]').tooltip();
             var preserveHistory = resultsContainer.attr('data-preservehistory');
             if (!preserveHistory || preserveHistory != 'true')
                 window.history.replaceState({}, '', url);
@@ -41,6 +43,40 @@
 }( jQuery ));
 
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!(/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) && !this.crossDomain) {
+            var csrftoken = getCookie('csrftoken');
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
+function loadVotes(elem){
+    elem.find('.jury-vote input[type="radio"]').on('change', function(){
+        var voteUrl = $(this).parents('.jury-vote').attr('data-vote')
+        var vote = $(this).val();
+        $.post(voteUrl, { 'vote':vote })
+        console.log("AAAA");
+   });
+}
 
 $(document).ready(function() {
 
@@ -115,6 +151,8 @@ $(document).ready(function() {
             $(target).text(field.val());
         });
     });
+
+    loadVotes($('body'));
 
 });
 

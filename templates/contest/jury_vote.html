@@ -1,21 +1,21 @@
-<div class="jury-vote" data-vote="{{band.pk}}">
+<div class="jury-vote" data-vote="{% url 'contest_band_vote' band.pk %}">
 
     <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary {% if band.jury_vote.vote == 1 %} active {% endif %}">
-        <input type="radio" name="options" class="option1" value="1" autocomplete="off" {% if band.jury_vote.vote == 1 %} checked {% endif %}> 1
+      <label class="btn btn-primary vote-1 {% if band.jury_vote.vote == 1 %} active {% endif %}">
+        <input type="radio" name="options{{band.pk}}" class="option1" value="1" autocomplete="off" {% if band.jury_vote.vote == 1 %} checked {% endif %}> 1
       </label>
-      <label class="btn btn-primary {% if band.jury_vote.vote == 2 %}active {% endif %}">
-        <input type="radio" name="options" class="option2" value="2" autocomplete="off" {% if band.jury_vote.vote == 2 %} checked {% endif %}> 2
+      <label class="btn btn-primary vote-2  {% if band.jury_vote.vote == 2 %}active {% endif %}">
+        <input type="radio" name="options{{band.pk}}" class="option2" value="2" autocomplete="off" {% if band.jury_vote.vote == 2 %} checked {% endif %}> 2
       </label>
-      <label class="btn btn-primary  {% if band.jury_vote.vote == 3 %}active {% endif %}" >
-        <input type="radio" name="options" class="option3" value="3" autocomplete="off" {% if band.jury_vote.vote == 3 %} checked {% endif %}> 3
+      <label class="btn btn-primary vote-3  {% if band.jury_vote.vote == 3 %}active {% endif %}" >
+        <input type="radio" name="options{{band.pk}}" class="option3" value="3" autocomplete="off" {% if band.jury_vote.vote == 3 %} checked {% endif %}> 3
       </label>
 
-      <label class="btn btn-primary  {% if band.jury_vote.vote == 4 %}active {% endif %}">
-        <input type="radio" name="options" class="option4" value="4" autocomplete="off" {% if band.jury_vote.vote == 4 %} checked {% endif %}> 4
+      <label class="btn btn-primary vote-4  {% if band.jury_vote.vote == 4 %}active {% endif %}">
+        <input type="radio" name="options{{band.pk}}" class="option4" value="4" autocomplete="off" {% if band.jury_vote.vote == 4 %} checked {% endif %}> 4
       </label>
-        <label class="btn btn-primary  {% if band.jury_vote.vote == 5 %}active {% endif %}">
-        <input type="radio" name="options" class="option5" value="5" autocomplete="off" {% if band.jury_vote.vote == 5 %} checked {% endif %}> 5
+        <label class="btn btn-primary vote-5 {% if band.jury_vote.vote == 5 %}active {% endif %}">
+        <input type="radio" name="options{{band.pk}}" class="option5" value="5" autocomplete="off" {% if band.jury_vote.vote == 5 %} checked {% endif %}> 5
       </label>
     </div><br>
     {% if band.jury_vote %} <small><strong>Votado:</strong> {{band.jury_vote.timestamp|date:'d/m/Y H:i'}}<small> {% endif %}
