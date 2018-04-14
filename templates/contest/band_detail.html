@@ -61,9 +61,11 @@
                 {{band.contact_phone1}}<br>
                 {{band.contact_phone2}}
 
+            {% if band.rider_doc %}
                 <h3>Rider técnico</h3>
-                <a href="{{band.rider_doc.url}}" target="_blank" class="btn btn-primary red btn-lg"><span><i class="fa fa-download" aria-hidden="true"></i>  Descargar archivo</span></a>
 
+            <a href="{{band.rider_doc.url}}" target="_blank" class="btn btn-primary red btn-lg"><span><i class="fa fa-download" aria-hidden="true"></i>  Descargar archivo</span></a>
+            {% endif %} 
                 <h3>Concurso</h3>
                 <strong>Nombre interesado</strong><br>
                 {{band.receiver_fullname}}<br><br>
@@ -90,6 +92,8 @@
                             <td>{{vote.voted_by}}</td>
                             <td>{% include 'contest/contest_vote.html' with jury_vote=vote %}</td>
                         </tr>
+                        {% empty %}
+                            <tr><td colspan="2">No hay ningún voto todavía...</td> </tr>
                         {% endfor %}
                     </tbody>
                 </table>
