@@ -50,7 +50,7 @@
                   <ul class="nav navbar-nav">
                     <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio</a></li>
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
-                      <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
+                     <!-- <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>-->
                       <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
                     <!--<li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>-->
                     <!--<li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>-->
@@ -73,9 +73,10 @@
                 Plaza de Cervantes 12<br>
                 28801 Alcalá de Henares<br>
                 Madrid<br>
+                alcalasuena@ayto-alcaladehenares.es
                 <a href="tel:918883300">
-                                    <font color="white">Teléfono: 91 888 33 00 ext. 4371</font>
-                                </a>
+                    <font color="white">Teléfono: 91 888 33 00 ext. 4371</font>
+                </a>
                 <!--<img class="img-responsive" src="{% static "img/logo_mahou.png" %}">-->
             </div>
             <div class="col-xs-6 col-sm-3 col-md-3"><img class="img-responsive" src="{% static "img/logo_alcalasuena.png" %}"></div>
