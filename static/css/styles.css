@@ -856,7 +856,18 @@ a:hover .profile-resume, a:hover .profile-resume span{
     right:0;
     bottom:5px;
 }
-
+.public-vote{
+    padding:15px;
+    border-radius:3px;
+    box-shadow: 4px 0 5px rgba(0,0,0,0.3);
+    background-color:#fff;
+    color:#333;
+    margin-bottom:-40px;
+}
+.public-vote .fa{ margin-right:10px; }
+.public-vote span{
+    text-transform:none;
+}
 body.snapshot .navbar-toggle, body.snapshot .navbar-brand, body.snapshot .band-venue .btn{ display:none; }
 body.snapshot .navbar-brand-text
 {
@@ -1059,3 +1070,10 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     border-color: #cc0000;
     border-radius:4px;
 }
+
+.btn-facebook, .btn-twitter{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.btn.btn-twitter{ background-color: #00acee;}
+.btn.btn-facebook{ background-color: #4b64a4;}

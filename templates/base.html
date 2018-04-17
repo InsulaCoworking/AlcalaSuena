@@ -52,11 +52,34 @@
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
                      <!-- <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>-->
                       <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
+                        {% if perms.contest.can_mange_jury %}
+                         <li {% if request.resolver_match.url_name == "contest_jury_list" %}class="active"{% endif %}><a href="{% url 'contest_jury_list' %}">Jurado</a></li>
+                        {% endif %}
                     <!--<li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>-->
                     <!--<li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>-->
                       <!--<li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>-->
 
                   </ul>
+
+
+                   <ul class="nav navbar-nav navbar-right">
+                      {%if user.is_authenticated %}
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                  <li><a href="{% url 'contest_user_votes' %}"><i class="fa fa-cog right-margin" aria-hidden="true" ></i> Mi voto</a></li>
+
+                                  {% if user.is_superuser %}
+                                    <li><a href="{% url 'admin:index' %}"><i class="fa fa-cog right-margin" aria-hidden="true" ></i> Django Admin</a></li>
+                                  {% endif %}
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{% url 'logout' %}?next=/"><i class="fa fa-power-off right-margin" aria-hidden="true" ></i> Salir</a></li>
+                              </ul>
+                        </li>
+                      {% endif %}
+
+                  </ul>
+
           </div>
         </nav>
 

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alcalá Suena 2018 | Formulario de Inscripción{% endblock%}
+
+{% block content %}
+<div class="jumbo-header" style="background-image:url('{% static "img/band-header.jpg" %}')" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Concurso AlcaláSuena 2018</h1>
+      </div>
+    </div>
+</div>
+
+<div class="header-bar text-center">
+    <h3>Mi voto</h3>
+</div>
+
+<div class="container">
+<div class="panel no-margin" style="max-width:550px;margin:auto !important;">
+    <table class="table mb-no">
+    <thead>
+      <tr>
+        <th scope="col">Banda</th>
+        <th scope="col"  class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for vote in votes %}
+      <tr>
+        <td>
+            <a class="jury-band" href="{% url 'contest_band_detail' pk=vote.band.pk%}" class="resume_link" data-id="{{vote.band.pk}}" >
+            <div class="profile-circle small">
+                <img src="{%if vote.band.profile_image %}{{vote.band.profile_thumbnail.url}}{% else %}{% static "img/pro-icon.png" %}{% endif %}" >
+            </div>
+
+            <h4 class="profile-title">{{vote.band.name}}</h4>
+            <span class="profile-desc">{{vote.band.genre}}</span><br>
+                </a>
+        </td>
+        <td class="text-center"><button class="btn btn-primary margin-top delete-vote" data-action="{% url 'contest_public_vote' vote.band.pk %}"><i class="fa fa-times fa-2x"></i> </button> </td>
+      </tr>
+
+
+    {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript">
+    $('.delete-vote').on('click', function(){
+        var vote = $(this).parents('tr');
+        var actionUrl = $(this).attr('data-action');
+        $.post(actionUrl, {action:'delete'}, function(data){
+            vote.remove();
+        });
+    });
+</script>
+
+{% endblock %}

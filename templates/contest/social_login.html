@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="jumbo-header jumbo-band" style="height:100px;">
+    <div class="jumbotron">
+    </div>
+</div>
+<div class="header-bar text-center "><h2>Login</h2>
+</div>
+
+<div class="container card main">
+
+    {% csrf_token %}
+    <p class="lead text-center">Para votar a alguna banda en el concurso de Alcalá Suena 2018 al premio del público tienes que acceder a través de alguna red social:</p>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-primary btn-twitter btn-block"><i class="fa fa-twitter" aria-hidden="true"></i> Entrar con Twitter</a>
+
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-facebook btn-block"><i class="fa fa-facebook" aria-hidden="true"></i> Entrar con Facebook</a>
+        </div>
+    </div>
+    <br><br>
+</div>
+{% endblock %}

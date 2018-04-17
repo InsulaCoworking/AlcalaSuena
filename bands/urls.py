@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^billing/list/$', views.billing_list, name='billing'),
     url(r'^billing/download/$', views.download_csv, name='download_csv'),
     url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
 ]

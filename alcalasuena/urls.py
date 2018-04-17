@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^', include(contest_urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(get_api('v1').urls)),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

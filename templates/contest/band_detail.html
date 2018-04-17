@@ -28,11 +28,20 @@
       </div>
     </div>
 </div>
-<div class="header-bar text-center header-band profile">
+<div class="header-bar header-band profile">
     <div class="container">
         {%if band.profile_image %}<div class="profile-circle"> <img src="{{band.profile_image.url}}"></div>{% endif %}
-    <h1>{{band.name}}</h1>
-        <p class="description">{{band.tag.name}}</p>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h1>{{band.name}}</h1>
+                <p class="description">{{band.tag.name}}</p>
+            </div>
+            <div class="col-md-4">
+                {% include 'contest/public_vote.html' with obj=band %}
+            </div>
+        </div>
+
 
         {% if request.user.is_staff %} {% include 'contest/jury_vote.html' with band=band %} {% endif %}
     </div>
@@ -55,7 +64,7 @@
         <div class="col-md-5">
             {% if band.embed_code %} <div class="embed">{% create_embed band.embed_code %} </div>{% endif %}
 
-            {% if request.user.is_authenticated %}
+            {% if perms.contest.can_mange_jury %}
                 <h3>Contacto</h3>
                 {{band.contact_email}}<br>
                 {{band.contact_phone1}}<br>
@@ -75,7 +84,7 @@
             {% endif %}
         </div>
 
-        {% if request.user.is_authenticated %}
+        {% if perms.contest.can_mange_jury %}
         <div class="col-md-12">
             <h3 class="text-center">Votaciones jurado</h3>
             <div class="panel" style="max-width:500px;margin:auto;">
@@ -106,5 +115,27 @@
     </div>
 
 </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script type="text/javascript">
+    $('.btn-add-vote').on('click', function(){
+        var vote = $(this).parents('.public-vote');
+        var actionUrl = $(this).attr('data-vote');
+        console.log(actionUrl);
+        $.post(actionUrl, {action:'add'}, function(data){
+            vote
+                .find('.pending-vote-band').hide().end()
+                .find('.voted-band').show().end()
+        }).fail(function(xhr, status, error){
+            if (xhr.status == 403){
+                vote.find('.alert-warning').show();
+            }
+        });
+    });
+</script>
 
 {% endblock %}

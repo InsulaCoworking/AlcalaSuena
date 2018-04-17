@@ -13,7 +13,7 @@ from bands.helpers import get_query
 from bands.models import Tag
 from contest.forms.band import BandForm
 from contest.forms.bandmember import BandMemberForm
-from contest.models import ContestBand, ContestJuryVote
+from contest.models import ContestBand, ContestJuryVote, ContestPublicVote
 
 
 def bases(request):
@@ -53,6 +53,27 @@ def signup(request):
         'members_formset': members_formset
     })
 
+@login_required
+def contest_dashboard(request):
+    if not request.user.has_perm('contest.can_mange_jury'):
+        if 'band' in request.session:
+            band_pk = request.session['band']
+            del request.session['band']
+            band = ContestBand.objects.filter(pk=band_pk).first()
+
+            num_votes = ContestPublicVote.objects.filter(voted_by=request.user).count()
+            if num_votes >= 10:
+                return redirect('contest_user_votes')
+
+            vote, created = ContestPublicVote.objects.get_or_create(band=band, voted_by=request.user)
+            vote.timestamp = datetime.datetime.now()
+            vote.save()
+
+            return redirect('contest_band_detail', pk=band.pk)
+
+        return redirect('contest_user_votes')
+    else:
+        return redirect('contest_jury_list')
 
 def contest_entries_list(request):
     bands = ContestBand.objects.all()
@@ -102,9 +123,14 @@ def contest_band_detail(request, pk):
     if request.user.is_staff:
         band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
 
+    voted = False
+    if request.user.is_authenticated():
+        voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
+
     jury_votes = ContestJuryVote.objects.filter(band=band)
     return render(request, 'contest/band_detail.html', {
         'band': band,
+        'voted':voted,
         'jury_votes': jury_votes,
         'view': request.GET.get('view', None)
     })
@@ -112,6 +138,8 @@ def contest_band_detail(request, pk):
 @login_required
 def contest_jury_list(request):
 
+    if not request.user.has_perm('contest.can_mange_jury'):
+        return HttpResponse('Unauthorized', status=401)
 
     bands = ContestBand.objects.all()
     jury_count = User.objects.filter(is_staff=True).count()
@@ -188,9 +216,17 @@ def contest_band_vote(request, pk):
         return HttpResponse('Unauthorized', status=401)
 
 
+def contest_user_votes(request,):
+
+    if not request.user.is_authenticated():
+        return redirect('contest_social_login')
+
+    votes = ContestPublicVote.objects.filter(voted_by=request.user)
+    return render(request, 'contest/user_votes.html', {'votes': votes})
+
 @login_required
 def contest_csv_votes(request):
-    if not request.user.is_staff:
+    if not request.user.has_perm('can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)
 
     now = datetime.datetime.now()
@@ -240,3 +276,42 @@ def contest_csv_bands(request):
         writer.writerow(results)
 
     return response
+
+
+def social_login(request):
+    if request.user.is_authenticated():
+        return redirect('contest_user_votes')
+
+    band = request.GET.get('band', None)
+    if band:
+        request.session['band'] = band
+    else:
+        del request.session['band']
+
+    return render(request, 'contest/social_login.html')
+
+
+def contest_public_vote(request, pk):
+    band = get_object_or_404(ContestBand, pk=pk)
+
+    if request.user.is_authenticated():
+
+        if request.method == "POST":
+
+            num_votes = ContestPublicVote.objects.filter(voted_by=request.user).count()
+            if num_votes >= 10:
+                return HttpResponse('Too many votes!', status=403)
+
+            action = request.POST.get('action', 'add')
+            if action == 'add':
+                vote, created = ContestPublicVote.objects.get_or_create(band=band, voted_by=request.user)
+                vote.timestamp = datetime.datetime.now()
+                vote.save()
+            elif action == 'delete':
+                ContestPublicVote.objects.filter(band=band, voted_by=request.user).delete()
+
+            return HttpResponse('Yeah!', status=200)
+                #print members_formset.errors
+
+
+    return HttpResponse('Unauthorized', status=401)

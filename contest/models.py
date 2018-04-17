@@ -89,6 +89,23 @@ class ContestJuryVote(models.Model):
         verbose_name_plural = 'Votos del jurado'
         ordering = ['band']
         unique_together = (("band", "voted_by"),)
+        permissions = (("can_mange_jury", "Puede acceder al jurado"),)
 
     def __unicode__(self):
         return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.vote)
+
+
+class ContestPublicVote(models.Model):
+
+    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='public_votes')
+    voted_by = models.ForeignKey(User, verbose_name='Votante', related_name='public_votes')
+    timestamp = models.DateTimeField(null=True, verbose_name='Timestamp')
+
+    class Meta:
+        verbose_name = 'Voto del público'
+        verbose_name_plural = 'Votos del público'
+        ordering = ['band']
+        unique_together = (("band", "timestamp"),)
+
+    def __unicode__(self):
+        return self.band.name + ': ' + self.voted_by.username
