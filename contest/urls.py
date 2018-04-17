@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^contest/jury/bands/(?P<pk>\d+)/vote/$', views.contest_band_vote, name='contest_band_vote'),
     url(r'^contest/jury/csv_votes/$', views.contest_csv_votes, name='contest_csv_votes'),
     url(r'^contest/jury/csv_bands/$', views.contest_csv_bands, name='contest_csv_bands'),
+    url(r'^contest/privacy_policy/$', views.privacy_policy, name='privacy_policy'),
 
     url(r'^contest/login/$', views.social_login, name='contest_social_login'),
     url(r'^contest/bands/(?P<pk>\d+)/vote/$', views.contest_public_vote, name='contest_public_vote'),

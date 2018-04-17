@@ -19,6 +19,9 @@ from contest.models import ContestBand, ContestJuryVote, ContestPublicVote
 def bases(request):
     return render(request, 'contest/bases.html', {})
 
+def privacy_policy(request):
+    return render(request, 'contest/privacy_policy.html', {})
+
 def form_success(request):
     return render(request, 'contest/form_success.html', {})
 
