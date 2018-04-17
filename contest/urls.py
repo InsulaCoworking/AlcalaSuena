@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^contest/jury/$', views.contest_jury_list, name='contest_jury_list'),
     url(r'^contest/bands/(?P<pk>\d+)/vote/$', views.contest_band_vote, name='contest_band_vote'),
     url(r'^contest/jury/csv_votes/$', views.contest_csv_votes, name='contest_csv_votes'),
+    url(r'^contest/jury/csv_bands/$', views.contest_csv_bands, name='contest_csv_bands'),
 
 ]

@@ -217,3 +217,26 @@ def contest_csv_votes(request):
         writer.writerow(results)
 
     return response
+
+
+
+@login_required
+def contest_csv_bands(request):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="bands_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    writer = csv.writer(response)
+
+    bands = ContestBand.objects.all()
+    first_row = ['Banda', 'Email', 'Miembros', 'Alcalaina',]
+
+    writer.writerow(first_row)
+
+    for band in bands:
+        results = [band.name.encode('utf-8').strip(), band.contact_email, band.num_members, band.has_local_member]
+        writer.writerow(results)
+
+    return response
