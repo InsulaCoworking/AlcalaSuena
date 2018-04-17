@@ -30,6 +30,15 @@ def order_latenight(event_a, event_b):
     else:
         return -1 if event_a.time < event_b.time else 1
 
+
+def normalize_query(query_string,
+                    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+                    normspace=re.compile(r'\s{2,}').sub):
+    ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
+        and grouping quoted words together.
+    '''
+    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)]
+
 def get_query(query_string, search_fields):
 
     '''
