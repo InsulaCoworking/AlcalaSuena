@@ -2,6 +2,8 @@ import os
 import uuid
 
 import datetime
+
+import re
 from django.utils.deconstruct import deconstructible
 
 # Random name generator to avoid file overwrites
