@@ -967,10 +967,6 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
   border-radius: 50%;
 }
 
- .header-bar.profile .container{
-    padding-left: 170px;
-    position:relative;
- }
 .header-bar.profile h1{ margin-top: 0; }
  .header-bar.secondary{
     padding:10px 0 10px 10px;
@@ -996,7 +992,19 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     position: relative;
 }
 
+@media(max-width:470px){
+    .header-bar.profile .container {
+        padding-left: 15px;
+        padding-top:15px;
+        position: relative;
+    }
 
+    .header-bar.profile .profile-circle{
+        margin-top: -110px;
+            width: 100px;
+    height: 100px;
+    }
+}
 .profile-circle.small{
     width:90px;
     height:90px;

@@ -14,8 +14,10 @@
     <div class="alert alert-warning text-center" style="display:none;" role="alert"><span>Ya has votado al máximo de bandas posibles</span><br><a href="{% url 'contest_user_votes' %}" class="btn-primary btn btn-block">Ver mis votos</a></div>
         </div>
     {% else %}
+        <div class="text-center">
             <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
             <p style="display:inline-block;"> Vota para que esta banda <br>participe en Alcalá Suena!</p>
             <a href="{% url 'contest_social_login' %}?band={{band.pk}}" class="btn btn-primary btn-block">Votar!</a>
+            </div>
     {% endif %}
 </div>
