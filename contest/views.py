@@ -174,6 +174,7 @@ def contest_jury_list(request):
 
 
     for band in bands:
+        band.public_votes_count = ContestPublicVote.objects.filter(band=band).count()
         if request.user.is_staff:
             band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
         else:

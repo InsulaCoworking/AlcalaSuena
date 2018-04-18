@@ -6,6 +6,7 @@
         <th scope="col">Banda</th>
         <th scope="col"  class="text-center">Num. miembros</th>
         <th scope="col"  class="text-center">De Alcalá</th>
+          <th scope="col"  class="text-center">Votos público</th>
           <th scope="col">{% if not request.user.is_staff %} Votos jurado {% endif %}</th>
       </tr>
     </thead>
@@ -25,6 +26,7 @@
         </td>
         <td class="text-center">{{band.num_members}}</td>
         <td class="text-center">{%if band.has_local_member %} <i class="fa fa-check" style="color:#33aa33;"></i> {% else %} <i class="fa fa-times" style="color:#aa3333;"></i>  {% endif %}</td>
+          <td class="text-center">{{band.public_votes_count}}</td>
           <td>
               {% if request.user.is_staff %}
                 {% include 'contest/jury_vote.html' with band=band %}
