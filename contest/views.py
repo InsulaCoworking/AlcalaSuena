@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -314,11 +314,13 @@ def contest_public_vote(request, pk):
                 vote, created = ContestPublicVote.objects.get_or_create(band=band, voted_by=request.user)
                 vote.timestamp = datetime.datetime.now()
                 vote.save()
+
+                band_votes = ContestPublicVote.objects.filter(band=band).count()
+                return JsonResponse({'band_votes':band_votes}, status=200)
+
             elif action == 'delete':
                 ContestPublicVote.objects.filter(band=band, voted_by=request.user).delete()
-
-            return HttpResponse('Yeah!', status=200)
-                #print members_formset.errors
+                return HttpResponse('Yeah!', status=200)
 
 
     return HttpResponse('Unauthorized', status=401)

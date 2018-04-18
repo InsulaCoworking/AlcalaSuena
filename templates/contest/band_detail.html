@@ -130,6 +130,7 @@
             vote
                 .find('.pending-vote-band').hide().end()
                 .find('.voted-band').show().end()
+                .find('.fa span').text(data['band_votes']).end()
         }).fail(function(xhr, status, error){
             if (xhr.status == 403){
                 vote.find('.alert-warning').show();
