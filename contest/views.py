@@ -301,12 +301,13 @@ def contest_public_vote(request, pk):
 
         if request.method == "POST":
 
-            num_votes = ContestPublicVote.objects.filter(voted_by=request.user).count()
-            if num_votes >= 10:
-                return HttpResponse('Too many votes!', status=403)
-
             action = request.POST.get('action', 'add')
             if action == 'add':
+
+                num_votes = ContestPublicVote.objects.filter(voted_by=request.user).count()
+                if num_votes >= 10:
+                    return HttpResponse('Too many votes!', status=403)
+
                 vote, created = ContestPublicVote.objects.get_or_create(band=band, voted_by=request.user)
                 vote.timestamp = datetime.datetime.now()
                 vote.save()
