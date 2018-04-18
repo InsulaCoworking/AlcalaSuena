@@ -292,7 +292,8 @@ def social_login(request):
     if band:
         request.session['band'] = band
     else:
-        del request.session['band']
+        if 'band' in request.session:
+           del request.session['band']
 
     return render(request, 'contest/social_login.html')
 
