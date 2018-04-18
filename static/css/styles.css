@@ -853,8 +853,8 @@ a:hover .profile-resume, a:hover .profile-resume span{
 
 .header-band .jury-vote{
     position:absolute;
-    right:0;
-    bottom:5px;
+    right:10px;
+    top:-80px;
 }
 .public-vote{
     padding:15px;
