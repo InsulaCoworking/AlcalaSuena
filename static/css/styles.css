@@ -864,10 +864,32 @@ a:hover .profile-resume, a:hover .profile-resume span{
     color:#333;
     margin-bottom:-40px;
 }
-.public-vote .fa{ margin-right:10px; }
+.public-vote p{
+    display:inline-block;
+    vertical-align:middle;
+}
+.public-vote .fa{ margin-right:10px; vertical-align:middle; margin-top:-8px; position:relative; }
 .public-vote span{
     text-transform:none;
 }
+.public-vote .btn{
+    margin-bottom:0;
+}
+.public-vote .fa span{
+    font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
+    font-size: 22px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 21px;
+ }
+ .public-vote .fa.fa-heart{
+    color:#f03d44;
+ }
+
+ .public-vote .fa.fa-heart span{
+    color:#fff;
+ }
 body.snapshot .navbar-toggle, body.snapshot .navbar-brand, body.snapshot .band-venue .btn{ display:none; }
 body.snapshot .navbar-brand-text
 {

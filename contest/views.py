@@ -126,6 +126,7 @@ def contest_band_detail(request, pk):
     if request.user.is_staff:
         band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
 
+    num_votes = ContestPublicVote.objects.filter(band=band).count()
     voted = False
     if request.user.is_authenticated():
         voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
@@ -133,6 +134,7 @@ def contest_band_detail(request, pk):
     jury_votes = ContestJuryVote.objects.filter(band=band)
     return render(request, 'contest/band_detail.html', {
         'band': band,
+        'num_votes': num_votes,
         'voted':voted,
         'jury_votes': jury_votes,
         'view': request.GET.get('view', None)
