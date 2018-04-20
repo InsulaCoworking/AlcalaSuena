@@ -284,6 +284,29 @@ def contest_csv_bands(request):
     return response
 
 
+
+@login_required
+def contest_csv_user_votes(request):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="votes_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    writer = csv.writer(response)
+
+    users = User.objects.all()
+    first_row = ['username', 'Usuario', 'Reqistro', 'Votos', ]
+
+    writer.writerow(first_row)
+
+    for user in users:
+        num_votes = ContestPublicVote.objects.filter(voted_by=user).count()
+        results = [user.username, user.get_full_name().encode('utf-8').strip(), str(user.date_joined), num_votes]
+        writer.writerow(results)
+
+    return response
+
 def social_login(request):
     if request.user.is_authenticated():
         return redirect('contest_user_votes')

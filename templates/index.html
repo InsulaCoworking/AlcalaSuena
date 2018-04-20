@@ -27,16 +27,22 @@
                 <p class="lead "><span>
                 Alcalá de Henares acogerá la 4ª edición de este evento musical durante el primer fin de semana de junio y que llenará de actuaciones en directo para todos los gustos; folk, pop, rock, jazz, fusión... en diferentes lugares del Casco Histórico de la Ciudad.
                 </span></p>
-                <h2>¿Tienes una banda?</h2>
-                <p class="lead "><span>
-                ¿Quieres tocar en <strong>Alcalá Suena 2018</strong> ?<br> Ya está abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas que actuén en el festival.</span></p>
-                <a href="{% url 'contest_signup' %}" class="btn btn-primary btn-lg">Inscríbete!</a>
+
             </div>
 
-            <div class="col-sm-12">
-            <hr>
+            <div class="col-sm-12"><hr></div>
 
-            <h2 class="text-center">¿Qué es AlcalaSuena?</h2>
+            <div class="col-sm-6 text-center">
+                <img class="img-responsive" src="{% static "img/vota.jpg" %}">
+            </div>
+            <div class="col-sm-6 text-center">
+
+
+
+            <h2> VOTA A TUS GRUPOS FAVORITOS</h2>
+                <p class="lead"> <span>Ayuda al jurado votando a tus grupos favoritos de nuestra lista de bandas. Tienes hasta 10 votos para repartir en las más de 200 propuestas musicales que participan en el concurso</span></p>
+                <a href="{% url 'contest_entries_list' %}" class="btn btn-primary btn-lg">Ver bandas</a><br>
+                <a href="{% url 'contest_social_login' %}" class="btn btn-primary btn-lg red">Regístrate</a>
             </div>
 
             <div class="col-sm-12">
