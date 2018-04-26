@@ -108,4 +108,4 @@ class ContestPublicVote(models.Model):
         unique_together = (("band", "timestamp"),)
 
     def __unicode__(self):
-        return self.band.name + ': ' + self.voted_by.username
+        return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.timestamp)
