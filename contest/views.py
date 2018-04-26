@@ -241,7 +241,7 @@ def contest_csv_votes(request):
     writer = csv.writer(response)
 
     bands = ContestBand.objects.all()
-    first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina']
+    first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina', 'Votos publico']
 
     juries = User.objects.filter(is_staff=True)
     for jury in juries:
@@ -251,6 +251,8 @@ def contest_csv_votes(request):
 
     for band in bands:
         results = [band.name.encode('utf-8').strip(), band.num_members, band.city.encode('utf-8').strip(), band.has_local_member]
+        num_votes = ContestPublicVote.objects.filter(band=band).count()
+        results.append(str(num_votes))
         for jury in juries:
             jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=jury).first()
 
