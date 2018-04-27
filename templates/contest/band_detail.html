@@ -33,16 +33,12 @@
         {%if band.profile_image %}<div class="profile-circle"> <img src="{{band.profile_image.url}}"></div>{% endif %}
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <h1>{{band.name}}</h1>
                 <p class="description">{{band.tag.name}}</p>
             </div>
-            <div class="col-md-4">
-                {% include 'contest/public_vote.html' with obj=band %}
-            </div>
         </div>
-
-
+        
         {% if request.user.is_staff %} {% include 'contest/jury_vote.html' with band=band %} {% endif %}
     </div>
 
