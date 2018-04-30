@@ -38,6 +38,9 @@ class Band(models.Model):
     webpage_link = models.CharField(null=True, blank=True, verbose_name='Página web', max_length=250)
     spotify_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Spotify', max_length=250)
 
+    lineup_order = models.IntegerField(default=3, verbose_name='Línea de cartel (1, 2 o 3)')
+
+
     class Meta:
         verbose_name = 'Banda'
         verbose_name_plural = 'Bandas'
