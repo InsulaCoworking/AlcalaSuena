@@ -24,7 +24,7 @@ def timetable(request):
     events_byday = Event.objects.dates('day', 'day')
     eventdays = []
     for day in events_byday:
-        events = Event.objects.filter(day=day).order_by('time')
+        events = Event.objects.filter(day=day).order_by('-venue', 'time')
 
         venues = []
         for event in events:
