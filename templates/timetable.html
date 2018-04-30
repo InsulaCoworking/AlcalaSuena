@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alcalá Suena 2018 - Horarios{% endblock%}
+
+{% block content %}
+
+<div class="jumbo-header" style="background-image:url('{% static "img/band-header.jpg" %}')" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Concurso Alcalá Suena 2018</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center">
+    <h3>Horarios</h3>
+</div>
+
+<div class="container">
+    {% for day in days %}
+    <h3>{{day.day}}</h3>
+
+
+    <table class="table mb-no">
+    <thead>
+      <tr>
+          {%for venue in day.venues %}
+          <th scope="col"  class="text-center">{{venue.venue}}</th>
+          {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          {% for venue in day.venues %}
+        <td>
+            {% for event in venue.events %}
+                {% include 'event/summary_card.html' with event=event %}
+            {% endfor %}
+        </td>
+          {% endfor %}
+      </tr>
+
+
+
+
+    </tbody>
+  </table>
+
+
+    {% endfor %}
+</div>
+
+{% endblock%}
