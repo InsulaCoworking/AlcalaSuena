@@ -22,8 +22,6 @@ def timetable(request):
     '''
 
     events_byday = Event.objects.dates('day', 'day')
-    print events_byday
-
     eventdays = []
     for day in events_byday:
         events = Event.objects.filter(day=day).order_by('time')
@@ -44,8 +42,6 @@ def timetable(request):
 
         eventdays.append({'day':day, 'venues':venues})
 
-
-    print eventdays
     return render(request, 'timetable.html', {
                     'days': eventdays,
                     'num_days': len(eventdays),
