@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alcalá Suena 2018 | Formulario de Inscripción{% endblock%}
+
+{% block content %}
+<div class="jumbo-header" style="background-image:url('{% static "img/band-header.jpg" %}')" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Concurso AlcaláSuena 2018</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center no-margin">
+</div>
+
+<div class="container main card">
+    <h3></h3>
+    <p class="text-center lead">
+       Durante el mes de abril se realizó un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena, así como un voto abierto al público para seleccionar sus favoritas.
+    </p>
+
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <h3>Público</h3>
+            <p> <span>El público ayudó al jurado votando a sus grupos favoritos de la lista de bandas. Cada persona tenía hasta 10 votos para repartir entre las más de 200 propuestas musicales que participaron en el concurso</span></p>
+            <br>
+            <a href="{% url 'contest_entries_list' %}" class="btn btn-primary btn-lg">Ver bandas participantes</a><br>
+            <img class="img-responsive" src="{% static "img/vota.jpg" %}">
+        </div>
+        <div class="col-md-6 text-center">
+            <h3>Bandas</h3>
+            <p>La inscripción era abierta, llegando a más de 200 inscripciones! Toda banda que toca en Alcalá Suena tras la selección del jurado recibe un premio en metálico.</p><br>
+            <a href="{% url 'bases' %}" class="btn btn-primary btn-lg">Ver bases del concurso</a><br>
+            <img class="img-responsive" src="{% static "img/inscripcion.jpg" %}">
+        </div>
+    </div>
+
+    <br><br><br>
+
+</div>
+{% endblock %}
+

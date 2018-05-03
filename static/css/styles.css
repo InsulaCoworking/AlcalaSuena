@@ -1115,3 +1115,26 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
 }
 .btn.btn-twitter{ background-color: #00acee;}
 .btn.btn-facebook{ background-color: #4b64a4;}
+
+
+.lineup-line{
+    width:100%;
+    font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
+    text-transform: uppercase;
+    text-align:center;
+}
+.lineup-line span{
+    line-height:0.9;
+}
+.lineup{
+    margin:3em 0;
+}
+.lineup-band{
+    color:#cc0000;
+}
+.lineup-line:nth-child(odd) .lineup-band:nth-child(odd) {
+    color:#333;
+}
+.lineup-line:nth-child(even) .lineup-band:nth-child(even) {
+    color:#333;
+}

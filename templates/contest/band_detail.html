@@ -38,7 +38,7 @@
                 <p class="description">{{band.tag.name}}</p>
             </div>
         </div>
-        
+
         {% if request.user.is_staff %} {% include 'contest/jury_vote.html' with band=band %} {% endif %}
     </div>
 
