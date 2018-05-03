@@ -38,3 +38,33 @@ def venue_detail(request, pk):
         'venue': venue,
         'events': eventsbyday,
     })
+
+
+def all_venues_timetable(request):
+
+    venues = Venue.objects.all()
+
+    for venue in venues:
+        events = Event.objects.filter(venue=venue)
+        venue.eventsbyday = []
+        for event in events:
+            day = None
+
+            for eventsday in venue.eventsbyday:
+                if eventsday['day'] == event.day:
+                    day = eventsday
+                    break
+
+            if day is None:
+                day = {'day': event.day, 'events': []}
+                venue.eventsbyday.append(day)
+            day['events'].append(event)
+
+        for day in venue.eventsbyday:
+            day['events'].sort(helpers.order_latenight)
+
+    return render(request, 'event/timetable.html', {
+        'venues': venues,
+    })
+
+

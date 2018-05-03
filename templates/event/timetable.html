@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Horarios - Alcalá Suena 2018{% endblock%}
+
+{% block social_meta %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@aemusica">
+        <meta name="twitter:title" content="Horarios - Alcalá Suena: Fiesta de la Música 2018">
+        <meta name="twitter:description" content="Todos los conciertos durante Alcalá Suena: Fiesta de la Música 2018">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}">
+
+        <meta property="og:url" content="{{request.build_absolute_uri}}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Horarios - Alcalá Suena: Fiesta de la Música 2018" />
+        <meta property="og:description" content="Todos los conciertos durante Alcalá Suena: Fiesta de la Música 2018" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}" />
+{% endblock %}
+
+{% block bodyattrs %}class="venue"{% endblock%}
+
+{% block content %}
+<div class="jumbo-header">
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Horarios</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center">
+</div>
+
+<div class="container">
+    {% for venue in venues %}
+        {{venue}}
+        {% include 'venue/venue_events.html' with events=venue.eventsbyday %}
+    {% endfor%}
+{% endblock %}
+</div>

@@ -33,20 +33,6 @@
     <h2>Conciertos</h2>
 </div>
 
-<div class="container">
-    <div class="row">
-    {% for date in events %}
-    <div class="col-md-4 day-events">
-        <h3 class="eventsday">{{ date.day|date:"l, d F" }}</h3>
-        {% for event in date.events %}
-        <a class="card band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
-            <span class="hour">{{event.time}}</span>
-            <span class="band">{{event.band.name}}</span>
-        </a>
-        {% endfor %}
-    </div>
-    {% endfor %}
-    </div>
-</div>
+    {% include 'venue/venue_events.html' with events=events %}
 
 {% endblock %}
