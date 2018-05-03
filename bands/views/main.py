@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import random
+
 from django.shortcuts import render
 
 from bands import helpers
 from bands.forms.billing_info import BillingForm
-from bands.models import Event, Venue, Tag
+from bands.models import Event, Venue, Tag, Band
 
 
 def index(request):
@@ -23,7 +25,22 @@ def index(request):
     days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
 
     return render(request, 'index.html', { 'venues': venues, 'tags':tags, 'days':days })
+def lineup(request):
 
+    lineup_first = Band.objects.filter(lineup_order=1)
+    lineup_second = list(Band.objects.filter(lineup_order=2))
+    lineup_third = list(Band.objects.filter(lineup_order=3))
+    random.shuffle(lineup_second)
+    random.shuffle(lineup_third)
+
+    days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
+
+    return render(request, 'lineup.html', {
+        'days':days,
+        'lineup_first': lineup_first,
+        'lineup_second': lineup_second,
+        'lineup_third': lineup_third
+    })
 
 
 def app_info(request):

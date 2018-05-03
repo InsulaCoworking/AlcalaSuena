@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}Bandas - Alcala Suena 2018{% endblock%}
-
+{% load chunks %}
 
 {% block content %}
 <div class="jumbo-header jumbo-band" >
     <div class="jumbotron">
       <div class="container text-center">
         <h1>BANDAS</h1>
-        <p class="description">Un festival participativo con más de 140 grupos actuando en calles y plazas del Casco Histórico de Alcalá, Patromonio de la Humanidad</p>
+        <p class="description">Un festival participativo con más de 70 grupos actuando en calles y plazas del Casco Histórico de Alcalá, Patromonio de la Humanidad</p>
       </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
 
 <div class="container">
 
-    <div class="clearfix tags">
+    <div class="clearfix tags text-center">
     {%for tag in tags %}
     <div class="tag pull-left card" style="background-color:{{tag.color}}" data-tag="{{tag.id}}">{{tag.name}}</div>
     {% endfor %}
@@ -39,6 +39,7 @@
 
 {% block scripts %}
 <script type="text/javascript" src="{% static "js/jquery.mosaicflow.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
 <script type="text/javascript">
 
 var tags = $('.tags');

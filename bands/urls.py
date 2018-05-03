@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^search$', views.search, name='search'),
     url(r'^app/$', views.app_info, name='app_info'),
+    url(r'^lineup/$', views.lineup, name='lineup'),
     url(r'^survey/', views.survey, name='survey'),
     url(r'^venues/$', views.venues_list, name='venues_list'),
     url(r'^venues/(?P<pk>\d+)$', views.venue_detail, name='venue_detail'),

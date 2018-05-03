@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alcalá Suena: Fiesta de la Música 2018{% endblock%}
+{% load chunks %}
+
+{% block home_header %}
+    <div class="jumbo-header home" style="background-image:url('{% static "img/band-bg.png" %}')">
+        <div class="jumbotron">
+          <div class="container text-center">
+              <img class="img-responsive" src="{% static "img/fiesta_musica.png" %}">
+
+                <a class="showmore smoothscroll" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          </div>
+        </div>
+    </div>
+
+<a name="more" id="more"></a>
+<section class="header-bar no-margin">
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="home-content">
+
+    <div class="container">
+    <div class="lineup">
+                {% for line in lineup_first|chunks:1 %}
+                    <div class="lineup-line">
+                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                    </div>
+                {% endfor %}
+
+                  {% for line in lineup_second|chunks:2 %}
+                    <div class="lineup-line">
+                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                    </div>
+                {% endfor %}
+
+                  {% for line in lineup_third|chunks:3 %}
+                    <div class="lineup-line">
+                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                    </div>
+                {% endfor %}
+            </div>
+</div>
+
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
+<script type="text/javascript">
+    $('.lineup-line').each(function(i,elem){
+    $(elem).textfill({widthOnly:true, maxFontPixels:90});
+});
+
+</script>
+{% endblock %}
