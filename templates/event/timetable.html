@@ -27,13 +27,16 @@
       </div>
     </div>
 </div>
-<div class="header-bar text-center">
-</div>
 
-<div class="container">
     {% for venue in venues %}
-        {{venue}}
+        <div class="header-bar no-margin header-venue profile">
+            <div class="container">
+                <div class="profile-circle small hidden-xs"> {%if venue.image %}<img src="{{venue.image.url}}"> {%endif %}</div>
+            <h4>{{venue}}</h4>
+            </div>
+
+        </div>
         {% include 'venue/venue_events.html' with events=venue.eventsbyday %}
     {% endfor%}
 {% endblock %}
-</div>
+

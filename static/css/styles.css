@@ -1021,7 +1021,9 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     padding-left: 170px;
     position: relative;
 }
-
+.header-venue.profile .container{
+    padding-left: 130px;
+}
 @media(max-width:470px){
     .header-bar.profile .container {
         padding-left: 15px;
@@ -1049,6 +1051,9 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     position: absolute;
     left:10px;
     margin-top:-70px;
+}
+.header-venue .profile-circle{
+    margin-top:-40px;
 }
 #search_results{
     position:relative;
