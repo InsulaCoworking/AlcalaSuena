@@ -14,7 +14,7 @@
         </div>
     </div>
 
-<a name="more" id="more"></a>
+
 <section class="header-bar no-margin" style="padding-top:10px;">
 </section>
 {% endblock %}
@@ -46,6 +46,7 @@
                 <span>{% for band in line %} <a class="lineup-band" href="{% url 'band_detail' pk=band.pk %}"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
             </div>
         {% endfor %}
+        <a name="more" id="more"></a>
     </div>
 </div>
 
