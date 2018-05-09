@@ -30,8 +30,7 @@ def lineup(request):
     lineup_first = Band.objects.filter(lineup_order=1)
     lineup_second = list(Band.objects.filter(lineup_order=2))
     lineup_third = list(Band.objects.filter(lineup_order=3))
-    random.shuffle(lineup_second)
-    random.shuffle(lineup_third)
+    lineup_fourth = list(Band.objects.filter(lineup_order=4))
 
     days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
 
@@ -39,7 +38,8 @@ def lineup(request):
         'days':days,
         'lineup_first': lineup_first,
         'lineup_second': lineup_second,
-        'lineup_third': lineup_third
+        'lineup_third': lineup_third,
+        'lineup_fourth':lineup_fourth
     })
 
 

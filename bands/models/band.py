@@ -39,12 +39,13 @@ class Band(models.Model):
     spotify_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Spotify', max_length=250)
 
     lineup_order = models.IntegerField(default=3, verbose_name='Línea de cartel (1, 2 o 3)')
+    lineup_secondary_order = models.IntegerField(default=1, verbose_name='Orden en linea de cartel')
 
 
     class Meta:
         verbose_name = 'Banda'
         verbose_name_plural = 'Bandas'
-        ordering = ['name']
+        ordering = ['lineup_order', 'lineup_secondary_order']
 
     def __unicode__(self):
         return self.name

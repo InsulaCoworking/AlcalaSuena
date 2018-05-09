@@ -41,6 +41,12 @@
                         <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
+
+                {% for line in lineup_fourth|chunks:4 %}
+                    <div class="lineup-line">
+                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                    </div>
+                {% endfor %}
             </div>
 </div>
 
@@ -52,7 +58,7 @@
 <script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
 <script type="text/javascript">
     $('.lineup-line').each(function(i,elem){
-    $(elem).textfill({widthOnly:true, maxFontPixels:90});
+    $(elem).textfill({widthOnly:true, maxFontPixels:120});
 });
 
 </script>
