@@ -23,7 +23,7 @@
 <section class="home-content">
 
     <div class="container">
-    <div class="lineup">
+    <div class="lineup" style="max-width:700px;margin:auto;">
                 {% for line in lineup_first|chunks:1 %}
                     <div class="lineup-line">
                         <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
