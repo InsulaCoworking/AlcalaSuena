@@ -1134,12 +1134,19 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
 .lineup{
     margin:3em 0;
 }
-.lineup-band{
+a.lineup-band{
     color:#cc0000;
+    text-decoration:none;
+    transition: text-shadow 0.5s;
 }
-.lineup-line:nth-child(odd) .lineup-band:nth-child(odd) {
-    color:#333;
+
+.lineup-line:nth-child(odd) a.lineup-band:nth-child(odd) {
+    color:#333 !important;
 }
-.lineup-line:nth-child(even) .lineup-band:nth-child(even) {
-    color:#333;
+.lineup-line:nth-child(even) a.lineup-band:nth-child(even) {
+    color:#333 !important;
+}
+a.lineup-band:hover{
+    text-decoration:none;
+    text-shadow: 0 0 13px #fff, 0 0 18px #fff;
 }

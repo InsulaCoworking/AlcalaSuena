@@ -22,9 +22,27 @@ def index(request):
 
     venues = Venue.objects.all()
     tags = Tag.objects.all()
+
+    lineup_first = Band.objects.filter(lineup_order=1)
+    lineup_second = list(Band.objects.filter(lineup_order=2))
+    lineup_third = list(Band.objects.filter(lineup_order=3))
+    lineup_fourth = list(Band.objects.filter(lineup_order=4))
+
     days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
 
-    return render(request, 'index.html', { 'venues': venues, 'tags':tags, 'days':days })
+    return render(request, 'index.html', {
+        'venues': venues,
+        'tags':tags,
+        'days':days,
+        'lineup_first': lineup_first,
+        'lineup_second': lineup_second,
+        'lineup_third': lineup_third,
+        'lineup_fourth':lineup_fourth
+
+    })
+
+
+
 def lineup(request):
 
     lineup_first = Band.objects.filter(lineup_order=1)

@@ -1,24 +1,53 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}Alcalá Suena: Fiesta de la Música 2018{% endblock%}
+{% load chunks %}
 
 {% block home_header %}
     <div class="jumbo-header home" style="background-image:url('{% static "img/band-bg.png" %}')">
         <div class="jumbotron">
           <div class="container text-center">
               <img class="img-responsive" src="{% static "img/fiesta_musica.png" %}">
+
                 <a class="showmore smoothscroll" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
           </div>
         </div>
     </div>
 
 <a name="more" id="more"></a>
-<section class="header-bar no-margin">
+<section class="header-bar no-margin" style="padding-top:10px;">
 </section>
 {% endblock %}
 
 {% block content %}
 <section class="home-content">
+    <div class="container">
+    <div class="lineup" style="max-width:700px;margin:35px auto;">
+        {% for line in lineup_first|chunks:1 %}
+            <div class="lineup-line">
+                <span>{% for band in line %} <a class="lineup-band" href="{% url 'band_detail' pk=band.pk %}" > {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+            </div>
+        {% endfor %}
+
+          {% for line in lineup_second|chunks:2 %}
+            <div class="lineup-line">
+                <span>{% for band in line %} <a class="lineup-band" href="{% url 'band_detail' pk=band.pk %}"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+            </div>
+        {% endfor %}
+
+          {% for line in lineup_third|chunks:3 %}
+            <div class="lineup-line">
+                <span>{% for band in line %} <a class="lineup-band" href="{% url 'band_detail' pk=band.pk %}"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+            </div>
+        {% endfor %}
+
+        {% for line in lineup_fourth|chunks:4 %}
+            <div class="lineup-line">
+                <span>{% for band in line %} <a class="lineup-band" href="{% url 'band_detail' pk=band.pk %}"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
     <div class="container main card">
 
@@ -29,7 +58,6 @@
                 </span></p>
 
             </div>
-
 
 
             <div class="col-sm-12 text-center" style="color:#777;">
@@ -67,15 +95,16 @@
 
         <div class="col-sm-12"><hr></div>
 
-            <div class="col-sm-6 text-center">
-                <img class="img-responsive" src="{% static "img/vota.jpg" %}">
-            </div>
-            <div class="col-sm-6 text-center">
 
 
+            <div class="col-sm-6 text-center">
             <h2> CONCURSO</h2>
                 <p class="lead"> <span>Durante el mes de abril se ha estado realizando un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena, así como un voto abierto al público para seleccionar sus favoritas. </span></p>
                 <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
+            </div>
+
+        <div class="col-sm-6 text-center">
+                <img class="img-responsive" src="{% static "img/vota.jpg" %}">
             </div>
 
 
@@ -126,4 +155,14 @@
     <!-- /container -->
          </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
+<script type="text/javascript">
+    $('.lineup-line').each(function(i,elem){
+    $(elem).textfill({widthOnly:true, maxFontPixels:90});
+});
+
+</script>
 {% endblock %}
