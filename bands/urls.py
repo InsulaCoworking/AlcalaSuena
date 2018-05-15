@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^band/edit/(?P<token>\w+)$', views.edit_band, name='edit_band'),
 
     url(r'^horarios/$', views.all_venues_timetable, name='timetable'),
+    url(r'^news/add/$', views.add_news, name='timetable'),
 
     url(r'^billing/$', views.billing_form, name='billing'),
     url(r'^billing/list/$', views.billing_list, name='billing'),

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alcalá Suena 2018 | Formulario de Inscripción{% endblock%}
+
+{% block content %}
+<div class="jumbo-header" style="background-image:url('{% static "img/band-header.jpg" %}')" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Noticias AlcaláSuena 2018</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center">
+</div>
+
+<div class="container main card">
+    <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}
+    <p class="lead">
+        Añadir noticia
+    </p>
+        {% if save_success %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Noticia añadida con éxito!
+            </div>
+        {% endif %}
+
+    {{form.as_p}}
+        <br>
+        <div class="text-center"><input type="submit" class="btn btn-primary btn-lg" value="Añadir noticia"></div>
+
+    </form>
+</div>
+{% endblock %}
+

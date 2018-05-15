@@ -7,6 +7,7 @@ from django.shortcuts import render
 
 from bands import helpers
 from bands.forms.billing_info import BillingForm
+from bands.forms.newsForm import NewsForm
 from bands.models import Event, Venue, Tag, Band
 
 
@@ -106,3 +107,25 @@ def search(request):
                     'num_days': len(eventsbyday),
                     'no_results': len(eventsbyday)==0
                   })
+
+
+def add_news(request):
+
+    save_success = False
+    if request.method == "POST":
+        form = NewsForm(request.POST, request.FILES)
+        #print form.is_valid()
+        if form.is_valid():
+            band = form.save()
+            #print band.band_image
+            save_success = True
+    else:
+        form = NewsForm()
+
+    if save_success:
+        form = NewsForm()
+
+    return render(request, 'add_news.html', {
+        'save_success':save_success,
+        'form': form,
+    })
