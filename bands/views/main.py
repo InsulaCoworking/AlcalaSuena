@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import random
 
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from bands import helpers
 from bands.forms.billing_info import BillingForm
@@ -108,9 +109,8 @@ def search(request):
                     'no_results': len(eventsbyday)==0
                   })
 
-
+@csrf_exempt
 def add_news(request):
-
     save_success = False
     if request.method == "POST":
         form = NewsForm(request.POST, request.FILES)
