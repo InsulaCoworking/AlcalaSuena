@@ -324,13 +324,33 @@ def contest_receiver_info(request):
     writer = csv.writer(response)
 
     bands = ContestBand.objects.all()
-    first_row = ['Banda', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
+    first_row = ['Banda', 'Procedencia', 'Miembros de alcala', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
     writer.writerow(first_row)
 
     for band in bands:
         if Band.objects.filter(name__icontains=band.name).count() > 0:
-            results = [band.name.encode('utf-8').strip(), band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
+            results = [band.name.encode('utf-8').strip(), band.city.encode('utf-8').strip(), 'Si' if band.has_local_member else 'No', band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
             writer.writerow(results)
+
+    return response
+
+@login_required
+def contest_participants_info(request):
+    if not request.user.has_perm('can_mange_jury'):
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="ganadores_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    writer = csv.writer(response)
+
+    bands = ContestBand.objects.all()
+    first_row = ['Banda', 'Procedencia', 'Miembros de alcala', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
+    writer.writerow(first_row)
+
+    for band in bands:
+        results = [band.name.encode('utf-8').strip(), band.city.encode('utf-8').strip(), 'Si' if band.has_local_member else 'No', band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
+        writer.writerow(results)
 
     return response
 
