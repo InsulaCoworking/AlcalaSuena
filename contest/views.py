@@ -329,7 +329,7 @@ def contest_receiver_info(request):
 
     for band in bands:
         if Band.objects.filter(name__icontains=band.name).count() > 0:
-            results = [band.name.encode('utf-8').strip(), band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif, band.contact_email, band.contact_phone1, band.contact_phone2]
+            results = [band.name.encode('utf-8').strip(), band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
             writer.writerow(results)
 
     return response
