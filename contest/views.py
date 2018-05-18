@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from bands.helpers import get_query
-from bands.models import Tag
+from bands.models import Tag, Band
 from contest.forms.band import BandForm
 from contest.forms.bandmember import BandMemberForm
 from contest.models import ContestBand, ContestJuryVote, ContestPublicVote
@@ -309,6 +309,28 @@ def contest_csv_user_votes(request):
         num_votes = ContestPublicVote.objects.filter(voted_by=user).count()
         results = [user.username, user.get_full_name().encode('utf-8').strip(), str(user.date_joined), num_votes]
         writer.writerow(results)
+
+    return response
+
+
+@login_required
+def contest_receiver_info(request):
+    if not request.user.has_perm('can_mange_jury'):
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="ganadores_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    writer = csv.writer(response)
+
+    bands = ContestBand.objects.all()
+    first_row = ['Banda', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
+    writer.writerow(first_row)
+
+    for band in bands:
+        if Band.objects.filter(name__icontains=band.name).count() > 0:
+            results = [band.name, band.receiver_fullname, band.receiver_cif, band.contact_email, band.contact_phone1, band.contact_phone2]
+            writer.writerow(results)
 
     return response
 
