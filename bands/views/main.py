@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.core import serializers
+from django.forms import model_to_dict
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -117,9 +119,11 @@ def add_news(request):
         if form.is_valid():
             api_key = request.POST.get('api_key', None)
             if api_key == settings.APP_APIKEY:
-                form.save()
-                save_success = True
-                return HttpResponse()
+                news = form.save()
+                dict_obj = model_to_dict(news)
+
+                dict_obj['image'] = None if not news.image else news.image.url
+                return JsonResponse(dict_obj)
             else:
                 return HttpResponseBadRequest()
     else:
