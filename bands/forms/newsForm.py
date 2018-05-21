@@ -8,6 +8,8 @@ from contest.forms.band import BaseForm
 
 class NewsForm(BaseForm):
 
+    api_key = forms.CharField(max_length=100, widget=forms.HiddenInput, required=False)
+
     class Meta:
         model = News
         exclude=[]

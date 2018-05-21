@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import random
-
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 from bands import helpers
-from bands.forms.billing_info import BillingForm
 from bands.forms.newsForm import NewsForm
 from bands.models import Event, Venue, Tag, Band
 
@@ -114,11 +113,15 @@ def add_news(request):
     save_success = False
     if request.method == "POST":
         form = NewsForm(request.POST, request.FILES)
-        #print form.is_valid()
+
         if form.is_valid():
-            band = form.save()
-            #print band.band_image
-            save_success = True
+            api_key = request.POST.get('api_key', None)
+            if api_key == settings.APP_APIKEY:
+                form.save()
+                save_success = True
+                return HttpResponse()
+            else:
+                return HttpResponseBadRequest()
     else:
         form = NewsForm()
 
