@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^contest/jury/csv_user_votes/$', views.contest_csv_user_votes, name='contest_csv_user_votes'),
     url(r'^contest/jury/csv_receiver_info/$', views.contest_receiver_info, name='contest_receiver_info'),
     url(r'^contest/jury/csv_participants_info/$', views.contest_participants_info, name='contest_participants_info'),
+    url(r'^contest/jury/csv_riders/$', views.contest_rider_info, name='contest_riders_info'),
 
     url(r'^contest/privacy_policy/$', views.privacy_policy, name='privacy_policy'),
 
