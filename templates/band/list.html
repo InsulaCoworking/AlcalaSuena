@@ -66,5 +66,10 @@ tags.on('click', '.tag', function(){
 });
 
 
+$('.lineup-line').each(function(i,elem){
+    console.log(elem);
+    $(elem).textfill({widthOnly:true, maxFontPixels:500});
+});
+
 </script>
 {% endblock %}

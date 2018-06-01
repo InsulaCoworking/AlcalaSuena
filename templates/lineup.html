@@ -26,25 +26,25 @@
     <div class="lineup" style="max-width:700px;margin:auto;">
                 {% for line in lineup_first|chunks:1 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a href="{% url band_detail pk=band.pk %}" class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
 
                   {% for line in lineup_second|chunks:2 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
 
                   {% for line in lineup_third|chunks:3 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
 
                 {% for line in lineup_fourth|chunks:4 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <span class="lineup-band"> {{band.name}} </span> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
             </div>
