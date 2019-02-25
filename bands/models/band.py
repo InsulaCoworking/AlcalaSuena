@@ -37,6 +37,7 @@ class Band(models.Model):
     presskit_link = models.CharField(null=True, blank=True, verbose_name='Presskit', max_length=250)
     webpage_link = models.CharField(null=True, blank=True, verbose_name='Página web', max_length=250)
     spotify_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Spotify', max_length=250)
+    instagram_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Instagram', max_length=250)
 
     lineup_order = models.IntegerField(default=3, verbose_name='Línea de cartel (1, 2 o 3)')
     lineup_secondary_order = models.IntegerField(default=1, verbose_name='Orden en linea de cartel')
