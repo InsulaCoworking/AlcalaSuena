@@ -53,7 +53,7 @@ def signup(request):
 
     categories = Tag.objects.all()
 
-    return render(request, 'contest/form_closed.html', {
+    return render(request, 'contest/form.html', {
         'categories': categories,
         'form': form,
         'members_formset': members_formset
