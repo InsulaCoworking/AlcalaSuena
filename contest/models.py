@@ -9,6 +9,14 @@ from bands.helpers import RandomFileName
 from bands.models import Tag
 
 
+CRITERIA3_CHOICES = (
+    (0, "Ninguna"),
+    (2, "1"),
+    (4, "2"),
+    (6, "3"),
+    (7, "Más de tres")
+)
+
 class ContestBand(models.Model):
     name = models.CharField(null=False, verbose_name='Nombre de la banda/solista', max_length=240)
     tag = models.ForeignKey(Tag, related_name="contest_bands", verbose_name='Categoría del concurso')
@@ -52,6 +60,25 @@ class ContestBand(models.Model):
     presskit_link = models.CharField(null=True, blank=True, verbose_name='Presskit', max_length=250)
     webpage_link = models.CharField(null=True, blank=True, verbose_name='Página web', max_length=250)
     spotify_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Spotify', max_length=250)
+
+
+    criteria1 = models.BooleanField(default=False, verbose_name='¿El 50% de tus músicos o más tienen menos de 21 años?')
+    criteria2 = models.BooleanField(default=False, verbose_name='¿Has realizado al menos 2 conciertos en los últimos 6 meses?')
+    criteria2_extra = models.TextField(null=True, blank=True, verbose_name='Pega enlaces a alguna referencia web de los dos conciertos (evento en Fb, crónica, anuncio...)')
+    criteria3 = models.IntegerField(default=0, verbose_name='¿Cuantas mujeres componen tu formación?', choices=CRITERIA3_CHOICES)
+
+    criteria4 = models.BooleanField(default=False,
+                                    verbose_name='¿Tienes algún álbum editado?')
+    criteria4_extra = models.TextField(null=True, blank=True,
+                                       verbose_name='Pega algún enlace donde poder esucharlo: Spotify, Bandcamp, etc')
+
+    criteria5 = models.BooleanField(default=False, verbose_name='¿Tienes dossier de prensa?')
+    criteria6 = models.BooleanField(default=False, verbose_name='Tienes alguna crónica o crítica en algún medio?')
+    criteria6_extra = models.TextField(null=True, blank=True, verbose_name='Pega enlaces a alguna referencia')
+
+    criteria7 = models.BooleanField(default=False, verbose_name='¿Tienes redes sociales activas?')
+    criteria8 = models.BooleanField(default=False, verbose_name='¿Al menos el 80% de tu repertorio son temas propios?')
+    criteria9 = models.BooleanField(default=False, verbose_name='¿Tocaste o estabas programado el año pasado en Alcalá Suena?')
 
     class Meta:
         verbose_name = 'Banda concursante'

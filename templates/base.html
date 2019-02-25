@@ -10,13 +10,13 @@
         {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@aemusica">
-        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2018">
+        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2019">
         <meta name="twitter:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad">
         <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2018.jpg" %}">
 
         <meta property="og:url" content="{{request.build_absolute_uri}}" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2018" />
+        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2019" />
         <meta property="og:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad" />
         <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2018.jpg" %}" />
         {% endblock %}
@@ -49,17 +49,12 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio</a></li>
-
-                     <!-- <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>-->
-                      <li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>
-                      <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
-                      <li {% if request.resolver_match.url_name == "contest_index" %}class="active"{% endif %}><a href="{% url 'contest_index' %}">Concurso</a></li>
-
-                        {% if perms.contest.can_mange_jury %}
-                         <li {% if request.resolver_match.url_name == "contest_jury_list" %}class="active"{% endif %}><a href="{% url 'contest_jury_list' %}">Jurado</a></li>
-                        {% endif %}
+                      <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
+                      <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
+                      <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
                     <!--<li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>-->
-                      <li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>
+                    <!--<li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>-->
+                      <!--<li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>-->
 
                   </ul>
 
@@ -93,13 +88,13 @@
         <footer>
     <div class="container">
         <div class="row auto-clear">
-            <div class="col-xs-6 col-sm-3 col-md-3 text-center">
+            <!--<div class="col-xs-6 col-sm-3 col-md-3 text-center">
                 <img class="img-responsive" src="{% static "img/logo-radler.png" %}"><br>
                 <span class="small"> Amstel recomienda el consumo responsable</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 col-md-3"><img class="img-responsive" src="{% static "img/logo_alcalasuena.png" %}"></div>
-            <div class="col-xs-6 col-sm-3 col-md-3"><img class="img-responsive" src="{% static "img/logo_alcalaesmusica.png" %}"></div>
-            <div class="col-xs-6 col-sm-3 col-md-3">
+            </div>-->
+            <div class="col-xs-4 col-sm-4 col-md-4"><img class="img-responsive" src="{% static "img/logo_alcalasuena.png" %}"></div>
+            <div class="col-xs-4 col-sm-4 col-md-4"><img class="img-responsive" src="{% static "img/logo_alcalaesmusica.png" %}"></div>
+            <div class="col-xs-4 col-sm-4 col-md-4">
                 <img class="img-responsive" src="{% static "img/logo_ayuntamiento.png" %}">
 
 

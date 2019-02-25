@@ -1,6 +1,6 @@
 <div class="form-group">
 
-        <label for="{{field.auto_id}}">{{ field.label }}</label>
+        <label {%if label_light %} style="font-weight:lighter;margin-top:0.3em;" {% endif %} for="{{field.auto_id}}">{{ field.label }}</label>
         {{ field }}
 
 

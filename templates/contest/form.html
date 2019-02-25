@@ -191,7 +191,97 @@
         {% endfor %}
 
 
+        <hr>
+        <h3>Información para el jurado</h3>
+        Se tendrá en cuenta además de los criterios de calidad, variedad e    idoneidad,    garantizar    que    los premios    finalistas    seleccionados    aportaren coherencia,  equilibrio y  pluralidad  de  estilos  musicales  a  la  programación  final  del evento.
+        <p class="lead">Para  la  presente  edición  del  concurso  el  jurado  tendrá  en  cuenta una serie de criterios objetivos, que se establecen a continuación. Rellénalos cuidadosamente, porque tendrán un peso importante en la selección.
+        </p>
 
+
+          <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" >{{form.criteria1}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria1.label}}</strong>
+            </div>
+        </div></div>
+
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"  data-showchange="#criteria2-extra">{{form.criteria2}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria2.label}}</strong>
+                <div id="criteria2-extra" style="display:none;">
+                {% include "common/forms/field.html" with field=form.criteria2_extra label_light=True %}
+                    </div>
+            </div>
+        </div></div>
+
+        {% include "common/forms/field.html" with field=form.criteria3 %}
+
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" data-showchange="#criteria4-extra">{{form.criteria4}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria4.label}}</strong>
+                <div id="criteria4-extra" style="display:none;">
+                {% include "common/forms/field.html" with field=form.criteria4_extra label_light=True %}
+                    </div>
+            </div>
+        </div></div>
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" data-showchange="#criteria5-extra" >{{form.criteria5}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria5.label}}</strong>
+                <div id="criteria5-extra" style="display:none;">
+                Asegúrate de haber rellenado el enlace de Presskit ( <i class="fa fa-newspaper-o " aria-hidden="true"></i> ) dentro del apartado de "Redes sociales"
+                    </div>
+            </div>
+        </div></div>
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" data-showchange="#criteria6-extra">{{form.criteria6}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria6.label}}</strong>
+                <div id="criteria6-extra" style="display:none;">
+                {% include "common/forms/field.html" with field=form.criteria6_extra label_light=True %}
+                    </div>
+            </div>
+        </div></div>
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" data-showchange="#criteria7-extra">{{form.criteria7}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria7.label}}</strong>
+                <div id="criteria7-extra" style="display:none;">
+                Asegúrate de haber rellenado los enlaces del apartado de "Redes sociales" para poder comprobarlo.
+                    </div>
+            </div>
+        </div></div>
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" >{{form.criteria8}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria8.label}}</strong>
+            </div>
+        </div></div>
+
+        <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" >{{form.criteria9}}
+              </span>
+            <div class="input-group-text"><strong>{{form.criteria9.label}}</strong>
+            </div>
+        </div></div>
+
+        <hr>
 
 
         {% include "common/forms/field.html" with field=form.comments required=True %}
@@ -230,6 +320,16 @@
         prefix: '{{ members_formset.prefix }}',
         addText: '<div class="btn btn-primary btn-lg">+ Añadir miembro</div>',
         deleteText: '<div class="btn delete-btn btn-primary btn-float btn-small" href="#!" data-toggle="tooltip">Eliminar miembro</div>',
+    });
+
+    $('[data-showchange]').each(function(){
+        var $elem = $(this);
+        var target = $($elem.attr('data-showchange'));
+        $elem.find('input').on('change', function(){
+            console.log(this.checked);
+            target.slideToggle(this.checked);
+        });
+        console.log();
     });
     </script>
 
