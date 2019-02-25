@@ -149,4 +149,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+EMAIL_ACTIVE = False
+
 from settings_secret import *

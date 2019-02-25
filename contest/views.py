@@ -1,3 +1,4 @@
+# coding=utf-8
 import csv
 import datetime
 from django.contrib.auth.decorators import login_required
@@ -9,6 +10,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
+from bands import helpers
 from bands.helpers import get_query
 from bands.models import Tag, Band
 from contest.forms.band import BandForm
@@ -41,6 +43,16 @@ def signup(request):
             band.save()
             form.save_m2m()
             BandMemberForm.save_members(band, members_formset)
+
+            helpers.send_template_email(
+                title='AlcalaSuena - Inscripción completa',
+                destination= band.contact_email,
+                template_name='signup_success',
+                template_params={
+                    'name':band.name,
+                    'id':band.pk,
+                }
+            )
 
             return redirect('form_success')
         else:

@@ -16,6 +16,7 @@ class BaseForm(forms.ModelForm):
 
 class BandForm(BaseForm):
 
+    rider_doc = forms.FileField(required=True, label='Rider técnico (adjuntar)')
     read_terms = forms.BooleanField(required=True, initial=False, label='He leído y acepto las bases del concurso')
 
     class Meta:
