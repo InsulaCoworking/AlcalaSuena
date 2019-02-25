@@ -72,7 +72,7 @@ class ContestBand(models.Model):
     criteria4_extra = models.TextField(null=True, blank=True,
                                        verbose_name='Pega algún enlace donde poder esucharlo: Spotify, Bandcamp, etc')
 
-    criteria5 = models.BooleanField(default=False, verbose_name='¿Tienes dossier de prensa?')
+    criteria5 = models.BooleanField(default=False, verbose_name='¿Tienes dossier de tu banda?')
     criteria6 = models.BooleanField(default=False, verbose_name='Tienes alguna crónica o crítica en algún medio?')
     criteria6_extra = models.TextField(null=True, blank=True, verbose_name='Pega enlaces a alguna referencia')
 
