@@ -25,6 +25,7 @@ def make_winner(self, request, queryset):
                 description=band.description,
                 embed_code=band.embed_code,
                 embed_media=band.embed_media,
+                instagram_link=band.instagram_link,
                 facebook_link=band.facebook_link,
                 youtube_link=band.youtube_link,
                 twitter_link=band.twitter_link,
