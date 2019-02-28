@@ -1,10 +1,17 @@
 import urllib
 
 from django import template
+from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+@register.filter
+@stringfilter
+def add_scheme(value):
+    if value and not value.startswith('http'):
+        return 'http://' + value
+    return value
 
 @register.tag
 def query_string(parser, token):
