@@ -52,6 +52,11 @@
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
                       <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
                       <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
+
+                  {% if perms.contest.can_mange_jury %}
+                         <li {% if request.resolver_match.url_name == "contest_jury_list" %}class="active"{% endif %}><a href="{% url 'contest_jury_list' %}">Jurado</a></li>
+                    {% endif %}
+
                     <!--<li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>-->
                     <!--<li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>-->
                       <!--<li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>-->

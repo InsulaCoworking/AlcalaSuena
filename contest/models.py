@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Sum
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
 from bands.helpers import RandomFileName
@@ -62,6 +63,8 @@ class ContestBand(models.Model):
     spotify_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Spotify', max_length=250)
     instagram_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Instagram', max_length=250)
 
+    is_validated = models.BooleanField(default=False, verbose_name='Criterios validados')
+    validated_by = models.ForeignKey(User, null=True, blank=True, verbose_name='Validado por')
 
     criteria1 = models.BooleanField(default=False, verbose_name='¿El 50% de tus músicos o más tienen menos de 21 años?')
     criteria2 = models.BooleanField(default=False, verbose_name='¿Has realizado al menos 2 conciertos en los últimos 6 meses?')
@@ -85,6 +88,51 @@ class ContestBand(models.Model):
         verbose_name = 'Banda concursante'
         verbose_name_plural = 'Bandas concursantes'
         ordering = ['name']
+
+    @property
+    def jury_points(self):
+        points = ContestJuryVote.objects.filter(band=self).aggregate(sum=Sum('vote'))['sum']
+        return points if points else 0
+
+    @property
+    def total_points(self):
+
+        return self.jury_points + self.criteria_points
+
+    @property
+    def criteria_points(self):
+        points = 0
+
+        if self.criteria1 == True:
+            points += 7
+        if self.criteria2 == True:
+            points += 6
+        points += self.criteria3 if self.criteria3 else 0
+        if self.criteria4 == True:
+            points += 10
+        if self.criteria5 == True:
+            points += 3
+        if self.criteria6 == True:
+            points += 3
+        if self.criteria7 == True:
+            rrss_points = 0
+            rrss_points += 2 if self.instagram_link and self.instagram_link != '' else 0
+            rrss_points += 2 if self.youtube_link and self.youtube_link != '' else 0
+            rrss_points += 2 if self.bandcamp_link and self.bandcamp_link != '' else 0
+            rrss_points += 2 if self.facebook_link and self.facebook_link != '' else 0
+            rrss_points += 2 if self.twitter_link and self.twitter_link != '' else 0
+            rrss_points += 2 if self.spotify_link and self.spotify_link != '' else 0
+            rrss_points += 2 if self.webpage_link and self.webpage_link != '' else 0
+
+            points += min(rrss_points, 6)
+        if self.criteria8 == True:
+            points += 8
+        if self.criteria9 == True:
+            points -= 25
+
+        # As it can be negative...
+        points = max(points, 0)
+        return  points
 
     def __unicode__(self):
         return self.name

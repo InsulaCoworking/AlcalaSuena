@@ -1150,3 +1150,18 @@ a.lineup-band:hover{
     text-decoration:none;
     text-shadow: 0 0 13px #fff, 0 0 18px #fff;
 }
+
+.jury_points{
+    padding:20px;
+    text-align:center;
+    text-transform: uppercase;
+    font-size:36px;
+    line-height:55px;
+}
+.jury_points strong {
+ font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
+ font-size:0.4em; line-height:1em; background-color: #c00812; color:#fff; padding:0 10px;  margin-bottom:1em; position:relative; top:-10px;}
+.jury_points span{
+    font-size:2em;
+    margin-top:-10px;
+}
