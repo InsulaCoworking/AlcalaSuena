@@ -15,6 +15,7 @@ from bands.helpers import get_query
 from bands.models import Tag, Band
 from contest.forms.band import BandForm
 from contest.forms.bandmember import BandMemberForm
+from contest.forms.contest_criteria import ContestCriteriaForm
 from contest.models import ContestBand, ContestJuryVote, ContestPublicVote
 
 
@@ -138,22 +139,31 @@ def contest_entries_list(request):
 
 def contest_band_detail(request, pk):
     band = get_object_or_404(ContestBand, pk=pk)
+
+    view_data = {
+        'band': band,
+        'jury_votes': ContestJuryVote.objects.filter(band=band),
+        'view': request.GET.get('view', None)
+    }
+
+    if request.user.has_perm('can_mange_jury'):
+
+        if request.method == "POST":
+            form = ContestCriteriaForm(request.POST, instance=band)
+            if form.is_valid():
+                band = form.save(commit=False)
+                if band.is_validated:
+                    band.validated_by = request.user
+
+                band.save()
+        else:
+            form = ContestCriteriaForm(instance=band)
+        view_data['criteria_form'] = form
+
     if request.user.is_staff:
         band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
 
-    num_votes = ContestPublicVote.objects.filter(band=band).count()
-    voted = False
-    if request.user.is_authenticated():
-        voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
-
-    jury_votes = ContestJuryVote.objects.filter(band=band)
-    return render(request, 'contest/band_detail.html', {
-        'band': band,
-        'num_votes': num_votes,
-        'voted':voted,
-        'jury_votes': jury_votes,
-        'view': request.GET.get('view', None)
-    })
+    return render(request, 'contest/band_detail.html', view_data )
 
 @login_required
 def contest_jury_list(request):
@@ -236,6 +246,20 @@ def contest_band_vote(request, pk):
     else:
         return HttpResponse('Unauthorized', status=401)
 
+
+def contest_band_validate(request, pk):
+    band = get_object_or_404(ContestBand, pk=pk)
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    if request.method == "POST":
+        band.is_validated = True
+        band.save()
+
+        return HttpResponse('Yeah!', status=200)
+            #print members_formset.errors
+    else:
+        return HttpResponse('Unauthorized', status=401)
 
 def contest_user_votes(request,):
 
