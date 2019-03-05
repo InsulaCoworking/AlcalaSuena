@@ -70,11 +70,25 @@ $.ajaxSetup({
 
 
 function loadVotes(elem){
-    elem.find('.jury-vote input[type="radio"]').on('change', function(){
+    var output = elem.find('.jury-vote output');
+    var initial = elem.find('input[type="range"]').val();
+    var success = elem.find('.jury-vote .success');
+    output.css('left', (80 * initial / 50) + '%');
+
+    elem.find('.jury-vote input[type="range"]').on('change', function(){
         var voteUrl = $(this).parents('.jury-vote').attr('data-vote')
         var vote = $(this).val();
-        $.post(voteUrl, { 'vote':vote })
-        console.log("AAAA");
+
+        $.post(voteUrl, { 'vote':vote }, function(results){
+            console.log(results);
+            success.fadeIn();
+        });
+
+   }).on('input', function(){
+        success.fadeOut(200);
+        var vote = $(this).val();
+        output.text(vote).css('left', (80 * vote / 50) + '%');
+
    });
 }
 

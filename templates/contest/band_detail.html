@@ -223,6 +223,7 @@
                     <thead>
                       <tr>
                         <th scope="col">Jurado</th>
+                          <th scope="col" >Fecha</th>
                         <th scope="col" >Voto</th>
                       </tr>
                     </thead>
@@ -230,7 +231,9 @@
                         {% for vote in jury_votes %}
                         <tr>
                             <td>{{vote.voted_by}}</td>
-                            <td>{% include 'contest/contest_vote.html' with jury_vote=vote %}</td>
+                            <td>{{vote.timestamp|date:'d/m/Y H:i'}}</td>
+                            <td><span class="lead"> {{vote.vote}}</span></td>
+
                         </tr>
                         {% empty %}
                             <tr><td colspan="2">No hay ningún voto todavía...</td> </tr>

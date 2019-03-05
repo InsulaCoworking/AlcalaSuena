@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Avg
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
 from bands.helpers import RandomFileName
@@ -91,8 +91,8 @@ class ContestBand(models.Model):
 
     @property
     def jury_points(self):
-        points = ContestJuryVote.objects.filter(band=self).aggregate(sum=Sum('vote'))['sum']
-        return points if points else 0
+        points = ContestJuryVote.objects.filter(band=self).aggregate(sum=Avg('vote'))['sum']
+        return int(points) if points else 0
 
     @property
     def total_points(self):

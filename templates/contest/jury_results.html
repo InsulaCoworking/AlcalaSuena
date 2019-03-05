@@ -17,7 +17,7 @@
         <td>
             <a class="jury-band" href="{% url 'contest_band_detail' pk=band.pk%}" class="resume_link" data-id="{{band.pk}}" >
             <div class="profile-circle small">
-                <img src="{%if band.profile_image %}{{band.profile_thumbnail.url}}{% else %}{% static "img/pro-icon.png" %}{% endif %}" alt="{{pro.name}}">
+                <img src="{%if band.profile_image %}{{band.profile_thumbnail.url}}{% else %}{% static "img/pro-icon.png" %}{% endif %}" alt="{{band.name}}">
             </div>
 
             <h4 class="profile-title">{{band.name}}</h4>
