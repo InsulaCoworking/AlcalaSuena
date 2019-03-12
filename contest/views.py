@@ -146,7 +146,7 @@ def contest_band_detail(request, pk):
         'view': request.GET.get('view', None)
     }
 
-    if request.user.has_perm('can_mange_jury'):
+    if request.user.has_perm('contest.can_mange_jury'):
 
         if request.method == "POST":
             form = ContestCriteriaForm(request.POST, instance=band)
@@ -271,7 +271,7 @@ def contest_user_votes(request,):
 
 @login_required
 def contest_csv_votes(request):
-    if not request.user.has_perm('can_mange_jury'):
+    if not request.user.has_perm('contest.can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)
 
     now = datetime.datetime.now()
@@ -353,7 +353,7 @@ def contest_csv_user_votes(request):
 
 @login_required
 def contest_receiver_info(request):
-    if not request.user.has_perm('can_mange_jury'):
+    if not request.user.has_perm('contest.can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)
 
     now = datetime.datetime.now()
@@ -375,7 +375,7 @@ def contest_receiver_info(request):
 
 @login_required
 def contest_rider_info(request):
-    if not request.user.has_perm('can_mange_jury'):
+    if not request.user.has_perm('contest.can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)
 
     now = datetime.datetime.now()
@@ -397,7 +397,7 @@ def contest_rider_info(request):
 
 @login_required
 def contest_participants_info(request):
-    if not request.user.has_perm('can_mange_jury'):
+    if not request.user.has_perm('contest.can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)
 
     now = datetime.datetime.now()
