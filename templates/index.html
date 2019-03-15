@@ -27,11 +27,34 @@
                 <p class="lead "><span>
                 Alcalá de Henares acogerá la 5ª edición de este evento durante el segundo fin de semana de junio y llenará de actuaciones musicales, para todos los gustos y en directo: folk, pop, rock, jazz, fusión... en diferentes lugares del casco histórico de la Ciudad.
                 </span></p>
+            </div>
+
+
+            {% if CONTEST_ACTIVE %}
+            <div class="col-sm-12 text-center">
                 <h2>¿Tienes una banda?</h2>
                 <p class="lead "><span>
                 ¿Quieres tocar en <strong>Alcalá Suena 2019</strong> ?<br> Ya está abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas que actúen en el festival.</span></p>
                 <a href="{% url 'contest_signup' %}" class="btn btn-primary btn-lg">Inscríbete!</a>
             </div>
+            {% else %}
+            <div class="col-sm-12"><hr></div>
+
+            <div class="col-sm-6 text-center">
+                <img class="img-responsive" src="{% static "img/inscripcion.jpg" %}">
+            </div>
+            <div class="col-sm-6 text-center">
+
+            <h2> CONCURSO</h2>
+                <p class="lead"> <span>Durante el mes de marzo se ha estado realizando un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
+                {% if CONTEST_CLOSED %}
+                    <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
+                {% else %}
+                    Próximamente se dará a conocer el fallo del jurado!<br><br>
+                    <a href="{% url 'bases' %}" class="btn btn-primary btn-lg">Bases del concurso</a><br>
+                {% endif %}
+            </div>
+            {% endif %}
 
             <div class="col-sm-12">
             <hr>

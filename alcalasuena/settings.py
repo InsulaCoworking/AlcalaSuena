@@ -69,7 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
+                'contest.context_processors.contest_status',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -150,5 +150,7 @@ CKEDITOR_CONFIGS = {
 }
 
 EMAIL_ACTIVE = False
+CONTEST_ACTIVE = True
+CONTEST_CLOSED = True
 
 from settings_secret import *

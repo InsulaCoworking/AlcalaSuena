@@ -1,6 +1,8 @@
 # coding=utf-8
 import csv
 import datetime
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
@@ -32,6 +34,10 @@ def form_success(request):
     return render(request, 'contest/form_success.html', {})
 
 def signup(request):
+
+    if not settings.CONTEST_ACTIVE:
+        return render(request, 'contest/form_closed.html', {})
+
     members_factory = BandMemberForm.getMembersFormset()
 
     if request.method == "POST":
@@ -66,7 +72,7 @@ def signup(request):
 
     categories = Tag.objects.all()
 
-    return render(request, 'contest/form_closed.html', {
+    return render(request, 'contest/form.html', {
         'categories': categories,
         'form': form,
         'members_formset': members_formset

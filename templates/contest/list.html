@@ -8,9 +8,11 @@
     <div class="jumbotron">
       <div class="container text-center">
         <h1>BANDAS Concursantes</h1>
-        <!--<p class="description">
+        {% if CONTEST_ACTIVE %}
+      <p class="description">
             ¿Tienes una banda y aún no te has apuntado a Alcalá Suena 2019?  <a href="{% url 'contest_signup' %}" class="btn-primary btn no-margin">Incríbete</a>
-        </p>-->
+        </p>
+          {% endif %}
       </div>
     </div>
 </div>
