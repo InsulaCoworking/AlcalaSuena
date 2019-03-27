@@ -3,6 +3,8 @@
 
 {% block title %}Conciertos en {{venue.name}} - Alcalá Suena 2019{% endblock%}
 
+{% block bodyattrs %} class="{%if view %}{{view}}{%endif%} venue light-menu"{% endblock%}
+
 {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@aemusica">
@@ -17,7 +19,6 @@
         <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner.jpg" %}{% endif %}" />
 {% endblock %}
 
-{% block bodyattrs %}class="venue"{% endblock%}
 
 {% block content %}
 <div class="jumbo-header" {% if venue.image %} style="background-image:url('{{venue.image.url}}')" {% endif %}>

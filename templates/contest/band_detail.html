@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load create_embed %}
 {% block title %}{{band.name}} en Alcala Suena 2019{% endblock%}
-{% block bodyattrs %}{%if view %} class="{{view}}"{%endif%}{% endblock%}
+{% block bodyattrs %} class="{%if view %}{{view}}{%endif%} light-menu"{% endblock%}
 
 {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">
@@ -46,8 +46,6 @@
 
 
 <div class="container {% if events or can_edit %} top-padding {%endif%}">
-
-
 
     <div class="row">
         <div class="col-md-7">
