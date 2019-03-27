@@ -328,9 +328,9 @@ body{
 .header-bar h2{ font-weight: 700; font-size:38px;}
 
 footer{
-    margin-top:3em;
+    margin-top:0;
     padding: 3em 0;
-    background-color: #010101;
+    background-color: #111111;
     color:#f9f9f9;
 }
 .lead span{ font-size:0.9em; }
