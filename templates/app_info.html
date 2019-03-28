@@ -2,9 +2,11 @@
 {% load staticfiles %}
 {% block title %}Alcalá Suena 2019 - La app{% endblock%}
 
+{% block bodyattrs %} class="{%if view %}{{view}}{%endif%} light-menu"{% endblock%}
+
 {% block content %}
 
-<div class="jumbo-header app" style="background-image:url('{% static "img/venues-header.jpg" %}')" >
+<div class="jumbo-header app jumbo-band" >
     <div class="jumbotron">
       <div class="container app-info">
             <div class="row">
