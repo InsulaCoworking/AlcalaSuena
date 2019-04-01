@@ -283,7 +283,8 @@ def contest_csv_votes(request):
     now = datetime.datetime.now()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="votos_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
-    writer = csv.writer(response)
+    response.write(u'\ufeff'.encode('utf-8'))
+    writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
     bands = ContestBand.objects.all()
     first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina', 'Pts total', 'Pts Criterios', 'Pts Jurado']
@@ -372,7 +373,7 @@ def contest_receiver_info(request):
     writer.writerow(first_row)
 
     for band in bands:
-        if Band.objects.filter(name__icontains=band.name).count() > 0:
+        if Band.objects.filter(name__icontains=band.name).exists():
             results = [band.name.encode('utf-8').strip(), band.city.encode('utf-8').strip(), 'Si' if band.has_local_member else 'No', band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
             writer.writerow(results)
 
@@ -408,8 +409,9 @@ def contest_participants_info(request):
 
     now = datetime.datetime.now()
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="ganadores_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
-    writer = csv.writer(response)
+    response['Content-Disposition'] = 'attachment; filename="participantes_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    response.write(u'\ufeff'.encode('utf-8'))
+    writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
     bands = ContestBand.objects.all()
     first_row = ['Banda', 'Procedencia', 'Miembros de alcala', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
