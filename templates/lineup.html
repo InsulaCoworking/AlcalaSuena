@@ -4,17 +4,15 @@
 {% load chunks %}
 
 {% block home_header %}
-    <div class="jumbo-header home" style="background-image:url('{% static "img/band-bg.png" %}')">
+    <div class="jumbo-header home" >
         <div class="jumbotron">
           <div class="container text-center">
-              <img class="img-responsive" src="{% static "img/fiesta_musica.png" %}">
+              <img class="img-responsive" src="{% static "img/logo2019.png" %}">
 
-                <a class="showmore smoothscroll" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
           </div>
         </div>
     </div>
 
-<a name="more" id="more"></a>
 <section class="header-bar no-margin">
 </section>
 {% endblock %}
@@ -23,28 +21,28 @@
 <section class="home-content">
 
     <div class="container">
-    <div class="lineup" style="max-width:700px;margin:auto;">
+    <div class="lineup" style="max-width:700px;margin:auto;margin-top:30px;">
                 {% for line in lineup_first|chunks:1 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <a href="{% url band_detail pk=band.pk %}" class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a href="{% url 'band_detail' pk=band.pk %}" class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
 
                   {% for line in lineup_second|chunks:2 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <a class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a href="{% url 'band_detail' pk=band.pk %}" class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
 
                   {% for line in lineup_third|chunks:3 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <a class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a href="{% url 'band_detail' pk=band.pk %}" class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
 
                 {% for line in lineup_fourth|chunks:4 %}
                     <div class="lineup-line">
-                        <span>{% for band in line %} <a class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
+                        <span>{% for band in line %} <a href="{% url 'band_detail' pk=band.pk %}" class="lineup-band"> {{band.name}} </a> {% if not forloop.last %} · {% endif %}{% endfor %}</span>
                     </div>
                 {% endfor %}
             </div>

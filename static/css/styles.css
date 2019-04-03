@@ -1150,20 +1150,26 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     margin:3em 0;
 }
 a.lineup-band{
-    color:#cc0000;
+    color:#edbe49;
     text-decoration:none;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.4), -1px 2px 2px rgba(0,0,0,0.3);
     transition: text-shadow 0.5s;
 }
 
 .lineup-line:nth-child(odd) a.lineup-band:nth-child(odd) {
-    color:#333 !important;
+    color:#111 !important;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 }
 .lineup-line:nth-child(even) a.lineup-band:nth-child(even) {
-    color:#333 !important;
+    color:#111 !important;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 }
 a.lineup-band:hover{
     text-decoration:none;
-    text-shadow: 0 0 13px #fff, 0 0 18px #fff;
+    text-shadow: 2px 2px 18px rgba(0,0,0,0.8), -3px 0px 3px rgba(0,0,0,0.3);
+}
+.lineup-line:nth-child(odd) a.lineup-band:nth-child(odd):hover, .lineup-line:nth-child(even) a.lineup-band:nth-child(even):hover{
+    text-shadow: 0 0 13px #fff, 0 0 18px #fff !important;
 }
 
 .jury_points{
