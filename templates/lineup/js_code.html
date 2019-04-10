@@ -1,0 +1,7 @@
+{% load staticfiles %}
+<script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
+<script type="text/javascript">
+    $('.lineup-line').each(function(i,elem){
+    $(elem).textfill({widthOnly:true, maxFontPixels:120});
+});
+</script>
