@@ -152,5 +152,6 @@ CKEDITOR_CONFIGS = {
 EMAIL_ACTIVE = False
 CONTEST_ACTIVE = True
 CONTEST_CLOSED = True
+APP_VISIBLE = False
 
 from settings_secret import *

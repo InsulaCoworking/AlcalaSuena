@@ -5,4 +5,5 @@ def contest_status(request):
     return {
         'CONTEST_ACTIVE': settings.CONTEST_ACTIVE,
         'CONTEST_CLOSED': settings.CONTEST_CLOSED,
+        'APP_VISIBLE': settings.APP_VISIBLE,
     }

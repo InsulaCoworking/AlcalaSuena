@@ -76,7 +76,9 @@
                          <li {% if request.resolver_match.url_name == "contest_jury_list" %}class="active"{% endif %}><a href="{% url 'contest_jury_list' %}">Jurado</a></li>
                     {% endif %}
 
-                      <!--<li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>-->
+                  {% if APP_VISIBLE %}
+                      <li {% if request.resolver_match.url_name == "app_info" %}class="active"{% endif %}><a href="{% url 'app_info' %}">La App</a></li>
+                  {% endif %}
 
                   </ul>
 
