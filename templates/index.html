@@ -36,45 +36,6 @@
                 </span></p>
             </div>
 
-
-            {% if CONTEST_ACTIVE %}
-            <div class="col-sm-12 text-center">
-                <h2>¿Tienes una banda?</h2>
-                <p class="lead "><span>
-                ¿Quieres tocar en <strong>Alcalá Suena 2019</strong> ?<br> Ya está abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas que actúen en el festival.</span></p>
-                <a href="{% url 'contest_signup' %}" class="btn btn-primary btn-lg">Inscríbete!</a>
-            </div>
-            {% else %}
-            <div class="col-sm-12"><hr></div>
-
-            <div class="col-sm-6 text-center">
-                <img class="img-responsive" src="{% static "img/contest.png" %}">
-            </div>
-            <div class="col-sm-6 text-center">
-
-            <h2> CONCURSO</h2>
-                <p class="lead"> <span>Durante el mes de marzo se ha estado realizando un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
-                {% if CONTEST_CLOSED %}
-                    <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
-                {% else %}
-                    Próximamente se dará a conocer el fallo del jurado!<br><br>
-                    <a href="{% url 'bases' %}" class="btn btn-primary btn-lg">Bases del concurso</a><br>
-                {% endif %}
-            </div>
-            {% endif %}
-
-            <div class="col-sm-12">
-            <hr>
-
-            <h2 class="text-center">¿Qué es Alcalá Suena?</h2>
-            </div>
-
-            <div class="col-sm-12">
-                <p class=""><span>
-                    Alcalá de Henares se llena de música en un proyecto creado por los artistas de la ciudad en el que se mezclan todo tipo de estilos, grupos profesionales y amateurs, noveles y cabezas de cartel en una producción con más de centenares de músicos, técnicos, profesionales y voluntarios implicados en la producción.
-            </span>
-                </p>
-            </div>
             <!--
             <div class="col-sm-3 col-md-2"><a href="https://www.canva.com/design/DACUpX9urHM/0fEzcfON3oPVNcIgHZTKpQ/view?website" target="_blank" class="card dossier">
                 <img src="{% static "img/As2.jpg" %}" alt="dossier" class="img-responsive">
@@ -82,15 +43,13 @@
                     ver dossier
                 </p>
             </a> </div>-->
-            <div class="col-sm-12">
 
-            </div>
         </div>
 
-        <!--
+        {% if APP_VISIBLE %}
         <div class="row double-sep">
 
-            <div class="col-sm-6"><img src="{% static "img/app_screens.png" %}" class="img-responsive"></div>
+            <div class="col-sm-6"><img src="{% static "img/app_screens2019.png" %}" class="img-responsive"></div>
 
             <div class="col-sm-6">
                 <p class="lead">¿Quieres acceder a toda la información actualizada de los conciertos de la forma más cómoda en tu móvil?</p>
@@ -98,15 +57,11 @@
                 <p class="lead">
                     Haz tu propia programación de conciertos, guíate para llegar a cada escenario, y muchas opciones más... <br><br>
                     También puedes buscar los conciertos que más te interesen desde nuestro buscador en la web</p>
-                <div class="text-center"> <a class="showmore red smoothscroll" href="#main-search"><i class="fa fa-angle-down" aria-hidden="true"></i></a></div>
             </div>
-
         </div>
-        !-->
-
 
         <br><br>
-        <!--
+
         <a name="main-search" id="main-search"></a>
         <h3 class="heading double-sep">¡Encuentra los conciertos que te interesan!</h3>
         <form method="post" action="{% url 'search' %}" class="form" id="searchForm">
@@ -147,7 +102,50 @@
         </h3>
 
     </div>
-    !-->
+        {% endif %}
+
+
+        <!--- CONCURSO --->
+        {% if CONTEST_ACTIVE %}
+            <div class="col-sm-12 text-center">
+                <h2>¿Tienes una banda?</h2>
+                <p class="lead "><span>
+                ¿Quieres tocar en <strong>Alcalá Suena 2019</strong> ?<br> Ya está abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas que actúen en el festival.</span></p>
+                <a href="{% url 'contest_signup' %}" class="btn btn-primary btn-lg">Inscríbete!</a>
+            </div>
+            {% else %}
+            <div class="col-sm-12"><hr></div>
+
+            <div class="col-sm-6 text-center">
+                <img class="img-responsive" src="{% static "img/contest.png" %}">
+            </div>
+            <div class="col-sm-6 text-center">
+
+            <h2> CONCURSO</h2>
+                <p class="lead"> <span>Durante el mes de marzo se ha estado realizando un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
+                {% if CONTEST_CLOSED %}
+                    <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
+                {% else %}
+                    Próximamente se dará a conocer el fallo del jurado!<br><br>
+                    <a href="{% url 'bases' %}" class="btn btn-primary btn-lg">Bases del concurso</a><br>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="col-sm-12">
+            <hr>
+
+        <!-- INFO GENERAL -->
+
+            <h2 class="text-center">¿Qué es Alcalá Suena?</h2>
+            </div>
+
+            <div class="col-sm-12">
+                <p class=""><span>
+                    Alcalá de Henares se llena de música en un proyecto creado por los artistas de la ciudad en el que se mezclan todo tipo de estilos, grupos profesionales y amateurs, noveles y cabezas de cartel en una producción con más de centenares de músicos, técnicos, profesionales y voluntarios implicados en la producción.
+            </span>
+                </p>
+            </div>
 
     <!-- /container -->
          </div>
