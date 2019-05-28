@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Alcalá Suena 2019 - Horarios{% endblock%}
+
+{% block extra_styles %}
+<link href="{% static "css/jquery.skedTape.css" %}?v=25" rel="stylesheet"/>
+{% endblock extra_styles %}
+
+{% block content %}
+
+<div class="jumbo-header" style="background-image:url('{% static "img/band-header2019.jpg" %}')" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Concurso Alcalá Suena 2019</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center">
+    <h3>Horarios</h3>
+</div>
+
+<div class="container">
+    {% for day in days %}
+    <h3>{{day.day}}</h3>
+        <div id="sked-{{forloop.counter}}"></div>
+    {% endfor %}
+
+
+
+</div>
+
+{% endblock%}
+
+{% block scripts %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static "js/jquery.skedTape.js" %}?v=22"></script>
+<script type="text/javascript">
+
+
+
+{% for day in days %}
+
+    var events{{forloop.counter}} = [
+            {% for event in day.events %}
+                {
+                    name: '{{event.band}}',
+                    location: {{event.venue.pk}},
+                    start: {{ event.js_date }} ,
+                    end: {{ event.js_date_end }}
+                }
+                {% if not forloop.last %},{% endif %}
+            {% endfor %}
+    ];
+
+    var $sked = $('#sked-{{forloop.counter}}').skedTape({
+    caption: 'Cities',
+    start: new Date('{{ day.day|date:"D, d M Y"}} 12:00'),
+    end: new Date('{{ day.day|date:"D, d M Y"}} 23:59'),
+    showEventTime: true,     // Whether to show event start-end time
+    showDates:false,
+    showEventDuration: false, // Whether to show event duration
+    locations: [
+        {% for venue in venues %}
+            {id: {{venue.pk}}, name: '{{venue}}'} {% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+    events: events{{forloop.counter}}
+
+});
+{% endfor %}
+</script>
+
+{% endblock %}
