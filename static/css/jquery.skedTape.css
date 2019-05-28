@@ -19,7 +19,7 @@
 .sked-tape__aside {
   flex: none;
   max-width: 30%;
-  min-width: 100px;
+  min-width: 80px;
   padding: 0 !important;
   border-right: 5px solid transparent;
   position: relative;
@@ -33,9 +33,9 @@
 
 .sked-tape__location {
   position: relative;
-  padding: 0 10px;
   font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
-  line-height: 54px;
+  line-height: 0.99em;
+  padding-top:20px;
   height: 54px;
 }
 
@@ -51,9 +51,7 @@
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-wrap: normal;
+
 }
 
 .sked-tape__caption {

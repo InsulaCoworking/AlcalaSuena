@@ -485,9 +485,7 @@ SkedTape.prototype = {
 						if (intersects) return false;
 					}, this));
 					var gap = event.start.getTime() - lastEndTime;
-					if (gap >= this.minTimeGapShown && gap <= this.maxTimeGapShown && !intersects) {
-						$li.append(this.renderGap(gap, lastEnd, event.start));
-					}
+
 					lastEnd = event.end;
 					lastEndTime = lastEnd.getTime();
 					var $event = this.renderEvent(event).appendTo($li);

@@ -20,9 +20,11 @@
     <h3>Horarios</h3>
 </div>
 
-<div class="container card main">
+<div class="card main" style="max-width:100%;">
     {% for day in days %}
+    <div class="container">
     <h3>{{day.day}}</h3>
+    </div>
     <div class="">
         <div id="sked-{{forloop.counter}}"></div>
         </div>
@@ -59,7 +61,8 @@
 
     var $sked = $('#sked-{{forloop.counter}}').skedTape({
     caption: '',
-    minGapHiTime:50,
+    minGapTime:10000,
+    maxGapTime:1000,
 
     start: {% if day.events %}{{day.events.0|js_date}}{% else %}{{ day.day|js_date:12}}{% endif %},
     end: new Date('{{ day.day|date:"D, d M Y"}} 23:59:00 GMT'),
