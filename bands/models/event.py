@@ -17,14 +17,6 @@ class Event(models.Model):
         verbose_name_plural = 'Conciertos'
         ordering = ['day', 'time']
 
-    @property
-    def js_date(self):
-        return 'new Date(Date.UTC({},{},{},{},{}))'.format(self.day.year, self.day.month-1, self.day.day + (1 if self.time < LATENIGHT_HOURS else 0), self.time.hour, self.time.minute)
-
-    @property
-    def js_date_end(self):
-        return 'new Date(Date.UTC({},{},{},{},{}))'.format(self.day.year, self.day.month-1, self.day.day + (1 if self.time < LATENIGHT_HOURS else 0), self.time.hour + int(math.floor(self.duration/60)),
-                                                 self.time.minute + self.duration%59)
 
     def __unicode__(self):
         return self.band.name + ' - ' + str(self.day)

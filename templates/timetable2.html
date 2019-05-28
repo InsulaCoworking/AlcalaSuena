@@ -51,9 +51,9 @@
                     name: '{{event.band}}',
                     location: {{event.venue.pk}},
                     url: '{% url 'band_detail' event.band.pk %}',
-                    start: {{ event.js_date }} ,
+                    start: {{ event|js_date }} ,
                     data: {tagcolor: '{{event.band.tag.color}}'},
-                    end: {{ event.js_date_end }}
+                    end: {{ event|js_date:'end' }}
                 }
                 {% if not forloop.last %},{% endif %}
             {% endfor %}
@@ -65,7 +65,10 @@
     maxGapTime:1000,
 
     start: {% if day.events %}{{day.events.0|js_date}}{% else %}{{ day.day|js_date:12}}{% endif %},
-    end: new Date('{{ day.day|date:"D, d M Y"}} 23:59:00 GMT'),
+    {% with day.events|last as last %}
+        end: {{last|js_date:'end'}},
+    {% endwith %}
+
     showEventTime: true,     // Whether to show event start-end time
     showDates:false,
     showEventDuration: false, // Whether to show event duration
