@@ -33,8 +33,8 @@
 
 .sked-tape__location {
   position: relative;
-  padding: 0 15px;
-  background-color: #EFEFEF;
+  padding: 0 10px;
+  font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif;
   line-height: 54px;
   height: 54px;
 }
@@ -58,7 +58,6 @@
 
 .sked-tape__caption {
   display: block;
-  background-color: white;
   height: 24px;
   position: relative;
   top: 0;
@@ -92,7 +91,6 @@
 }
 
 .sked-tape__hours {
-  background: white;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
@@ -156,20 +154,19 @@
 
 .sked-tape__event-row {
   position: relative;
-  background-color: #F4F4F4;
   height: 54px;
 }
 
 .sked-tape__event-row:nth-child(odd) {
-  background-color: #FDFDFD;
+  background-color: rgba(0,0,0,0.08);
 }
 
 .sked-tape__event-row:first-child {
-  border-top: 1px solid #E5E5E5;
+  border-top: 1px solid #c7c7c7;
 }
 
 .sked-tape__event-row:last-child {
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #c7c7c7;
 }
 
 .sked-tape__event-row:not(:last-child) {
@@ -199,20 +196,11 @@
   padding: 2px;
 }
 
-.sked-tape__intersection {
-  background: transparent;
-  top: 1px;
-  bottom: 0;
-  display: block;
-  position: absolute;
-  z-index: 4;
-  border: 2px dashed rgba(255, 62, 44, 0.5);
-}
 
 .sked-tape__event {
-  background-color: #EC6A5E;
+
   transition: 200ms background-color;
-  top: 1px;
+  top: 0;
   bottom: 0;
   display: block;
   position: absolute;
@@ -220,30 +208,27 @@
   white-space: nowrap;
   overflow: hidden;
   font-size: 12px;
-  color: white;
-  border: 1px solid #e32c1b;
+  color: #222;
+
   min-width: 10px;
   cursor: default;
   line-height: 16px;
 }
 
 .sked-tape__event:hover {
-  background-color: #e74030;
+
 }
 
 .sked-tape__event--low-gap {
-  background-color: rgba(51, 175, 12, 0.53);
-  border-color: #5ba044;
+
 }
 
 .sked-tape__event--low-gap:hover {
-  background-color: rgba(56, 193, 13, 0.79);
-  border-color: #579842;
+
 }
 
 .sked-tape__event--disabled, .sked-tape__event--disabled:hover {
-  background-color: #b7b1b1;
-  border-color: #a79797;
+
 }
 
 .sked-tape__event-row:first-child .sked-tape__event {
@@ -269,8 +254,6 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   color: #fff;
-  border: 1px solid #e32c1b;
-  background: rgba(227, 44, 27, 0.69);
   padding: 3px 2px;
   line-height: 1;
 }
@@ -289,11 +272,21 @@
 
 .sked-tape__center {
   position: relative;
+  text-align:center;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   display: block;
-  padding: 0 10px;
+  padding: 10px 0;
+    margin: 4px;
+    background: aqua;
+}
+.sked-tape__event:hover{
+text-decoration:none;
+}
+.sked-tape__center:hover{
+    cursor:pointer;
+    transform: translateY(-50%) scale(1.14);
 }
 
 .sked-tape__grid {
@@ -313,7 +306,7 @@
   display: block;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to right, #E5E5E5 1px, #E5E5E5 1px), linear-gradient(to right, #E5E5E5 1px, #E5E5E5 1px), linear-gradient(to right, #E5E5E5 1px, #E5E5E5 1px), linear-gradient(to right, #E5E5E5 1px, #E5E5E5 1px), linear-gradient(to right, #E5E5E5 1px, #E5E5E5 1px);
+  background-image: linear-gradient(to right, #c7c7c7 1px, #c7c7c7 1px), linear-gradient(to right, #c7c7c7 1px, #c7c7c7 1px), linear-gradient(to right, #c7c7c7 1px, #c7c7c7 1px), linear-gradient(to right, #c7c7c7 1px, #c7c7c7 1px), linear-gradient(to right, #c7c7c7 1px, #c7c7c7 1px);
   background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%, 1px 100%;
   background-repeat: no-repeat;
   background-position: 0 0, 100% 0, 25% 0, 50% 0, 75% 0;

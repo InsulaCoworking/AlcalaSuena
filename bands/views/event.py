@@ -63,6 +63,7 @@ def timetable2(request):
         }
         daydate['events'].sort(helpers.order_latenight)
 
+
         days.append(daydate)
 
 

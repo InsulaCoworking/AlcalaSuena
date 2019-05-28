@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load chunks %}
 {% block title %}Alcalá Suena 2019 - Horarios{% endblock%}
 
 {% block extra_styles %}
@@ -19,10 +20,12 @@
     <h3>Horarios</h3>
 </div>
 
-<div class="container">
+<div class="container card main">
     {% for day in days %}
     <h3>{{day.day}}</h3>
+    <div class="">
         <div id="sked-{{forloop.counter}}"></div>
+        </div>
     {% endfor %}
 
 
@@ -45,7 +48,9 @@
                 {
                     name: '{{event.band}}',
                     location: {{event.venue.pk}},
+                    url: '{% url 'band_detail' event.band.pk %}',
                     start: {{ event.js_date }} ,
+                    data: {tagcolor: '{{event.band.tag.color}}'},
                     end: {{ event.js_date_end }}
                 }
                 {% if not forloop.last %},{% endif %}
@@ -53,9 +58,11 @@
     ];
 
     var $sked = $('#sked-{{forloop.counter}}').skedTape({
-    caption: 'Cities',
-    start: new Date('{{ day.day|date:"D, d M Y"}} 12:00'),
-    end: new Date('{{ day.day|date:"D, d M Y"}} 23:59'),
+    caption: '',
+    minGapHiTime:50,
+
+    start: {% if day.events %}{{day.events.0|js_date}}{% else %}{{ day.day|js_date:12}}{% endif %},
+    end: new Date('{{ day.day|date:"D, d M Y"}} 23:59:00 GMT'),
     showEventTime: true,     // Whether to show event start-end time
     showDates:false,
     showEventDuration: false, // Whether to show event duration
@@ -64,8 +71,8 @@
             {id: {{venue.pk}}, name: '{{venue}}'} {% if not forloop.last %},{% endif %}
         {% endfor %}
     ],
+    tzOffset:0,
     events: events{{forloop.counter}}
-
 });
 {% endfor %}
 </script>
