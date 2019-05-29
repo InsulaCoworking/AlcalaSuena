@@ -277,7 +277,8 @@
   display: block;
   padding: 10px 0;
     margin: 4px;
-    background: aqua;
+    overflow:hidden;
+    border:2px solid #fff;
 }
 .sked-tape__event:hover{
 text-decoration:none;

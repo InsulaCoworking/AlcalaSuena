@@ -1294,3 +1294,25 @@ input[type=range].custom-range:focus::-ms-fill-upper {
     top:30px;
     right:5px;
 }
+
+.card.timetable{
+    max-width:100%;
+}
+@media (max-width: 768px){
+    .card.timetable {
+        padding-right:0;
+    }
+}
+.tag-legend{
+    font-size:0.9em;
+}
+.tag-point{
+    display:inline-block;
+    vertical-align:middle;
+    width:20px;
+    height:20px;
+    border-radius:2px;
+    margin-left:18px;
+    margin-right:3px;
+    margin-bottom:5px;
+}

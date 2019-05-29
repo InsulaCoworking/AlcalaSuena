@@ -592,7 +592,7 @@ SkedTape.prototype = {
 				left: this.computeEventOffset(event)
 			});
 		// Append the center aligner node with text context
-		var $center = $('<div class="sked-tape__center card" style="background-color:'+event.data.tagcolor+'" />')
+		var $center = $('<div class="sked-tape__center card" style="border-color:'+event.data.tagcolor+';background-color:'+event.data.tagcolor+'" />')
 			.text(event.name)
 			.appendTo($event);
 		if (this.showEventTime || this.showEventDuration) {

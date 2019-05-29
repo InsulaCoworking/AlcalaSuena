@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-        <link href="{% static "css/styles.css" %}?v=25" rel="stylesheet"/>
+        <link href="{% static "css/styles.css" %}?v=26" rel="stylesheet"/>
         {% block extra_styles %}{% endblock extra_styles %}
 
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
@@ -67,6 +67,7 @@
                   {% if CONTEST_CLOSED %}
                       <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
                       <li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>
+                      <li {% if request.resolver_match.url_name == "timetables" %}class="active"{% endif %}><a href="{% url 'timetables' %}">Horarios</a></li>
                       <li {% if request.resolver_match.url_name == "contest_index" %}class="active"{% endif %}><a href="{% url 'contest_index' %}">Concurso</a></li>
                   {% else %}
                       <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>

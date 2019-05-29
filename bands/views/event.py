@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from bands import helpers
-from bands.models import Event, Venue
+from bands.models import Event, Venue, Tag
 
 
 def timetable(request):
@@ -54,6 +54,7 @@ def timetable2(request):
 
     events_byday = Event.objects.dates('day', 'day')
     venues = Venue.objects.all().order_by('-name')
+    tags = Tag.objects.all()
     days = []
     for day in events_byday:
         daydate = {
@@ -69,6 +70,7 @@ def timetable2(request):
 
     return render(request, 'timetable2.html', {
                     'days': days,
+                    'tags':tags,
                     'venues':venues,
                     'num_days': len(days),
                   })

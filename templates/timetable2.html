@@ -4,7 +4,7 @@
 {% block title %}Alcalá Suena 2019 - Horarios{% endblock%}
 
 {% block extra_styles %}
-<link href="{% static "css/jquery.skedTape.css" %}?v=25" rel="stylesheet"/>
+<link href="{% static "css/jquery.skedTape.css" %}?v=26" rel="stylesheet"/>
 {% endblock extra_styles %}
 
 {% block content %}
@@ -12,15 +12,20 @@
 <div class="jumbo-header" style="background-image:url('{% static "img/band-header2019.jpg" %}')" >
     <div class="jumbotron">
       <div class="container text-center">
-        <h1>Concurso Alcalá Suena 2019</h1>
+        <h1>Horarios</h1>
       </div>
     </div>
 </div>
-<div class="header-bar text-center">
-    <h3>Horarios</h3>
-</div>
+<div class="header-bar"></div>
 
-<div class="card main" style="max-width:100%;">
+<div class="card main timetable" style="max-width:100%;">
+
+    <div class="container tag-legend">
+        {%for tag in tags %}
+        <div class="pull-left"><div class="tag-point" style="background-color:{{tag.color}}" data-tag="{{tag.id}}"></div> {{tag.name}}</div>
+        {% endfor %}
+    </div>
+
     {% for day in days %}
     <div class="container">
     <h3>{{day.day}}</h3>
@@ -30,18 +35,14 @@
         </div>
     {% endfor %}
 
-
-
 </div>
 
 {% endblock%}
 
 {% block scripts %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{% static "js/jquery.skedTape.js" %}?v=22"></script>
+<script type="text/javascript" src="{% static "js/jquery.skedTape.js" %}?v=23"></script>
 <script type="text/javascript">
-
-
 
 {% for day in days %}
 
@@ -59,7 +60,7 @@
             {% endfor %}
     ];
 
-    var $sked = $('#sked-{{forloop.counter}}').skedTape({
+$('#sked-{{forloop.counter}}').skedTape({
     caption: '',
     minGapTime:10000,
     maxGapTime:1000,
