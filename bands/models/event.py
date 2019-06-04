@@ -2,10 +2,11 @@ import math
 from django.db import models
 
 from bands.helpers import LATENIGHT_HOURS
+from bands.mixins import UpdateDataVersionMixin
 from bands.models import Band, Venue
 
 
-class Event(models.Model):
+class Event(UpdateDataVersionMixin, models.Model):
     band = models.ForeignKey(Band, related_name="events")
     venue = models.ForeignKey(Venue, related_name="venue")
     day = models.DateField(null=True, blank=True)

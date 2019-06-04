@@ -4,9 +4,10 @@ from __future__ import unicode_literals
 from django.db import models
 
 from bands.helpers import RandomFileName
+from bands.mixins import UpdateDataVersionMixin
 
 
-class Venue(models.Model):
+class Venue(UpdateDataVersionMixin, models.Model):
     name = models.CharField(null=False, verbose_name='Nombre', max_length=240)
     description = models.TextField(null=False, blank=True)
     latitude = models.FloatField(null=False)

@@ -5,10 +5,11 @@ from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
 from bands.helpers import RandomFileName
+from bands.mixins import UpdateDataVersionMixin
 from bands.models import Tag
 
 
-class Band(models.Model):
+class Band(UpdateDataVersionMixin, models.Model):
     name = models.CharField(null=False, verbose_name='Nombre', max_length=240)
     tag = models.ForeignKey(Tag, related_name="band_tag")
     genre = models.CharField(null=True, blank=True, verbose_name='etiqueta', max_length=240)
