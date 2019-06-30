@@ -1,0 +1,28 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Archivar bandas concursantes{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+
+<p>
+Introduzca el año bajo el que archivar las bandas seleccionadas:
+</p>
+
+    <ul>
+{% for band in bands %}
+    <li>
+      {{ band }}
+    </li>
+    <input type="hidden" name="_selected_action" value="{{ band.pk }}" />
+  {% endfor %}
+    </ul>
+
+
+
+    <input type="test" name="year" value="" />
+  <input type="hidden" name="action" value="archive" />
+  <input type="submit" name="apply" value="Archivar"/>
+</form>
+{% endblock %}

@@ -18,6 +18,14 @@ CRITERIA3_CHOICES = (
     (7, "Más de tres")
 )
 
+
+class ContestBandManager(models.Manager):
+
+    def current(self):
+        return self.filter(archived=False)
+
+
+
 class ContestBand(models.Model):
     name = models.CharField(null=False, verbose_name='Nombre de la banda/solista', max_length=240)
     tag = models.ForeignKey(Tag, related_name="contest_bands", verbose_name='Categoría del concurso')
@@ -83,6 +91,11 @@ class ContestBand(models.Model):
     criteria7 = models.BooleanField(default=False, verbose_name='¿Tienes redes sociales activas?')
     criteria8 = models.BooleanField(default=False, verbose_name='¿Al menos el 80% de tu repertorio son temas propios?')
     criteria9 = models.BooleanField(default=False, verbose_name='¿Tocaste o estabas programado el año pasado en Alcalá Suena?')
+
+    archived = models.BooleanField(default=False, verbose_name='Archivada')
+    archive_year = models.IntegerField(verbose_name='Año', null=True, blank=True)
+
+    objects = ContestBandManager()
 
     class Meta:
         verbose_name = 'Banda concursante'

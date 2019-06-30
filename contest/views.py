@@ -101,7 +101,7 @@ def contest_dashboard(request):
         return redirect('contest_jury_list')
 
 def contest_entries_list(request):
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     band_count = bands.count()
     tag_filter = request.GET.get('tag', None)
     if tag_filter:
@@ -177,7 +177,7 @@ def contest_jury_list(request):
     if not request.user.has_perm('contest.can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)
 
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     jury_count = User.objects.filter(is_staff=True).count()
 
     band_count = bands.count()
@@ -286,7 +286,7 @@ def contest_csv_votes(request):
     response.write(u'\ufeff'.encode('utf-8'))
     writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina', 'Pts total', 'Pts Criterios', 'Pts Jurado']
 
     juries = User.objects.filter(is_staff=True)
@@ -322,7 +322,7 @@ def contest_csv_bands(request):
     response['Content-Disposition'] = 'attachment; filename="bands_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
     writer = csv.writer(response)
 
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     first_row = ['Banda', 'Email', 'Miembros', 'Alcalaina',]
 
     writer.writerow(first_row)
@@ -368,7 +368,7 @@ def contest_receiver_info(request):
     response['Content-Disposition'] = 'attachment; filename="ganadores_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
     writer = csv.writer(response)
 
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     first_row = ['Banda', 'Procedencia', 'Miembros de alcala', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
     writer.writerow(first_row)
 
@@ -390,7 +390,7 @@ def contest_rider_info(request):
     response['Content-Disposition'] = 'attachment; filename="riders_alcalasuena' + now.strftime('%Y%m%d') + '.csv"'
     writer = csv.writer(response)
 
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     first_row = ['Banda', 'Num miembros', 'Rider', 'Email', 'Telefono1', 'Telefono2']
     writer.writerow(first_row)
 
@@ -413,7 +413,7 @@ def contest_participants_info(request):
     response.write(u'\ufeff'.encode('utf-8'))
     writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
-    bands = ContestBand.objects.all()
+    bands = ContestBand.objects.current()
     first_row = ['Banda', 'Procedencia', 'Miembros de alcala', 'Interesado', 'NIF', 'Email', 'Telefono1', 'Telefono2']
     writer.writerow(first_row)
 
