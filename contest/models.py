@@ -6,6 +6,8 @@ from django.db import models
 from django.db.models import Sum, Avg
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
+
+from archive.manager import ArchivedManager
 from bands.helpers import RandomFileName
 from bands.models import Tag
 
@@ -19,10 +21,6 @@ CRITERIA3_CHOICES = (
 )
 
 
-class ContestBandManager(models.Manager):
-
-    def current(self):
-        return self.filter(archived=False)
 
 
 
@@ -95,7 +93,7 @@ class ContestBand(models.Model):
     archived = models.BooleanField(default=False, verbose_name='Archivada')
     archive_year = models.IntegerField(verbose_name='Año', null=True, blank=True)
 
-    objects = ContestBandManager()
+    objects = ArchivedManager()
 
     class Meta:
         verbose_name = 'Banda concursante'

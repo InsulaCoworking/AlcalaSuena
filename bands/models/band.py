@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFit, ResizeToFill
+
+from archive.manager import ArchivedManager
 from bands.helpers import RandomFileName
 from bands.mixins import UpdateDataVersionMixin
 from bands.models import Tag
@@ -43,6 +45,10 @@ class Band(UpdateDataVersionMixin, models.Model):
     lineup_order = models.IntegerField(default=3, verbose_name='Línea de cartel (1, 2 o 3)')
     lineup_secondary_order = models.IntegerField(default=1, verbose_name='Orden en linea de cartel')
 
+    archived = models.BooleanField(default=False, verbose_name='Archivada')
+    archive_year = models.IntegerField(verbose_name='Año', null=True, blank=True)
+
+    objects = ArchivedManager()
 
     class Meta:
         verbose_name = 'Banda'

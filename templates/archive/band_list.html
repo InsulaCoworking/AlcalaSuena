@@ -1,0 +1,75 @@
+{% extends "archive/base.html" %}
+{% load staticfiles %}
+{% block title %}Bandas - Alcala Suena 2019{% endblock%}
+{% load chunks %}
+
+{% block content %}
+<div class="jumbo-header jumbo-band" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>BANDAS</h1>
+        <p class="description">Un festival participativo con más de 70 grupos actuando en calles y plazas del Casco Histórico de Alcalá, Patromonio de la Humanidad</p>
+      </div>
+    </div>
+</div>
+<div class="header-bar text-center header-band">
+
+</div>
+
+<div class="container">
+
+    <div class="clearfix tags text-center">
+    {%for tag in tags %}
+    <div class="tag pull-left card" style="background-color:{{tag.color}}" data-tag="{{tag.id}}">{{tag.name}}</div>
+    {% endfor %}
+        </div>
+
+    <div class="clearfix gallery double-sep">
+        {% for band in bands %}
+        <div class="mosaicflow__item {{band.tag.id}}">
+          <a href="{% url 'archive:band_detail' year=year pk=band.pk%}" class="band_link" title="{{band.name}}" style="border-color:{{band.tag.color}}">
+              <img src="{% if band.band_image %}{{band.band_image.url}}{%else%}{%static "img/band-header2019.jpg"%}{%endif%}" alt="{{band.name}}">
+              <span>{{band.name}} <span class="style">{{band.genre}}</span> </span>
+          </a>
+        </div>
+         {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static "js/jquery.mosaicflow.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
+<script type="text/javascript">
+
+var tags = $('.tags');
+var bands = $('.mosaicflow__item');
+
+  $('.gallery').mosaicflow({
+    minColumns: 2,
+    minItemWidth: 260
+  }).on('mosaicflow-layout', function(){ $('.loading').fadeOut(); });
+
+tags.on('click', '.tag', function(){
+    var tag = $(this);
+    if (tag.hasClass('active')){
+        tag.removeClass('active');
+        tags.removeClass('filtered');
+         $('.mosaicflow__item').show();
+    }
+    else{
+        tags.addClass('filtered').find('.tag').removeClass('active');
+        tag.addClass('active');
+        var filter = tag.attr('data-tag');
+        $('.mosaicflow__item').hide().filter('.'+filter).show();
+    }
+});
+
+
+$('.lineup-line').each(function(i,elem){
+    console.log(elem);
+    $(elem).textfill({widthOnly:true, maxFontPixels:500});
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "archive/base.html" %}
+{% load staticfiles %}
+{% load chunks %}
+{% block title %}Alcalá Suena: Fiesta de la Música {{year}}{% endblock%}
+
+{% block home_header %}
+    <div class="jumbo-header home" >
+        <div class="jumbotron">
+          <div class="container text-center">
+              <img class="img-responsive" src="{% static "img/logo2019.png" %}">
+              <!--<a class="showmore smoothscroll" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>-->
+          </div>
+        </div>
+    </div>
+
+<a name="more" id="more"></a>
+<section class="header-bar no-margin">
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="home-content">
+
+{% if CONTEST_CLOSED %}
+<div class="container" style="margin-bottom:4em;">
+    {% include "lineup/main.html"  %}
+</div>
+{% endif %}
+
+    <div class="container main card">
+
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <p class="lead "><span>
+                Alcalá de Henares acogerá la 5ª edición de este evento durante el segundo fin de semana de junio y llenará de actuaciones musicales, para todos los gustos y en directo: folk, pop, rock, jazz, fusión... diferentes lugares del casco histórico de la Ciudad.
+                </span></p>
+
+                <div class="row">
+                    <div class="col-sm-4"><a href="{% url 'archive:bands_list' year %}" class="btn btn-block btn-primary btn-lg">Bandas</a></div>
+                    <div class="col-sm-4"><a href="{% url 'archive:contest_entries_list' year %}" class="btn btn-block btn-primary red btn-lg">Concurso</a> </div>
+                    <div class="col-sm-4"><a href="{% url 'archive:timetables' year %}" class="btn btn-block btn-primary btn-lg">Horarios</a></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INFO GENERAL -->
+            <div class="col-sm-12">
+            {% include "general_info.html"  %}
+            </div>
+
+    <!-- /container -->
+         </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% include "lineup/js_code.html"  %}
+{% endblock %}

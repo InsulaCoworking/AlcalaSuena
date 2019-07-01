@@ -21,11 +21,13 @@ from api.urls import get_api
 
 from bands import urls as bands_urls
 from contest import urls as contest_urls
+from archive import urls as archive_urls
 
 urlpatterns = [
     url(r'^', include(bands_urls)),
     url(r'^', include(contest_urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^archive/', include(archive_urls, namespace='archive')),
     url(r'^api/', include(get_api('v1').urls)),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

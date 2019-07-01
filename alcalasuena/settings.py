@@ -153,5 +153,6 @@ EMAIL_ACTIVE = False
 CONTEST_ACTIVE = True
 CONTEST_CLOSED = True
 APP_VISIBLE = False
+ARCHIVE_YEARS = []
 
 from settings_secret import *
