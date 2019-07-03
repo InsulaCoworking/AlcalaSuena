@@ -9,7 +9,7 @@ from bands.models.news import News
 class TagResource(ModelResource):
 
     class Meta:
-        queryset = Tag.objects.all()
+        queryset = Tag.objects.current()
         include_resource_uri = False
         list_allowed_methods = ['get']
         resource_name = 'tag'
@@ -20,7 +20,7 @@ class BandResource(ModelResource):
     tag = fields.ForeignKey(TagResource, 'tag', full=True, null=True)
 
     class Meta:
-        queryset = Band.objects.all()
+        queryset = Band.objects.current()
         list_allowed_methods = ['get']
         resource_name = 'bands'
         collection_name = 'bands'
@@ -56,7 +56,7 @@ class EventResource(ModelResource):
     band = IntegerField(attribute="band__pk")
 
     class Meta:
-        queryset = Event.objects.all()
+        queryset = Event.objects.filter(band__archived=False)
         include_resource_uri = False
         list_allowed_methods = ['get']
         resource_name = 'events'

@@ -24,7 +24,7 @@ def index(request):
             pass
 
     venues = Venue.objects.all()
-    tags = Tag.objects.all()
+    tags = Tag.objects.current()
 
     lineup_first = Band.objects.current().filter(lineup_order=1)
     lineup_second = list(Band.objects.current().filter(lineup_order=2))

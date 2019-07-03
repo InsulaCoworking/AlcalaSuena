@@ -70,7 +70,7 @@ def signup(request):
         form = BandForm(initial={'is_new': True})
         members_formset = members_factory()
 
-    categories = Tag.objects.all()
+    categories = Tag.objects.current()
 
     return render(request, 'contest/form.html', {
         'categories': categories,
@@ -139,7 +139,7 @@ def contest_entries_list(request):
         response['Vary'] = 'Accept'
         return response
     else:
-        params['tags'] = Tag.objects.all()
+        params['tags'] = Tag.objects.current()
         return render(request, 'contest/list.html', params)
 
 
@@ -229,7 +229,7 @@ def contest_jury_list(request):
         response['Vary'] = 'Accept'
         return response
     else:
-        params['tags'] = Tag.objects.all()
+        params['tags'] = Tag.objects.current()
         return render(request, 'contest/jury_list.html', params)
 
 

@@ -40,7 +40,6 @@
                     <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}>
                     <p>
                     {{event.venue.name}}<br>
-                        <a class="btn btn-primary btn-lg" href="{% url 'venue_detail' pk=event.venue.pk %}" role="button">Ver escenario</a>
                     </p>
                 </div></div>
         </div>

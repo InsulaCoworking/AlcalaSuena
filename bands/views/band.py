@@ -13,7 +13,7 @@ from bands.models import Event, Tag, Band, BandToken
 def bands_list(request):
 
     bands = list(Band.objects.all())
-    tags = Tag.objects.all()
+    tags = Tag.objects.current()
     random.shuffle(bands)
     return render(request, 'band/list.html', {
         'bands': bands, 'tags': tags

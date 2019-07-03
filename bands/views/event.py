@@ -54,7 +54,7 @@ def timetable2(request):
 
     events_byday = Event.objects.dates('day', 'day')
     venues = Venue.objects.all().order_by('-name')
-    tags = Tag.objects.all()
+    tags = Tag.objects.current()
     days = []
     for day in events_byday:
         daydate = {
