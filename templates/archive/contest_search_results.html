@@ -1,0 +1,20 @@
+<div class="clearfix row auto-clear" {% if ajax_url %} data-ajax-url="{{ajax_url}}" {% endif %}>
+    {% if bands %}
+        {% for band in bands %}
+        <div class="{% if bigger %} col-sm-6 col-md-6 col-md-6 {% else %} col-sm-6 col-md-4 col-lg-4 {% endif %} resume-card-container">
+          <a href="{% url 'archive:contest_band_detail' year=year pk=band.pk%}" class="resume_link" data-id="{{band.pk}}"  title="{{band.name}}" style="border-color:{{band.tag.color}}">
+              {% include 'archive/resume_card.html' with band=band %}
+          </a>
+        </div>
+         {% endfor %}
+
+    {% else %}
+        <div class="col-sm-12 large-padding top-padding margin-top text-center">
+            <i class="fa fa-warning fa-2x" aria-hidden="true"></i><br><br>
+            No hay ninguna banda con los criterios de búsqueda actuales...
+        </div>
+
+    {% endif %}
+</div>
+
+{% include 'common/pagination.html' with page=bands %}

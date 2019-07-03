@@ -28,7 +28,7 @@ def contest_entries_list(request, year):
         if entry_query:
             bands = bands.filter(entry_query)
 
-    paginator = Paginator(bands, 9)
+    paginator = Paginator(bands, 2)
     page = request.GET.get('page')
     try:
         bands = paginator.page(page)
@@ -40,22 +40,23 @@ def contest_entries_list(request, year):
         bands = paginator.page(paginator.num_pages)
 
     params = {
-        'ajax_url': reverse('contest_entries_list'),
+        'ajax_url': reverse('archive:contest', kwargs={'year':year}),
         'year':year,
         'query_string': query_string,
         'band_count': band_count,
         'bands': bands,
         'page': page
     }
+    print params['ajax_url']
 
     if request.is_ajax():
-        response = render(request, 'contest/search_results.html', params)
+        response = render(request, 'archive/contest_search_results.html', params)
         response['Cache-Control'] = 'no-cache'
         response['Vary'] = 'Accept'
         return response
     else:
         params['tags'] = Tag.objects.all()
-        return render(request, 'contest/list.html', params)
+        return render(request, 'archive/contest_list.html', params)
 
 
 def contest_band_detail(request, year, pk):
@@ -63,10 +64,11 @@ def contest_band_detail(request, year, pk):
 
     view_data = {
         'band': band,
-        'view': request.GET.get('view', None)
+        'view': request.GET.get('view', None),
+        'year': year,
     }
 
-    return render(request, 'contest/band_detail.html', view_data )
+    return render(request, 'archive/band_detail.html', view_data )
 
 
 def bands_list(request, year):
@@ -81,21 +83,23 @@ def bands_list(request, year):
 def band_detail(request, year, pk):
     band = get_object_or_404(Band, pk=pk)
     events = Event.objects.filter(band=band)
-    return render(request, 'band/detail.html', {
+    return render(request, 'archive/band_detail.html', {
         'band': band,
+        'year':year,
         'events': events,
         'view': request.GET.get('view', None)
     })
 
 
-
 def timetable(request, year):
 
-    events_byday = Event.objects.filter(band__archived=True, band__archive_year=year).dates('day', 'day'),
+    events_byday = Event.objects.filter(band__archived=True, band__archive_year=year).dates('day', 'day')
     venues = Venue.objects.all().order_by('-name')
     tags = Tag.objects.all()
     days = []
+    print events_byday
     for day in events_byday:
+        print day
         daydate = {
             'day': day,
             'venues': venues,
@@ -104,10 +108,11 @@ def timetable(request, year):
         daydate['events'].sort(helpers.order_latenight)
         days.append(daydate)
 
-    return render(request, 'timetable2.html', {
+    return render(request, 'archive/timetable.html', {
                     'days': days,
                     'tags':tags,
                     'venues':venues,
+                    'year':year,
                     'num_days': len(days),
                   })
 

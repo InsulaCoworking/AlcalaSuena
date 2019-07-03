@@ -59,7 +59,9 @@
                   <ul class="nav navbar-nav">
 
                     <li class=""><a href="{% url 'index' %}"><i class="fa fa-chevron-left"></i> Volver a inicio</a></li>
-                      <li class="active"><a href="#">Alcalá Suena {{year}} (Archivo)</a></li>
+                      <li class="active"><a href="{% url 'archive:index' year %}">Alcalá Suena {{year}} (Archivo)</a></li>
+                      <li class=""><a href="{% url 'archive:bands_list' year %}">Bandas</a></li>
+                      <li class=""><a href="{% url 'archive:contest' year %}">Concurso</a></li>
                   </ul>
           </div>
         </nav>

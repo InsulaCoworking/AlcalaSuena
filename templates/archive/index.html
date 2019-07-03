@@ -23,7 +23,7 @@
 
 {% if CONTEST_CLOSED %}
 <div class="container" style="margin-bottom:4em;">
-    {% include "lineup/main.html"  %}
+    {% include "archive/lineup.html"  %}
 </div>
 {% endif %}
 
@@ -37,7 +37,7 @@
 
                 <div class="row">
                     <div class="col-sm-4"><a href="{% url 'archive:bands_list' year %}" class="btn btn-block btn-primary btn-lg">Bandas</a></div>
-                    <div class="col-sm-4"><a href="{% url 'archive:contest_entries_list' year %}" class="btn btn-block btn-primary red btn-lg">Concurso</a> </div>
+                    <div class="col-sm-4"><a href="{% url 'archive:contest' year=year %}" class="btn btn-block btn-primary red btn-lg">Concurso</a> </div>
                     <div class="col-sm-4"><a href="{% url 'archive:timetables' year %}" class="btn btn-block btn-primary btn-lg">Horarios</a></div>
                 </div>
 

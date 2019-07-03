@@ -1,0 +1,87 @@
+{% extends "archive/base.html" %}
+{% load staticfiles %}
+{% load chunks %}
+{% block title %}Alcalá Suena 2019 - Horarios{% endblock%}
+
+{% block extra_styles %}
+<link href="{% static "css/jquery.skedTape.css" %}?v=26" rel="stylesheet"/>
+{% endblock extra_styles %}
+
+{% block content %}
+
+<div class="jumbo-header" >
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Horarios</h1>
+      </div>
+    </div>
+</div>
+<div class="header-bar"></div>
+
+<div class="card main timetable" style="max-width:100%;">
+
+    <div class="container tag-legend">
+        {%for tag in tags %}
+        <div class="pull-left"><div class="tag-point" style="background-color:{{tag.color}}" data-tag="{{tag.id}}"></div> {{tag.name}}</div>
+        {% endfor %}
+    </div>
+
+    {% for day in days %}
+    <div class="container">
+    <h3>{{day.day}}</h3>
+    </div>
+    <div class="">
+        <div id="sked-{{forloop.counter}}"></div>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock%}
+
+{% block scripts %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static "js/jquery.skedTape.js" %}?v=23"></script>
+<script type="text/javascript">
+
+{% for day in days %}
+
+    var events{{forloop.counter}} = [
+            {% for event in day.events %}
+                {
+                    name: '{{event.band}}',
+                    location: {{event.venue.pk}},
+                    url: '{% url 'band_detail' event.band.pk %}',
+                    start: {{ event|js_date }} ,
+                    data: {tagcolor: '{{event.band.tag.color}}'},
+                    end: {{ event|js_date:'end' }}
+                }
+                {% if not forloop.last %},{% endif %}
+            {% endfor %}
+    ];
+
+$('#sked-{{forloop.counter}}').skedTape({
+    caption: '',
+    minGapTime:10000,
+    maxGapTime:1000,
+
+    start: {% if day.events %}{{day.events.0|js_date}}{% else %}{{ day.day|js_date:12}}{% endif %},
+    {% with day.events|last as last %}
+        end: {{last|js_date:'end'}},
+    {% endwith %}
+
+    showEventTime: true,     // Whether to show event start-end time
+    showDates:false,
+    showEventDuration: false, // Whether to show event duration
+    locations: [
+        {% for venue in venues %}
+            {id: {{venue.pk}}, name: '{{venue}}'} {% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+    tzOffset:0,
+    events: events{{forloop.counter}}
+});
+{% endfor %}
+</script>
+
+{% endblock %}
