@@ -28,7 +28,7 @@ def contest_entries_list(request, year):
         if entry_query:
             bands = bands.filter(entry_query)
 
-    paginator = Paginator(bands, 2)
+    paginator = Paginator(bands, 9)
     page = request.GET.get('page')
     try:
         bands = paginator.page(page)

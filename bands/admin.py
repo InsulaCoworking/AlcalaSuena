@@ -2,14 +2,13 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from django.contrib.admin import SimpleListFilter
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+from archive.admin import ArchiveFilter
 from bands.models import Band, Venue, Event, Tag, BandToken, Settings
 from bands.models.billing_info import BillingInfo
 from bands.models.news import News
-
 
 admin.site.register(Venue)
 admin.site.register(Event)
@@ -20,26 +19,6 @@ admin.site.register(News)
 admin.site.register(BillingInfo)
 
 
-class ArchiveFilter(SimpleListFilter):
-  title = 'Archivada' # a label for our filter
-  parameter_name = 'archive' # you can put anything here
-
-  def lookups(self, request, model_admin):
-    # This is where you create filter options; we have two:
-    return [
-        ('archived', 'Archivadas'),
-        ('not_archived', 'No archivadas'),
-    ]
-
-  def queryset(self, request, queryset):
-    # This is where you process parameters selected by use via filter options:
-    if self.value() == 'archived':
-        # Get websites that have at least one page.
-      return queryset.distinct().filter(archived=True)
-
-    if self.value():
-        # Get websites that don't have any pages.
-        return queryset.distinct().filter(archived=False)
 
 
 class BandAdmin(admin.ModelAdmin):
