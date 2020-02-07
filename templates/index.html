@@ -7,7 +7,7 @@
     <div class="jumbo-header home" >
         <div class="jumbotron">
           <div class="container text-center">
-              <img class="img-responsive" src="{% static "img/logo2019.png" %}">
+              <img class="img-responsive" style="max-width:85%;" src="{% static "img/logo2020.png" %}">
               <!--<a class="showmore smoothscroll" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>-->
           </div>
         </div>
@@ -128,7 +128,7 @@
             <div class="col-sm-12 text-center">
                 <h2>¿Tienes una banda?</h2>
                 <p class="lead "><span>
-                ¿Quieres tocar en <strong>Alcalá Suena 2019</strong> ?<br> Ya está abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas que actúen en el festival.</span></p>
+                ¿Quieres tocar en <strong>Alcalá Suena 2020</strong> ?<br> Ya está abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas que actúen en el festival.</span></p>
                 <a href="{% url 'contest_signup' %}" class="btn btn-primary btn-lg">Inscríbete!</a>
             </div>
             {% else %}
@@ -140,7 +140,7 @@
             <div class="col-sm-6 text-center">
 
             <h2> CONCURSO</h2>
-                <p class="lead"> <span>Durante el mes de marzo se ha estado realizando un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
+                <p class="lead"> <span>Durante el mes de febrero se ha estado realizando un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
                 {% if CONTEST_CLOSED %}
                     <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
                 {% else %}
