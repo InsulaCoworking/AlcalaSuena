@@ -60,7 +60,7 @@
 
                   {% if CONTEST_ACTIVE %}
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
-                      <!--<li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>-->
+                      <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
                   {% endif %}
 
                   {% if CONTEST_CLOSED %}
