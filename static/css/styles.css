@@ -326,6 +326,23 @@ body{
     background-attachment: fixed;
 }
 
+.body-bg{
+    background-color: #dadada;
+    background: -moz-linear-gradient(top, #da225c 0%, #e56154 48%, #fcbd1c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #da225c 0%,#e56154 48%,#fcbd1c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #da225c 0%,#e56154 48%,#fcbd1c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#da225c', endColorstr='#fcbd1c',GradientType=0 );
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size:cover;
+    position:fixed;
+    width:100%;
+    height:100vh;
+    top:0;
+    left:0;
+}
+
+
 .header-bar{
     background-color: #d93357;
 
