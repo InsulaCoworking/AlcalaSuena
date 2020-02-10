@@ -1179,18 +1179,18 @@ body.snapshot .header-band .col-sm-6{ margin-bottom:-5px;}
     margin:3em 0;
 }
 a.lineup-band{
-    color:#d93357;
+    color:#8c0b3b;
     text-decoration:none;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.4), -1px 2px 2px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.4), -1px 2px 2px rgba(#fae5b5,0.3);
     transition: text-shadow 0.5s;
 }
 
 .lineup-line:nth-child(odd) a.lineup-band:nth-child(odd) {
-    color:#111 !important;
+    color:#fae5b5 !important;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 }
 .lineup-line:nth-child(even) a.lineup-band:nth-child(even) {
-    color:#111 !important;
+    color:#fae5b5 !important;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 }
 a.lineup-band:hover{
