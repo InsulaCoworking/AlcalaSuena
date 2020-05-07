@@ -54,6 +54,37 @@
             {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
             {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
             {% include 'common/social_links.html' with obj=band %}
+
+            {% if perms.contest.can_mange_jury %}
+
+                {% if band.has_local_members %}
+
+                    <i class="fa fa-2x fa-check-square-o" aria-hidden="true"></i>  <span class="lead">Algún miembro es de Alcalá.</span>
+
+                    {{ band.local_member_docs }}
+
+               {% else %}
+
+                    <i class="fa fa-2x fa-square-o" aria-hidden="true"></i> <span class="lead"> Ningún miembro es de Alcalá. </span>
+                {% endif %}
+
+                <h3>Miembros</h3>
+             <div class="panel" style="margin:auto;">
+
+                <div class="panel-body">
+                {% for member in band.Miembros.all %}
+                    <strong>Nombre:</strong> {{member.full_name}}<br>
+                        <strong>DNI:</strong> {{member.dni}}<br>
+                        {%if member.is_underage %}
+                        <i class="fa fa-child" aria-hidden="true"></i> Menor de edad
+                        {% else %}
+                        <i class="fa fa-male" aria-hidden="true"></i> Mayor de edad
+                        {% endif %}
+                    <hr>
+                {% endfor %}
+                </div>
+             </div>
+            {% endif %}
         </div>
         <div class="col-md-5">
             {% if band.embed_code %} <div class="embed">{% create_embed band.embed_code %} </div>{% endif %}
@@ -64,11 +95,12 @@
                 {{band.contact_phone1}}<br>
                 {{band.contact_phone2}}
 
-            {% if band.rider_doc %}
-                <h3>Rider técnico</h3>
 
-            <a href="{{band.rider_doc.url}}" target="_blank" class="btn btn-primary red btn-lg"><span><i class="fa fa-download" aria-hidden="true"></i>  Descargar archivo</span></a>
-            {% endif %}
+                {% if band.rider_doc %}
+                    <h3>Rider técnico</h3>
+
+                <a href="{{band.rider_doc.url}}" target="_blank" class="btn btn-primary red btn-lg"><span><i class="fa fa-download" aria-hidden="true"></i>  Descargar archivo</span></a>
+                {% endif %}
                 <h3>Concurso</h3>
                 <strong>Nombre interesado</strong><br>
                 {{band.receiver_fullname}}<br><br>
