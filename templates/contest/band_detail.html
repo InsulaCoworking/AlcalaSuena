@@ -95,16 +95,21 @@
                 {{band.receiver_fullname}}<br><br>
                 <strong>Documento identidad interesado</strong><br>
                 {{band.receiver_cif}}<br>
-
+                <br>
                 {% if band.has_local_member %}
 
-                    <i class="fa fa-2x fa-check-square-o" aria-hidden="true"></i>  <span class="lead">Algún miembro es de Alcalá.</span>
+                    <i class="fa fa-2x fa-check-square-o" aria-hidden="true"></i>  <span class="">Algún miembro es de Alcalá.</span>
+                    {% if band.local_member_docs %}
+                        <a href="{{band.local_member_docs.url}}" target="_blank" class="btn btn-primary red btn-lg"><span><i class="fa fa-download" aria-hidden="true"></i>  Descargar prueba</span></a>
 
-                    {{ band.local_member_docs }}
+                    {% else %}
+                    <br>
+                    No ha incluido documento de prueba.
+                    {% endif %}
 
                {% else %}
 
-                    <i class="fa fa-2x fa-square-o" aria-hidden="true"></i> <span class="lead"> Ningún miembro es de Alcalá. </span>
+                    <i class="fa fa-2x fa-square-o" aria-hidden="true"></i> <span class=""> Ningún miembro es de Alcalá. </span>
                 {% endif %}
 
             {% endif %}
