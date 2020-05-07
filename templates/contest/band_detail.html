@@ -57,17 +57,6 @@
 
             {% if perms.contest.can_mange_jury %}
 
-                {% if band.has_local_members %}
-
-                    <i class="fa fa-2x fa-check-square-o" aria-hidden="true"></i>  <span class="lead">Algún miembro es de Alcalá.</span>
-
-                    {{ band.local_member_docs }}
-
-               {% else %}
-
-                    <i class="fa fa-2x fa-square-o" aria-hidden="true"></i> <span class="lead"> Ningún miembro es de Alcalá. </span>
-                {% endif %}
-
                 <h3>Miembros</h3>
              <div class="panel" style="margin:auto;">
 
@@ -106,6 +95,17 @@
                 {{band.receiver_fullname}}<br><br>
                 <strong>Documento identidad interesado</strong><br>
                 {{band.receiver_cif}}<br>
+
+                {% if band.has_local_member %}
+
+                    <i class="fa fa-2x fa-check-square-o" aria-hidden="true"></i>  <span class="lead">Algún miembro es de Alcalá.</span>
+
+                    {{ band.local_member_docs }}
+
+               {% else %}
+
+                    <i class="fa fa-2x fa-square-o" aria-hidden="true"></i> <span class="lead"> Ningún miembro es de Alcalá. </span>
+                {% endif %}
 
             {% endif %}
         </div>
