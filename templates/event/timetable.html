@@ -8,13 +8,13 @@
         <meta name="twitter:site" content="@aemusica">
         <meta name="twitter:title" content="Horarios - Alcalá Suena: Fiesta de la Música 2020">
         <meta name="twitter:description" content="Todos los conciertos durante Alcalá Suena: Fiesta de la Música 2020">
-        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner2020_2.jpg" %}{% endif %}">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner2020.jpg" %}{% endif %}">
 
         <meta property="og:url" content="{{request.build_absolute_uri}}" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Horarios - Alcalá Suena: Fiesta de la Música 2020" />
         <meta property="og:description" content="Todos los conciertos durante Alcalá Suena: Fiesta de la Música 2020" />
-        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner2020_2.jpg" %}{% endif %}" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if venue.image %}{{venue.image.url}}{% else %}{% static "img/logo_banner2020.jpg" %}{% endif %}" />
 {% endblock %}
 
 {% block bodyattrs %}class="venue"{% endblock%}
