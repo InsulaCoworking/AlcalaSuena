@@ -33,6 +33,7 @@
     <div class="container">
          {%if band.profile_image %}<div class="profile-circle"> <img src="{{band.profile_image.url}}"></div>{% endif %}
 
+    {% if SCHEDULE_ACTIVE %}
     {% for event in events %}
         <div class="row">
             <div class="col-sm-6"><span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l, d F" }}</span></div>
@@ -44,8 +45,9 @@
                     </p>
                 </div></div>
         </div>
-            {% endfor %}
-        </div>
+    {% endfor %}
+    {% endif %}
+    </div>
 </div>
 
 <div class="container">
