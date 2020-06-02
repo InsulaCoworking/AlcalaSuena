@@ -87,7 +87,7 @@
             <select class="form-control select2" id="day" name="day">
                 <option value="">Cualquier día</option>
                 {% for day in days %}
-                <option value="{{day|date:"Y-m-d"}}">{{ day|date:"l, d F" }}</option>
+                <option value="{{day|date:"Y-m-d"}}">{{ day|date:"l" }}</option>
                 {% endfor %}
             </select>
           </div>

@@ -8,13 +8,13 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@aemusica">
         <meta name="twitter:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2020">
-        <meta name="twitter:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}">
+        <meta name="twitter:description" content="{{ events.first.day|date:"l" }}, {{events.first.time}} - {{events.first.venue.name}}">
         <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner2020.jpg" %}{% endif %}">
 
         <meta property="og:url" content="{{request.build_absolute_uri}}" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2020" />
-        <meta property="og:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}" />
+        <meta property="og:description" content="{{ events.first.day|date:"l" }}, {{events.first.time}} - {{events.first.venue.name}}" />
         <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner2020.jpg" %}{% endif %}" />
 {% endblock %}
 
@@ -35,7 +35,7 @@
 
     {% for event in events %}
         <div class="row">
-            <div class="col-sm-6"><span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l, d F" }}</span></div>
+            <div class="col-sm-6"><span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l" }}</span></div>
                 <div class="col-sm-6"><div class="band-venue" >
                     <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}>
                     <p>

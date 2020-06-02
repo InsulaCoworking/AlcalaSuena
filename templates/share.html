@@ -38,7 +38,7 @@
         <div class="col-xs-3 col-sm-1">
         <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}></div>
         <div class="col-xs-9 col-sm-11">
-        <span class="hour">{{ event.day|date:"l, d F" }} - {{event.time}}</span>
+        <span class="hour">{{ event.day|date:"l" }} - {{event.time}}</span>
         <strong class="band">{{event.band.name}}</strong>
         <span class="band">{{event.venue.name}}</span>
             </div>
