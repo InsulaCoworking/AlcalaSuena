@@ -1,11 +1,13 @@
 # coding=utf-8
 import csv
 import io
+import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from bands import helpers
 from bands.forms.billing_info import BillingForm
 from bands.models import Band
 from bands.models.billing_info import BillingInfo
@@ -50,5 +52,31 @@ def download_csv(request):
 
     response = HttpResponse(output.getvalue(), content_type='application/csv')
     response['Content-Disposition'] = 'attachment; filename="billing.csv"'
+
+    return response
+
+
+@login_required
+def csv_bands(request):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="bands_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    writer = csv.writer(response)
+
+    bands = Band.objects.all()
+    first_row = ['Banda', 'Email', 'Enlaces']
+
+    writer.writerow(first_row)
+
+    for band in bands:
+        media = helpers.get_media_urls(band.embed_media)
+        media.extend(helpers.get_media_urls(band.embed_code))
+
+        results = [band.name.encode('utf-8').strip(), '&&&'.join(media)]
+
+        writer.writerow(results)
 
     return response

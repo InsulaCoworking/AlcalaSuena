@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^bands/$', views.bands_list, name='bands_list'),
     url(r'^bands/(?P<pk>\d+)$', views.band_detail, name='band_detail'),
     url(r'^band/edit/(?P<token>\w+)$', views.edit_band, name='edit_band'),
+    url(r'^bands/csv_bands/$', views.csv_bands, name='csv_bands'),
 
     url(r'^horarios/$', views.all_venues_timetable, name='timetable'),
     url(r'^timetable/$', views.timetable2, name='timetables'),

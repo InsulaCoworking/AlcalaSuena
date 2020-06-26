@@ -90,3 +90,9 @@ def send_template_email(title, destination, template_name, template_params):
         )
     else:
         print 'Email not configured...'
+
+
+def get_media_urls(media_info):
+    url_regex = r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)'
+    return [x.group() for x in re.finditer(url_regex, media_info)]
+
