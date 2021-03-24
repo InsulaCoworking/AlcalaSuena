@@ -328,10 +328,10 @@ body{
 
 .body-bg{
     background-color: #fff5da;
-    background: -moz-linear-gradient(top, #e765af 0%, #df9bb6 48%, #fff5da 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #e765af 0%,#df9bb6 48%,#fff5da 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #e765af 0%,#df9bb6 48%,#fff5da 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e765af', endColorstr='#fff5da',GradientType=0 );
+    background: -moz-linear-gradient(top, #bb4d87 0%, #df9bb6 48%, #f6deaf 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #bb4d87 0%,#df9bb6 48%,#f6deaf 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #bb4d87 0%,#df9bb6 48%,#f6deaf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bb4d87', endColorstr='#f6deaf',GradientType=0 );
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size:cover;
@@ -345,8 +345,7 @@ body{
 
 
 .header-bar{
-    background-color: #e765af;
-
+    background-color: #5d1b4e;
     color: #fff;
     padding: 25px 0;
     font-family: 'Oswald', Helvetica, Arial, Lucida, sans-serif; text-transform:uppercase;
@@ -394,8 +393,9 @@ footer .img-responsive{ max-width:80%; margin:auto; }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form{ border:none;}
 .navbar-brand{ padding-top: 1px; }
 .navbar-brand-text{ color:#fff; line-height:50px; height:50px;}
-.navbar.scrolled, body.visible-bar .navbar{ background-color: #e765af; box-shadow: 0 3px 6px rgba(0,0,0,0.25); z-index:4000;}
-.navbar.scrolled .navbar-nav>li>a, body.visible-bar .navbar-nav>li>a{ color:#111; }
+.navbar.scrolled, body.visible-bar .navbar{ background-color: #5d1b4e; box-shadow: 0 3px 6px rgba(0,0,0,0.25); z-index:4000;}
+.navbar.scrolled .navbar-nav>li>a, body.visible-bar .navbar-nav>li>a{ color:#fafafa; }
+.navbar.scrolled .navbar-nav>li.active>a { color:#5d1b4e; }
 
 @media (max-width: 768px){
 
@@ -441,7 +441,7 @@ a.venue-card:hover{
     height: 70px;
     width: 70px;
     line-height:70px;
-    background-color:#e765af;
+    background-color:#5d1b4e;
     cursor:pointer;
     font-size:30px;
     border-radius:50%;
