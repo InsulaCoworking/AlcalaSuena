@@ -10,21 +10,21 @@
         {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@aemusica">
-        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2020">
+        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2021">
         <meta name="twitter:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad">
-        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2020.jpg" %}">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2021.jpg" %}">
 
         <meta property="og:url" content="{{request.build_absolute_uri}}" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2020" />
+        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2021" />
         <meta property="og:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad" />
-        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2020.jpg" %}" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2021.jpg" %}" />
         {% endblock %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Kodchasan:700|Oswald:400,600|Raleway&display=swap" rel="stylesheet">
-        <link href="{% static "css/styles.css" %}?v=29" rel="stylesheet"/>
+        <link href="{% static "css/styles.css" %}?v=30" rel="stylesheet"/>
         {% block extra_styles %}{% endblock extra_styles %}
 
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
@@ -57,14 +57,16 @@
 
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio</a></li>
+                    <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio </a></li>
 
                   {% if CONTEST_ACTIVE %}
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
-                      <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
+                      {% if not CONTEST_CLOSED %}
+                      <!--<li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>-->
+                      {% endif %}
                   {% endif %}
 
-                  {% if CONTEST_CLOSED %}
+                  {% if not CONTEST_ACTIVE and CONTEST_CLOSED %}
                       <li {% if request.resolver_match.url_name == "bands_list" %}class="active"{% endif %}><a href="{% url 'bands_list' %}">Bandas</a></li>
                       {% if SCHEDULE_ACTIVE %}
                           <li {% if request.resolver_match.url_name == "venues_list" %}class="active"{% endif %}><a href="{% url 'venues_list' %}">Escenarios</a></li>
@@ -72,7 +74,7 @@
                       {% endif %}
                       <li {% if request.resolver_match.url_name == "contest_index" %}class="active"{% endif %}><a href="{% url 'contest_index' %}">Concurso</a></li>
                   {% else %}
-                      <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
+                      <!--<li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>-->
                   {% endif %}
 
                   {% if perms.contest.can_mange_jury %}
@@ -123,7 +125,7 @@
         {% block content %}{% endblock content %}
 
 
-        <img class="img-responsive double-sep" style="max-width:100%;" src="{% static "img/skyline.png" %}?v=3">
+        <img class="img-responsive double-sep" style="max-width:100%;" src="{% static "img/skyline2021.png" %}?v=3">
         <footer>
     <div class="container">
         <div class="row">

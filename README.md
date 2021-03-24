@@ -2,7 +2,7 @@
 
 Aplicación web (Django) para el festival de la música de Alcalá http://www.alcalasuena.es/
 
-![AlcalaSuena](https://raw.githubusercontent.com/InsulaCoworking/AlcalaSuena/master/bands/static/img/logo_banner2020.jpg)
+![AlcalaSuena](https://raw.githubusercontent.com/InsulaCoworking/AlcalaSuena/master/bands/static/img/logo_banner2021.jpg)
 
 Más de 140 conciertos gratuitos en 11 escenarios repartidos por un casco histórico patrimonio
 de la Humanidad. Alcala de Henares se llena de música en un proyecto creado por los artistas

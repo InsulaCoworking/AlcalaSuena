@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load create_embed %}
-{% block title %}{{band.name}} en Alcala Suena 2020{% endblock%}
+{% block title %}{{band.name}} en Alcala Suena 2021{% endblock%}
 {% block bodyattrs %} class="{%if view %}{{view}}{%endif%} light-menu"{% endblock%}
 
 {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@aemusica">
-        <meta name="twitter:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2020">
+        <meta name="twitter:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2021">
         <meta name="twitter:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}">
-        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner2020.jpg" %}{% endif %}">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner2021.jpg" %}{% endif %}">
 
         <meta property="og:url" content="{{request.build_absolute_uri}}" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2020" />
+        <meta property="og:title" content="{{band.name}} - Alcalá Suena: Fiesta de la Música 2021" />
         <meta property="og:description" content="{{ events.first.day|date:"l d F" }}, {{events.first.time}} - {{events.first.venue.name}}" />
-        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner2020.jpg" %}{% endif %}" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{%if band.profile_image %}{{band.profile_image.url}}{% else %}{% static "img/logo_banner2021.jpg" %}{% endif %}" />
 {% endblock %}
 
 {% block extra_styles %}<style> .embed iframe{ width:100% !important; max-width:100%; margin-bottom:1em; } </style>{% endblock extra_styles %}
