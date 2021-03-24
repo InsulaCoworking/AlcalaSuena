@@ -73,8 +73,8 @@ class ContestBand(models.Model):
     validated_by = models.ForeignKey(User, null=True, blank=True, verbose_name='Validado por')
 
     criteria1 = models.BooleanField(default=False, verbose_name='¿El 50% de tus músicos o más tienen menos de 21 años?')
-    criteria2 = models.BooleanField(default=False, verbose_name='¿Has realizado al menos 2 conciertos en los últimos 6 meses?')
-    criteria2_extra = models.TextField(null=True, blank=True, verbose_name='Pega enlaces a alguna referencia web de los dos conciertos (evento en Fb, crónica, anuncio...)')
+    criteria2 = models.BooleanField(default=False, verbose_name='¿Has realizado al menos un concierto en el último año?')
+    criteria2_extra = models.TextField(null=True, blank=True, verbose_name='Pega enlaces a alguna referencia web de los conciertos (evento en Fb, crónica, anuncio...)')
     criteria3 = models.IntegerField(default=0, verbose_name='¿Cuantas mujeres componen tu formación?', choices=CRITERIA3_CHOICES)
 
     criteria4 = models.BooleanField(default=False,
