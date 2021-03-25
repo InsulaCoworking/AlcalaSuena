@@ -356,7 +356,7 @@ body{
 footer{
     margin-top:0;
     padding: 3em 0;
-    background-color: #e765af;
+    background-color: #bb4e87;
     color:#fefefe;
 }
 .lead span{ font-size:0.9em; }
@@ -364,7 +364,7 @@ footer{
 footer .img-responsive{ max-width:80%; margin:auto; }
 .btn.btn-primary{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-    background-color: #40474a;
+    background-color: #660a05;
     border-radius:2px;
     border:none;
     text-transform: uppercase;
@@ -373,7 +373,7 @@ footer .img-responsive{ max-width:80%; margin:auto; }
     margin-bottom:1em;
     font-family: 'Oswald';
 }
-.btn.btn-primary:hover{ background-color: #5e686d; }
+.btn.btn-primary:hover{ background-color: #7e0d45; }
 .btn.btn-primary .fa.left{ margin-right:10px;}
 .btn.btn-primary .fa.right{ margin-left:10px;}
 .btn.btn-primary.red{

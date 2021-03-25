@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Kodchasan:700|Oswald:400,600|Raleway&display=swap" rel="stylesheet">
-        <link href="{% static "css/styles.css" %}?v=31" rel="stylesheet"/>
+        <link href="{% static "css/styles.css" %}?v=32" rel="stylesheet"/>
         {% block extra_styles %}{% endblock extra_styles %}
 
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
@@ -50,7 +50,7 @@
               </button>
               <a class="navbar-brand" href="{% url 'index' %}">
 
-                  <img class="img-responsive" src="{% static "img/icon-logo.png" %}?v=3">
+                  <img class="img-responsive" src="{% static "img/icon-logo.png" %}?v=4">
               </a>
                 <span class="navbar-brand-text hidden-sm hidden-md hidden-lg"></span>
             </div>
@@ -62,7 +62,7 @@
                   {% if CONTEST_ACTIVE %}
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
                       {% if not CONTEST_CLOSED %}
-                      <!--<li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>-->
+                      <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
                       {% endif %}
                   {% endif %}
 
@@ -74,7 +74,7 @@
                       {% endif %}
                       <li {% if request.resolver_match.url_name == "contest_index" %}class="active"{% endif %}><a href="{% url 'contest_index' %}">Concurso</a></li>
                   {% else %}
-                      <!--<li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>-->
+                      <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
                   {% endif %}
 
                   {% if perms.contest.can_mange_jury %}
