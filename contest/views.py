@@ -192,8 +192,11 @@ def contest_jury_list(request):
         if entry_query:
             bands = bands.filter(entry_query)
 
-    paginator = Paginator(bands, 9)
+    if 'tovote' in request.GET:
+        votes = ContestJuryVote.objects.filter(voted_by=request.user).values_list('band',flat=True)
+        bands = bands.exclude(pk__in=votes)
 
+    paginator = Paginator(bands, 9)
 
     page = request.GET.get('page')
     try:
