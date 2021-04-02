@@ -3,7 +3,7 @@
 CONCURSO ALCALÁ SUENA 2021
 
 Hola {{name}},
-Te informamos de que tu inscripción para Alcalá Suena 2021 ha quedado correctamente registrada. Mucha suerte!
+Te informamos de que tu inscripción para Alcalá Suena 2021 ha quedado correctamente registrada. ¡Mucha suerte!
 
 {% url 'contest_band_detail' id as link %}
 {% settings_value 'BASESITE_URL' as basesite %}
