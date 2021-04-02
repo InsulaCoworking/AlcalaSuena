@@ -299,7 +299,8 @@ def contest_csv_votes(request):
     writer.writerow(first_row)
 
     for band in bands:
-        results = [band.name.encode('utf-8').strip(), band.num_members, band.city.encode('utf-8').strip(), band.has_local_member]
+        city = band.city.encode('utf-8').strip() if band.city else ''
+        results = [band.name.encode('utf-8').strip(), band.num_members, city, band.has_local_member]
         results.append(str(band.total_points))
         results.append(str(band.criteria_points))
         results.append(str(band.jury_points))
