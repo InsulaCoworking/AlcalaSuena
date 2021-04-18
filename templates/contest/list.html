@@ -8,7 +8,7 @@
     <div class="jumbotron">
       <div class="container text-center">
         <h1>BANDAS Concursantes</h1>
-        {% if CONTEST_ACTIVE %}
+        {% if CONTEST_ACTIVE and not CONTEST_CLOSED%}
       <p class="description">
             ¿Tienes una banda y aún no te has apuntado a Alcalá Suena 2021?  <a href="{% url 'contest_signup' %}" class="btn-primary btn no-margin">Incríbete</a>
         </p>
