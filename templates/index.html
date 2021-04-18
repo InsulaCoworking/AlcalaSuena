@@ -125,7 +125,7 @@
 
 
         <!--- CONCURSO --->
-        {% if CONTEST_ACTIVE %}
+        {% if CONTEST_ACTIVE and not CONTEST_CLOSED %}
             <div class="col-sm-12 text-center">
                 <h2>¿Tienes una banda?</h2>
                 <p class="lead "><span>
@@ -143,7 +143,7 @@
             <div class="col-sm-6 text-center">
 
             <h2> CONCURSO</h2>
-                <p class="lead"> <span>Durante los meses de febrero y marzo se realizó un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
+                <p class="lead"> <span>Durante los meses de marzo y abril se ha realizado un concurso abierto en el que todas las bandas que quisieran podían inscribirse y participar en Alcalá Suena para su posterior elección por el jurado. </span></p>
                 {% if CONTEST_CLOSED %}
                     <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
                 {% else %}

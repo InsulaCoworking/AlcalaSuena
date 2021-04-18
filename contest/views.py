@@ -35,7 +35,7 @@ def form_success(request):
 
 def signup(request):
 
-    if not settings.CONTEST_ACTIVE:
+    if settings.CONTEST_CLOSED:
         return render(request, 'contest/form_closed.html', {})
 
     members_factory = BandMemberForm.getMembersFormset()
