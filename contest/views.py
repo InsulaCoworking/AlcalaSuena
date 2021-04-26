@@ -333,7 +333,7 @@ def contest_csv_bands(request):
     writer.writerow(first_row)
 
     for band in bands:
-        results = [unicode(band.name).encode('utf-8').strip(), band.contact_email, band.num_members, band.has_local_member]
+        results = [band.name.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.num_members, band.has_local_member]
         writer.writerow(results)
 
     return response
