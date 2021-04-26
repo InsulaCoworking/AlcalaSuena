@@ -324,7 +324,7 @@ def contest_csv_bands(request):
     now = datetime.datetime.now()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="bands_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
-    writer = csv.writer(response)
+    writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
     bands = ContestBand.objects.current()
     first_row = ['Banda', 'Email', 'Miembros', 'Alcalaina',]
