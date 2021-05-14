@@ -440,8 +440,8 @@ def contest_participants_info(request):
             band.name.encode('utf-8').strip(),
             band.city.encode('utf-8').strip() if band.city else '',
             'Si' if band.has_local_member else 'No',
-            band.receiver_fullname.encode('utf-8').strip(),
-            band.receiver_cif.encode('utf-8').strip(),
+            band.receiver_fullname.encode('utf-8').strip() if band.receiver_fullname else '',
+            band.receiver_cif.encode('utf-8').strip() if band.receiver_cif else '',
             band.contact_email.encode('utf-8').strip(),
             band.contact_phone1.encode('utf-8').strip(),
             band.contact_phone2.encode('utf-8').strip() if band.contact_phone2 else '']
