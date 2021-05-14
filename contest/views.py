@@ -400,7 +400,8 @@ def contest_rider_info(request):
     now = datetime.datetime.now()
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="riders_alcalasuena' + now.strftime('%Y%m%d') + '.csv"'
-    writer = csv.writer(response)
+    response.write(u'\ufeff'.encode('utf-8'))
+    writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
     bands = ContestBand.objects.current()
     first_row = ['Banda', 'Num miembros', 'Rider', 'Email', 'Telefono1', 'Telefono2']
@@ -411,7 +412,7 @@ def contest_rider_info(request):
             results = [
                 band.name.encode('utf-8').strip(),
                 band.num_members,
-                '' if not band.rider_doc else band.rider_doc.url,
+                '' if not band.rider_doc else (settings.BASESITE_URL + band.rider_doc.url),
                 band.contact_email.encode('utf-8').strip(),
                 band.contact_phone1.encode('utf-8').strip(),
                 band.contact_phone2.encode('utf-8').strip() if band.contact_phone2 else '']
