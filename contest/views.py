@@ -379,7 +379,14 @@ def contest_receiver_info(request):
 
     for band in bands:
         if Band.objects.filter(name__icontains=band.name).exists():
-            results = [band.name.encode('utf-8').strip(), band.city.encode('utf-8').strip(), 'Si' if band.has_local_member else 'No', band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
+            results = [band.name.encode('utf-8').strip(),
+                       band.city.encode('utf-8').strip() if band.city else '',
+                       'Si' if band.has_local_member else 'No',
+                       band.receiver_fullname.encode('utf-8').strip(),
+                       band.receiver_cif.encode('utf-8').strip(),
+                       band.contact_email.encode('utf-8').strip(),
+                       band.contact_phone1.encode('utf-8').strip(),
+                       band.contact_phone2.encode('utf-8').strip() if band.contact_phone2 else '']
             writer.writerow(results)
 
     return response
@@ -401,7 +408,13 @@ def contest_rider_info(request):
 
     for band in bands:
         if Band.objects.filter(name__icontains=band.name).count() > 0:
-            results = [band.name.encode('utf-8').strip(), band.num_members, '' if not band.rider_doc else band.rider_doc.url, band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
+            results = [
+                band.name.encode('utf-8').strip(),
+                band.num_members,
+                '' if not band.rider_doc else band.rider_doc.url,
+                band.contact_email.encode('utf-8').strip(),
+                band.contact_phone1.encode('utf-8').strip(),
+                band.contact_phone2.encode('utf-8').strip() if band.contact_phone2 else '']
             writer.writerow(results)
 
     return response
@@ -423,7 +436,15 @@ def contest_participants_info(request):
     writer.writerow(first_row)
 
     for band in bands:
-        results = [band.name.encode('utf-8').strip(), band.city.encode('utf-8').strip(), 'Si' if band.has_local_member else 'No', band.receiver_fullname.encode('utf-8').strip(), band.receiver_cif.encode('utf-8').strip(), band.contact_email.encode('utf-8').strip(), band.contact_phone1.encode('utf-8').strip(), band.contact_phone2.encode('utf-8').strip()]
+        results = [
+            band.name.encode('utf-8').strip(),
+            band.city.encode('utf-8').strip() if band.city else '',
+            'Si' if band.has_local_member else 'No',
+            band.receiver_fullname.encode('utf-8').strip(),
+            band.receiver_cif.encode('utf-8').strip(),
+            band.contact_email.encode('utf-8').strip(),
+            band.contact_phone1.encode('utf-8').strip(),
+            band.contact_phone2.encode('utf-8').strip() if band.contact_phone2 else '']
         writer.writerow(results)
 
     return response
