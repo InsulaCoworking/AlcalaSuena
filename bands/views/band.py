@@ -21,7 +21,7 @@ def bands_list(request):
 
 def band_detail(request, pk):
     band = get_object_or_404(Band, pk=pk)
-    events = Event.objects.filter(band=band)
+    events = Event.objects.filter(bands=band)
     return render(request, 'band/detail.html', {
         'band': band,
         'events': events,

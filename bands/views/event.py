@@ -1,9 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import DetailView
 
 from bands import helpers
 from bands.models import Event, Venue, Tag
 
+
+class EventDetail(DetailView):
+    model = Event
+    context_object_name = 'event'
+    template_name = 'event/detail.html'
 
 def timetable(request):
     if not request.user.has_perm('contest.can_mange_jury'):

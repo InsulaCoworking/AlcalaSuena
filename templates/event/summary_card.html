@@ -1,6 +1,6 @@
-<a class="card band-event" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
+<a class="card band-event" href="{% url 'event_detail' pk=event.pk %}" style="background-color:{{event.band.tag.color}}">
     <span class="hour">{{event.time}}</span>
-    <span class="band">{{event.band.name}}</span>
+    <span class="band">{{event}}</span>
     {% if show_venue %}
     <span class="venue">{{event.venue.name}}</span>
     {% endif %}

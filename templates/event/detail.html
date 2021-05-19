@@ -24,42 +24,39 @@
 <div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
     <div class="jumbotron">
       <div class="container text-center">
-        <h1>{{band.name}}</h1>
+        <h1>{{event}}</h1>
         <p class="description">{{band.tag.name}}</p>
       </div>
     </div>
 </div>
 <div class="header-bar text-center header-band profile">
-    <div class="container">
-         {%if band.profile_image %}<div class="profile-circle"> <img src="{{band.profile_image.url}}"></div>{% endif %}
-
-    {% if SCHEDULE_ACTIVE %}
-    {% for event in events %}
-        <div class="row">
-            <div class="col-sm-6"><span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l d F" }}</span></div>
-                <div class="col-sm-6"><div class="band-venue" >
+    <div class="row">
+        <div class="col-sm-6">
+         <span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l d F" }}</span>
+        </div>
+        <div class="col-sm-6">
+            <div class="band-venue" >
                     <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}>
                     <p>
                     {{event.venue.name}}<br>
-                        <a class="btn btn-primary btn-lg" href="{% url 'event_detail' pk=event.pk %}" role="button">Ver detalle</a>
+                        <a class="btn btn-primary btn-lg" href="{% url 'venue_detail' pk=event.venue.pk %}" role="button">Ver escenario</a>
                     </p>
-                </div></div>
+                </div>
         </div>
-    {% endfor %}
-    {% endif %}
     </div>
 </div>
 
 <div class="container">
     <div class="row">
+        {% if event.bands.count == 1 %}
+            <div class="col-sm-12">{% include 'band/band_details.html' with band=event.bands.all.0 %}</div>
+        {% else %}
+        {% for band in event.bands.all %}
         <div class="col-sm-6">
-            <p>{{band.description|linebreaks}}</p>
-            {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
-            {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
-            {% include 'common/social_links.html' with obj=band %}
-            {% if band.embed_code %} <div class="embed">{% create_embed band.embed_code %} </div>{% endif %}
+             {% include 'band/band_details.html' with band=band %}
         </div>
-
+        {% endfor %}
+        {% endif %}
         <div class="col-sm-6">
             {% if band.embed_media %} <div class="embed">{% create_embed band.embed_media %} </div> {% endif %}
             {%if band.profile_image %} <img src="{{band.profile_image.url}}" class="img-responsive band-profile-image">{% endif %}

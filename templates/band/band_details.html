@@ -1,0 +1,10 @@
+{% load create_embed %}
+
+<h2>{{band.name}}</h2>
+<p>{{band.description|linebreaks}}</p>
+    {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
+    {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
+    {% include 'common/social_links.html' with obj=band %}
+    {% if band.embed_code %} <div class="embed">{% create_embed band.embed_code %} </div>{% endif %}
+
+ {% if band.embed_media %} <div class="embed">{% create_embed band.embed_media %} </div> {% endif %}

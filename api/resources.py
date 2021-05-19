@@ -53,14 +53,22 @@ class VenueResource(ModelResource):
             return []
 
 class EventResource(ModelResource):
-    band = IntegerField(attribute="band__pk")
+    #band = IntegerField(attribute="band__pk")
 
     class Meta:
-        queryset = Event.objects.filter(band__archived=False)
+        queryset = Event.objects.all()
         include_resource_uri = False
         list_allowed_methods = ['get']
         resource_name = 'events'
         collection_name = 'events'
+
+    def dehydrate(self, bundle):
+        bands = []
+        for band in bundle.obj.bands.all():
+            bands.append(band.pk)
+        print(bands)
+        bundle.data['bands'] = bands
+        return bundle
 
 class SettingsResource(ModelResource):
     class Meta:

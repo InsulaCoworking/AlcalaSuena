@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^band/edit/(?P<token>\w+)$', views.edit_band, name='edit_band'),
     url(r'^bands/csv_bands/$', views.csv_bands, name='csv_bands'),
 
+    url(r'^event/(?P<pk>\d+)/$', views.EventDetail.as_view(), name='event_detail'),
+
     url(r'^horarios/$', views.all_venues_timetable, name='timetable'),
     url(r'^timetable/$', views.timetable2, name='timetables'),
     url(r'^news/add/$', views.add_news, name='add_news'),

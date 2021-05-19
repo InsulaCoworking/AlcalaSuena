@@ -49,11 +49,12 @@
     var events{{forloop.counter}} = [
             {% for event in day.events %}
                 {
-                    name: '{{event.band}}',
+
+                    name: '{{event}}',
                     location: {{event.venue.pk}},
-                    url: '{% url 'band_detail' event.band.pk %}',
+                    url: '{% url 'event_detail' event.pk %}',
                     start: {{ event|js_date }} ,
-                    data: {tagcolor: '{{event.band.tag.color}}'},
+                    data: {tagcolor: '{{event.bands.all.1.tag.color}}'},
                     end: {{ event|js_date:'end' }}
                 }
                 {% if not forloop.last %},{% endif %}
