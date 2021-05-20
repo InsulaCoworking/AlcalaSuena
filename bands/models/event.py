@@ -22,5 +22,5 @@ class Event(UpdateDataVersionMixin, models.Model):
 
     def __unicode__(self):
         if (self.bands.all()):
-            return ' + '.join([str(bandname) for bandname in self.bands.values_list('name', flat=True)])
+            return ' + '.join([bandname for bandname in self.bands.values_list('name', flat=True)])
         return str(self.day)
