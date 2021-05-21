@@ -1,9 +1,15 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView
 
 from bands import helpers
 from bands.models import Event, Venue, Tag
+
+
+def event_detail(request, pk):
+
+    event = get_object_or_404(Event, pk=pk)
+    return redirect('event_detail_slug', pk=pk, slug=event.slug)
 
 
 class EventDetail(DetailView):

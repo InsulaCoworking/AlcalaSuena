@@ -1,4 +1,4 @@
-<a class="card band-event" href="{% url 'event_detail' pk=event.pk %}" style="background-color:{{event.bands.all.0.tag.color}};{%if event.image %}margin-top:55px;{%endif%}">
+<a class="card band-event" href="{% url 'event_detail_slug' pk=event.pk slug=event.slug %}" style="background-color:{{event.bands.all.0.tag.color}};{%if event.image %}margin-top:55px;{%endif%}">
     {%if event.image %}<div class="profile-circle" style="margin:auto;margin-top:-55px;width:75px;height:75px;"> <img src="{{event.image.url}}"></div>{% endif %}
     <span class="hour">{{event.time}}</span>
     <span class="band">{{event}}</span>

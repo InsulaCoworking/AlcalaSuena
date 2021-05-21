@@ -1,5 +1,6 @@
 import math
 from django.db import models
+from django.utils.text import slugify
 from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFit
 
@@ -23,6 +24,10 @@ class Event(UpdateDataVersionMixin, models.Model):
         verbose_name = 'Concierto'
         verbose_name_plural = 'Conciertos'
         ordering = ['day', 'time']
+
+    @property
+    def slug(self):
+        return slugify(str(self))
 
 
     def __unicode__(self):

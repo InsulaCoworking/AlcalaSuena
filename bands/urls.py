@@ -16,10 +16,11 @@ urlpatterns = [
     url(r'^band/edit/(?P<token>\w+)$', views.edit_band, name='edit_band'),
     url(r'^bands/csv_bands/$', views.csv_bands, name='csv_bands'),
 
-    url(r'^event/(?P<pk>\d+)/$', views.EventDetail.as_view(), name='event_detail'),
+    url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
+    url(r'^event/(?P<pk>\d+)/(?P<slug>[-\w\d]+)/$', views.EventDetail.as_view(), name='event_detail_slug'),
 
-    url(r'^horarios/$', views.all_venues_timetable, name='timetable'),
-    url(r'^timetable/$', views.timetable2, name='timetables'),
+    url(r'^horarios/$', views.timetable2, name='timetables'),
+    url(r'^timetable/$', views.timetable2, name='timetable'),
     url(r'^news/add/$', views.add_news, name='add_news'),
 
     url(r'^billing/$', views.billing_form, name='billing'),

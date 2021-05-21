@@ -52,7 +52,7 @@
 
                     name: '{{event}}',
                     location: {{event.venue.pk}},
-                    url: '{% url 'event_detail' event.pk %}',
+                    url: '{% url 'event_detail_slug' event.pk event.slug %}',
                     start: {{ event|js_date }} ,
                     data: {tagcolor: '{{event.bands.all.0.tag.color}}'},
                     end: {{ event|js_date:'end' }}
