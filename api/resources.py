@@ -66,7 +66,6 @@ class EventResource(ModelResource):
         bands = []
         for band in bundle.obj.bands.all():
             bands.append(band.pk)
-        print(bands)
         bundle.data['bands'] = bands
         return bundle
 
