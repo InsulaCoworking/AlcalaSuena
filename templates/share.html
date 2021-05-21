@@ -32,14 +32,14 @@
     <h2>Conciertos</h2>
 </div>
 
-<div class="container">
+<div class="container" style="max-width:520px;">
     {% for event in events %}
-    <a class="card band-event row text-left" href="{% url 'band_detail' pk=event.band.pk %}" style="background-color:{{event.band.tag.color}}">
-        <div class="col-xs-3 col-sm-1">
-        <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{{event.venue.image.url}}')" {% endif %}></div>
-        <div class="col-xs-9 col-sm-11">
+    <a class="card band-event row text-left" href="{% url 'event_detail_slug' pk=event.pk slug=event.slug %}" style="background-color:{{event.bands.all.0.tag.color}}">
+        <div class="col-xs-3 col-sm-2">
+        <img class="venue-image venue-icon" {% if event.venue.image %} style="background-image:url('{% if event.image %}{{event.image.url}}{% else %}{{event.venue.image.url}}{% endif %}')" {% endif %}></div>
+        <div class="col-xs-9 col-sm-10">
         <span class="hour">{{ event.day|date:"l" }} - {{event.time}}</span>
-        <strong class="band">{{event.band.name}}</strong>
+        <strong class="band">{{event}}</strong>
         <span class="band">{{event.venue.name}}</span>
             </div>
     </a>
