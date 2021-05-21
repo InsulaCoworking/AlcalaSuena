@@ -21,7 +21,7 @@
 {% block extra_styles %}<style> .embed iframe{ width:100% !important; max-width:100%; margin-bottom:1em; } </style>{% endblock extra_styles %}
 
 {% block content %}
-<div class="jumbo-header jumbo-band" {% if band.band_image %} style="background-image:url('{{band.band_image.url}}')" {% endif %}>
+<div class="jumbo-header jumbo-band">
     <div class="jumbotron">
       <div class="container text-center">
         <h1>{{event}}</h1>
@@ -30,6 +30,7 @@
     </div>
 </div>
 <div class="header-bar text-center header-band profile">
+    <div class="container">{%if event.image %}<div class="profile-circle"> <img src="{{event.image.url}}"></div>{% endif %}
     <div class="row">
         <div class="col-sm-6">
          <span class="hour">{{event.time}}</span><span class="day">{{ event.day|date:"l d F" }}</span>
@@ -44,9 +45,14 @@
                 </div>
         </div>
     </div>
+        </div>
 </div>
 
 <div class="container">
+    <div class="card">
+
+    </div>
+
     <div class="row">
         {% if event.bands.count == 1 %}
             <div class="col-sm-12">{% include 'band/band_details.html' with band=event.bands.all.0 %}</div>

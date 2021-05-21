@@ -1,7 +1,9 @@
 import math
 from django.db import models
+from imagekit.models import ProcessedImageField
+from pilkit.processors import ResizeToFit
 
-from bands.helpers import LATENIGHT_HOURS
+from bands.helpers import LATENIGHT_HOURS, RandomFileName
 from bands.mixins import UpdateDataVersionMixin
 from bands.models import Band, Venue
 
@@ -13,6 +15,9 @@ class Event(UpdateDataVersionMixin, models.Model):
     time = models.TimeField(null=True, blank=True)
     duration = models.IntegerField(null=True, blank=True, default=60)
     tickets_url = models.TextField(null=True, blank=True, verbose_name="Enlace entradas")
+    image =  ProcessedImageField(null=True, blank=True, upload_to=RandomFileName('event/'),
+                                        processors=[ResizeToFit(512, 512, upscale=False)], format='JPEG',
+                                        verbose_name='Imagen del evento')
 
     class Meta:
         verbose_name = 'Concierto'
