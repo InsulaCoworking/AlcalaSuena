@@ -78,11 +78,11 @@ def search(request):
     day_filter = request.GET.get('day', None)
 
     if band_filter:
-        events = events.filter(band__pk=band_filter)
+        events = events.filter(bands__pk=band_filter)
     if venue_filter:
         events = events.filter(venue__pk=venue_filter)
     if tag_filter:
-        events = events.filter(band__tag__pk=tag_filter)
+        events = events.filter(bands__tag__pk=tag_filter)
     if day_filter:
         events = events.filter(day=day_filter)
 
