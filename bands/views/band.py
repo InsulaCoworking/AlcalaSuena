@@ -28,6 +28,7 @@ def band_detail(request, pk):
         'view': request.GET.get('view', None)
     })
 
+
 def edit_band(request, token):
     token = BandToken.objects.filter(token=token)
     if not token or not token[0].band or (token[0].expiration_date and token[0].expiration_date >= timezone.now()):

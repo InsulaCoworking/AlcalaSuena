@@ -17,6 +17,14 @@ class EventDetail(DetailView):
     context_object_name = 'event'
     template_name = 'event/detail.html'
 
+
+
+class EventPoster(DetailView):
+    model = Event
+    context_object_name = 'event'
+    template_name = 'event/poster_card.html'
+
+
 def timetable(request):
     if not request.user.has_perm('contest.can_mange_jury'):
         return HttpResponse('Unauthorized', status=401)

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{% block title %}AlcalaSuena{% endblock title%}</title>
+        <meta name="description" content="Alcalá de Henares se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico"/>
+        <meta name="google-site-verification" content="N7Xgc8GUS6zcXmex86G3kav1P0osE_GGLKnpcxYv2qI" />
+        {% block social_meta %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@aemusica">
+        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2021">
+        <meta name="twitter:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2021.jpg" %}">
+
+        <meta property="og:url" content="{{request.build_absolute_uri}}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2021" />
+        <meta property="og:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2021.jpg" %}" />
+        {% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan:700|Oswald:400,600|Raleway&display=swap" rel="stylesheet">
+        <link href="{% static "css/styles.css" %}?v=32" rel="stylesheet"/>
+        {% block extra_styles %}{% endblock extra_styles %}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#bb4e87">
+        <meta name="msapplication-TileColor" content="#bb4e87">
+        <meta name="theme-color" content="#bb4e87">
+
+        <style>
+            body{ width:600px; height:600px; margin:auto; border:1px solid #fff; position:relative; overflow:hidden;}
+            .poster{position:absolute;font-family: 'Kodchasan', sans-serif;}
+        </style>
+    </head>
+
+    <body {% block bodyattrs %}{% endblock%}>
+        <div class="body-bg poster" style="height:100%; background-size: cover;background-image:url('{% static "img/bg.jpg" %}');"></div>
+
+        {% block home_header %}{% endblock home_header %}
+
+        {% block content %}{% endblock content %}
+
+<img class="img-responsive double-sep poster" style="max-width:100%;bottom:0px;" src="{% static "img/poster_footer.png" %}?v=3">
+         <span class="poster" style="left:30px;right:40px;font-size:58px;color:#fff;top:20px;line-height:0.8;text-align:right;">{{event}} </span>
+        <div class="profile-circle poster" style="left:-9px;top:120px;width:380px;height:380px;"> <img src="{{event.image.url}}"></div>
+         <span class="poster" style="right: 45px;top: 410px;font-size: 50px;text-transform:uppercase;">{{ event.day|date:"j F" }}</span>
+         <span class="poster" style="right: 45px;top: 378px;font-size: 35px;text-transform:uppercase;color:#fff;">{{ event.day|date:"l" }}</span>
+        <span class="poster" style="right: 45px;top: 320px;font-size: 48px;color:#bb4e87">{{event.time}} </span>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static "js/scripts.js" %}?v=23"></script>
+    {% block scripts %}{% endblock scripts %}
+
+    </body>
+</html>

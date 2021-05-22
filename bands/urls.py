@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^band/edit/(?P<token>\w+)$', views.edit_band, name='edit_band'),
     url(r'^bands/csv_bands/$', views.csv_bands, name='csv_bands'),
 
+    url(r'^p/(?P<pk>\d+)/$', views.EventPoster.as_view(), name='event_detail'),
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
     url(r'^event/(?P<pk>\d+)/(?P<slug>[-\w\d]+)/$', views.EventDetail.as_view(), name='event_detail_slug'),
 
