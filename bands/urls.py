@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^p/(?P<pk>\d+)/$', views.EventPoster.as_view(), name='event_detail'),
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
     url(r'^event/(?P<pk>\d+)/(?P<slug>[-\w\d]+)/$', views.EventDetail.as_view(), name='event_detail_slug'),
+    url(r'^event/csv_events/$', views.csv_events, name='csv_events'),
 
     url(r'^horarios/$', views.timetable2, name='timetables'),
     url(r'^timetable/$', views.timetable2, name='timetable'),

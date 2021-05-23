@@ -1,5 +1,11 @@
+import csv
+import datetime
+
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.views.generic import DetailView
 
 from bands import helpers
@@ -94,3 +100,27 @@ def timetable2(request):
                     'venues':venues,
                     'num_days': len(days),
                   })
+
+@login_required
+def csv_events(request):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="events_alcalasuena_' + now.strftime('%Y%m%d') + '.csv"'
+    response.write(u'\ufeff'.encode('utf-8'))
+    writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
+
+    events = Event.objects.all()
+    first_row = ['Concierto', 'Escenario', 'Dia', 'Hora', 'URL', 'imagen']
+
+    writer.writerow(first_row)
+
+    for event in events:
+        url = settings.BASESITE_URL + reverse('event_detail_slug', kwargs={ 'pk':event.pk, 'slug':event.slug})
+        image_url = (settings.BASESITE_URL + event.image.url) if event.image else ''
+        results = [str(event).strip(), event.venue.name.encode('utf-8').strip(), str(event.day), str(event.time), url, image_url]
+        writer.writerow(results)
+
+    return response
