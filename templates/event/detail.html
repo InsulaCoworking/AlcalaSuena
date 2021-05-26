@@ -49,9 +49,13 @@
 </div>
 
 <div class="container">
-    <div class="card">
-
+    {% if event.tickets_url %}
+    <div class="card main text-center" style="max-width:450px;margin:auto;margin-top:-3.8em;">
+        Por normativa sanitaria, este año hay que cumplir medidas especiales de aforo y reservar las entradas previamente para
+        cada concierto.<br><br>
+        <a class="btn btn-primary btn-lg" href="{{event.tickets_url}}" target="_blank" role="button">Reservar entradas <i class="fa fa-external-link" aria-hidden="true"></i></a>
     </div>
+    {% endif %}
 
     <div class="row">
         {% if event.bands.count == 1 %}
