@@ -2,6 +2,9 @@
 
 # Register your models here.
 from django.contrib.admin import SimpleListFilter
+from django.contrib import admin
+
+from archive.models import ArchivedYear
 
 
 class ArchiveFilter(SimpleListFilter):
@@ -24,3 +27,5 @@ class ArchiveFilter(SimpleListFilter):
     if self.value():
         # Get websites that don't have any pages.
         return queryset.distinct().filter(archived=False)
+
+admin.site.register(ArchivedYear)
