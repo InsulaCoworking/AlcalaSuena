@@ -14,7 +14,7 @@ mots-vides==2015.5.11
 mysqlclient==1.3.4
 olefile==0.44
 pilkit==2.0
-Pillow==4.2.1
+Pillow==8.3.2
 pyparsing==2.2.0
 python-dateutil==2.6.1
 python-mimeparse==1.6.0
