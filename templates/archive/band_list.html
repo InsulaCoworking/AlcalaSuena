@@ -1,6 +1,6 @@
 {% extends "archive/base.html" %}
 {% load staticfiles %}
-{% block title %}Bandas - Alcala Suena 2021{% endblock%}
+{% block title %}Bandas - Alcala Suena 2022{% endblock%}
 {% load chunks %}
 
 {% block content %}
@@ -28,7 +28,7 @@
         {% for band in bands %}
         <div class="mosaicflow__item {{band.tag.id}}">
           <a href="{% url 'archive:band_detail' year=year pk=band.pk%}" class="band_link" title="{{band.name}}" style="border-color:{{band.tag.color}}">
-              <img src="{% if band.band_image %}{{band.band_image.url}}{%else%}{%static "img/band-header2021.jpg"%}{%endif%}" alt="{{band.name}}">
+              <img src="{% if band.band_image %}{{band.band_image.url}}{%else%}{%static "img/band-header2022.jpg"%}{%endif%}" alt="{{band.name}}">
               <span>{{band.name}} <span class="style">{{band.genre}}</span> </span>
           </a>
         </div>
