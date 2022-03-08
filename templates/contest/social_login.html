@@ -14,16 +14,12 @@
 <div class="container card main">
 
     {% csrf_token %}
-    <p class="lead text-center">Para votar a alguna banda en el concurso de Alcalá Suena 2022 tienes que acceder a través de alguna red social:</p>
+    <p class="lead text-center">Para votar a alguna banda en el concurso de Alcalá Suena 2022 tienes que registrarte! Puedes introducir tus datos manualmente o acceder a través de alguna red social:</p>
     <br>
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-primary btn-twitter btn-block"><i class="fa fa-twitter" aria-hidden="true"></i> Entrar con Twitter</a>
-
-        </div>
-        <div class="col-md-6">
-            <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-facebook btn-block"><i class="fa fa-facebook" aria-hidden="true"></i> Entrar con Facebook</a>
-        </div>
+    <div class="mt-2" style="max-width:250px;margin:auto;">
+        <a href="{% url 'register' %}" class="btn btn-primary btn-facebook red btn-block"> Registrarme</a>
+         <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-facebook btn-block"><i class="fa fa-facebook" aria-hidden="true"></i> Entrar con Facebook</a>
+       <!-- <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-primary btn-twitter btn-block"><i class="fa fa-twitter" aria-hidden="true"></i> Entrar con Twitter</a> -->
     </div>
     <br><br>
 </div>

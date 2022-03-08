@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^billing/$', views.billing_form, name='billing'),
     url(r'^billing/list/$', views.billing_list, name='billing'),
     url(r'^billing/download/$', views.download_csv, name='download_csv'),
+
+    url(r'^register/$', views.SignUpView.as_view(), name='register'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
 ]

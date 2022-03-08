@@ -33,6 +33,7 @@ def privacy_policy(request):
 def form_success(request):
     return render(request, 'contest/form_success.html', {})
 
+
 def signup(request):
 
     if settings.CONTEST_CLOSED:
@@ -148,9 +149,16 @@ def contest_band_detail(request, pk):
 
     view_data = {
         'band': band,
+        'num_votes': ContestPublicVote.objects.filter(band=band).count(),
         'jury_votes': ContestJuryVote.objects.filter(band=band),
         'view': request.GET.get('view', None)
     }
+
+
+    voted = False
+    if request.user.is_authenticated():
+        voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
+        view_data['voted'] = voted
 
     if request.user.has_perm('contest.can_mange_jury'):
 

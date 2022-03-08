@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth import login
 from django.core import serializers
 from django.forms import model_to_dict
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.views.generic import CreateView
 
 from bands import helpers
 from bands.forms.newsForm import NewsForm
+from bands.forms.signup import SignUpForm
 from bands.models import Event, Venue, Tag, Band
 
 
@@ -135,3 +139,17 @@ def add_news(request):
         'save_success':save_success,
         'form': form,
     })
+
+
+class SignUpView(CreateView):
+    form_class = SignUpForm
+
+    template_name = 'registration/register.html'
+
+    def get_success_url(self):
+        user = self.object
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        user.save()
+
+        login(self.request, self.object)
+        return reverse('contest_entries_list')
