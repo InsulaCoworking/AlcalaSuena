@@ -38,7 +38,9 @@
                 <p class="description">{{band.tag.name}}</p>
             </div>
             <div class="col-md-4">
-                <!-- {% include 'contest/public_vote.html' with obj=band %} -->
+                {% if PUBLIC_VOTE and not CONTEST_CLOSED %}
+                 {% include 'contest/public_vote.html' with obj=band %}
+                {% endif %}
             </div>
         </div>
 

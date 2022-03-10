@@ -9,8 +9,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, Invali
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-# Create your views here.
 from django.urls import reverse
+from django.views.generic import TemplateView
 
 from bands import helpers
 from bands.helpers import get_query
@@ -33,6 +33,9 @@ def privacy_policy(request):
 def form_success(request):
     return render(request, 'contest/form_success.html', {})
 
+
+class PrivacyPolicies(TemplateView):
+    template_name = 'contest/privacy.html'
 
 def signup(request):
 
@@ -154,11 +157,11 @@ def contest_band_detail(request, pk):
         'view': request.GET.get('view', None)
     }
 
-
-    voted = False
-    if request.user.is_authenticated():
-        voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
-        view_data['voted'] = voted
+    if settings.PUBLIC_VOTE:
+        voted = False
+        if request.user.is_authenticated():
+            voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
+            view_data['voted'] = voted
 
     if request.user.has_perm('contest.can_mange_jury'):
 

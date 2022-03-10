@@ -8,4 +8,5 @@ def contest_status(request):
         'APP_VISIBLE': settings.APP_VISIBLE,
         'ARCHIVE_YEARS': settings.ARCHIVE_YEARS,
         'SCHEDULE_ACTIVE':settings.SCHEDULE_ACTIVE,
+        'PUBLIC_VOTE': settings.PUBLIC_VOTE,
     }

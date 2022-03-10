@@ -8,7 +8,7 @@
     <div class="jumbotron">
     </div>
 </div>
-<div class="header-bar text-center "><h2>Login</h2>
+<div class="header-bar text-center "><h2>Registro para voto público</h2>
 </div>
 
 <div class="container card main">
@@ -16,10 +16,11 @@
     {% csrf_token %}
     <p class="lead text-center">Para votar a alguna banda en el concurso de Alcalá Suena 2022 tienes que registrarte! Puedes introducir tus datos manualmente o acceder a través de alguna red social:</p>
     <br>
-    <div class="mt-2" style="max-width:250px;margin:auto;">
+    <div class="mt-2 text-center" style="max-width:250px;margin:auto;">
         <a href="{% url 'register' %}" class="btn btn-primary btn-facebook red btn-block"> Registrarme</a>
          <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-primary btn-facebook btn-block"><i class="fa fa-facebook" aria-hidden="true"></i> Entrar con Facebook</a>
        <!-- <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-primary btn-twitter btn-block"><i class="fa fa-twitter" aria-hidden="true"></i> Entrar con Twitter</a> -->
+        Registrándote a través de redes sociales confirmas que aceptas la <a href="{% url 'privacy' %}"> política de privacidad de este sitio</a>.
     </div>
     <br><br>
 </div>
