@@ -4,13 +4,14 @@ import datetime
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
-from django.urls import reverse
-from django.views.generic import TemplateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import TemplateView, DeleteView
 
 from bands import helpers
 from bands.helpers import get_query
@@ -181,6 +182,38 @@ def contest_band_detail(request, pk):
         band.jury_vote = ContestJuryVote.objects.filter(band=band, voted_by=request.user).first()
 
     return render(request, 'contest/band_detail.html', view_data )
+
+
+class DeleteContestBand(UserPassesTestMixin, DeleteView):
+    model = ContestBand
+    success_url = reverse_lazy('contest_entries_list')
+    template_name = 'contest/band_delete.html'
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteContestBand, self).get_context_data(**kwargs)
+        context['public_votes'] = ContestPublicVote.objects.filter(band=self.object).count()
+        context['similar'] = ContestBand.objects.filter(name__contains=self.object.name[:15]).exclude(pk=self.object.pk)
+        return context
+
+    def delete(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+        target_band = request.POST.get('target_band', None)
+        if target_band:
+            target = ContestBand.objects.get(pk=target_band)
+            for vote in ContestPublicVote.objects.filter(band=self.object):
+                if not ContestPublicVote.objects.filter(band=target, voted_by=vote.voted_by).exists():
+                    vote.band = target
+                    vote.save()
+                else:
+                    vote.delete()
+
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
 
 @login_required
 def contest_jury_list(request):

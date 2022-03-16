@@ -34,17 +34,21 @@
 
         <div class="row">
             <div class="col-md-8">
-                <h1>{{band.name}}</h1>
-                <p class="description">{{band.tag.name}}</p>
+                <h1>{{band.name}} </h1>
+                <p class="description">{{band.tag.name}} </p>
             </div>
             <div class="col-md-4">
-                {% if PUBLIC_VOTE and CONTEST_ACTIVE %}
+
+                <a class="btn btn-primary btn-lg margin-top" href="{% url 'contest_band_delete' band.pk %}">Eliminar</a>
+                {% if PUBLIC_VOTE and CONTEST_ACTIVE and not request.user.is_staff %}
                  {% include 'contest/public_vote.html' with obj=band %}
                 {% endif %}
             </div>
         </div>
 
-        {% if request.user.is_staff %} {% include 'contest/jury_vote.html' with band=band %} {% endif %}
+        {% if request.user.is_staff %}
+            {% include 'contest/jury_vote.html' with band=band %}
+        {% endif %}
     </div>
 
 </div>
