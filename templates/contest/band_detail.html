@@ -38,8 +38,9 @@
                 <p class="description">{{band.tag.name}} </p>
             </div>
             <div class="col-md-4">
-
+                {% if request.user.is_superuser and DELETE_ENABLED %}
                 <a class="btn btn-primary btn-lg margin-top" href="{% url 'contest_band_delete' band.pk %}">Eliminar</a>
+                {% endif %}
                 {% if PUBLIC_VOTE and CONTEST_ACTIVE and not request.user.is_staff %}
                  {% include 'contest/public_vote.html' with obj=band %}
                 {% endif %}

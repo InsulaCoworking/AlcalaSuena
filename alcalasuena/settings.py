@@ -161,5 +161,6 @@ APP_VISIBLE = False
 SCHEDULE_ACTIVE = False
 PUBLIC_VOTE = False
 ARCHIVE_YEARS = []
+DELETE_ENABLED = False
 
 from settings_secret import *

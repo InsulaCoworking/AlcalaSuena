@@ -9,4 +9,5 @@ def contest_status(request):
         'ARCHIVE_YEARS': settings.ARCHIVE_YEARS,
         'SCHEDULE_ACTIVE':settings.SCHEDULE_ACTIVE,
         'PUBLIC_VOTE': settings.PUBLIC_VOTE,
+        'DELETE_ENABLED': settings.DELETE_ENABLED,
     }
