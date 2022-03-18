@@ -107,6 +107,7 @@
 
                                   {% if user.is_superuser %}
                                     <li><a href="{% url 'admin:index' %}"><i class="fa fa-cog right-margin" aria-hidden="true" ></i> Django Admin</a></li>
+                                    <li><a href="{% url 'exports_dashboard' %}"><i class="fa fa-download right-margin" aria-hidden="true" ></i> Exportar datos</a></li>
                                   {% endif %}
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{% url 'logout' %}?next=/"><i class="fa fa-power-off right-margin" aria-hidden="true" ></i> Salir</a></li>

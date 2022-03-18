@@ -1,71 +1,52 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Alcalá Suena 2022 | Eliminar banda{% endblock%}
+{% block title %}Alcalá Suena 2022 | Exportar datos{% endblock%}
 
 {% block content %}
 <div class="jumbo-header" style="background-image:url('{% static "img/band-header2022.jpg" %}')" >
     <div class="jumbotron">
       <div class="container text-center">
-        <h1>Eliminar banda</h1>
+        <h1>Exportar datos</h1>
       </div>
     </div>
 </div>
-<div class="header-bar text-center">
-    <h3>Confirmar</h3>
+<div class="header-bar text-center no-margin">
 </div>
 
 <div class="container main card">
-    <h3></h3>
 
-    <div class="row double-sep">
-        <div class="col-md-4">
-            {% include 'contest/resume_card.html' with band=object %}
-        </div>
-        <div class="col-md-7">
-            <p class=" lead">
-                ¿Estás seguro de que quieres eliminar la siguiente banda participante en el concurso?
-            </p>
-            Se eliminarán de forma permanente los datos de esta banda y los de sus participantes.
-            <br> <strong>Esta acción no es reversible</strong>
-        </div>
-    </div>
+    <div class="panel no-margin" {% if ajax_url %} data-ajax-url="{{ajax_url}}" {% endif %}>
+    <table class="table mb-no">
+    <tbody>
 
-    <h4>La banda actualmente tiene {{public_votes|default:'0'}} votos del público.</h4>
-    <form method="post">
-        {% csrf_token %}
-    {% if public_votes > 0 %}
-        {% if similar %}
-            <p class="lead"> Existen las siguientes bandas con nombres similares al actual. Selecciona una si quieres que los votos
-            del público le sean transferidos.</p>
-        <div class="row">
-            {% for band in similar %}
-            <div class="col-md-4">
-                 <div class="input-group">
-                  <span class="input-group-addon" data-showchange="#criteria6-extra">
-                       <input type="radio" name="target_band" value="{{band.pk}}">
-                </span>
-                    <div class="input-group-text">
-                        <div class="profile-circle small">
-                            <img src="{%if band.profile_image %}{{band.profile_thumbnail.url}}{% else %}{% static "img/pro-icon.png" %}{% endif %}" alt="{{band.name}}">
-                        </div>
-                        <h4 class="profile-title">{{band.name}}</h4>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-            No se ha encontrado ninguna banda con un nombre similar...
-        {% endif %}
-    {% endif %}
-        <p class="text-center double-sep">
-            <input type="submit" value="Eliminar" class="btn btn-primary btn-lg">
-        </p>
+    <tr>
+        <td> <a href="{% url 'csv_bands' %}"> Bandas definitivas </a>
+        </td>
+      </tr>
 
-    </form>
-    <p class="text-center">
+    <tr>
+        <td> <a href="{% url 'contest_csv_votes' %}"> Resultados de votación del jurado </a>
+        </td>
+      </tr>
 
-    </p>
+    <tr>
+        <td> <a href="{% url 'contest_csv_bands' %}"> Bandas participantes del concurso (con email)</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td> <a href="{% url 'contest_receiver_info' %}"> Información de los receptores de premio </a>
+        </td>
+      </tr>
+
+    <tr>
+        <td> <a href="{% url 'contest_riders_info' %}"> Listado de riders de bandas </a>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
 
 </div>
 {% endblock %}
