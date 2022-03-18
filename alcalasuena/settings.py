@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', '10.0.0.52', 'ec2-52-211-39-126.eu-west-1.compute.
 # Application definition
 
 INSTALLED_APPS = [
+    'core',
     'bands',
     'contest',
     'archive',

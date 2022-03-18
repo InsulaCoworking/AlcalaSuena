@@ -20,6 +20,7 @@ from contest.forms.band import BandForm
 from contest.forms.bandmember import BandMemberForm
 from contest.forms.contest_criteria import ContestCriteriaForm
 from contest.models import ContestBand, ContestJuryVote, ContestPublicVote
+from core.mixins import SuperuserRequiredMixin
 
 
 def bases(request):
@@ -184,7 +185,7 @@ def contest_band_detail(request, pk):
     return render(request, 'contest/band_detail.html', view_data )
 
 
-class DeleteContestBand(UserPassesTestMixin, DeleteView):
+class DeleteContestBand(SuperuserRequiredMixin, DeleteView):
     model = ContestBand
     success_url = reverse_lazy('contest_entries_list')
     template_name = 'contest/band_delete.html'
@@ -359,6 +360,7 @@ def contest_csv_votes(request):
         writer.writerow(results)
 
     return response
+
 
 
 

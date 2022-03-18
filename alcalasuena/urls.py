@@ -22,8 +22,10 @@ from api.urls import get_api
 from bands import urls as bands_urls
 from contest import urls as contest_urls
 from archive import urls as archive_urls
+from core import urls as core_urls
 
 urlpatterns = [
+    url(r'^', include(core_urls)),
     url(r'^', include(bands_urls)),
     url(r'^', include(contest_urls)),
     url(r'^admin/', admin.site.urls),

@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
+from archive.models import ArchivedYear
 from bands import helpers
 from bands.helpers import get_query
 from bands.models import Tag, Band, Event, Venue
@@ -14,7 +15,7 @@ from contest.models import ContestBand, ContestJuryVote
 
 
 def contest_entries_list(request, year):
-
+    archive = ArchivedYear.objects.get(archive_year=year)
     bands = ContestBand.objects.archived(year)
     band_count = bands.count()
     tag_filter = request.GET.get('tag', None)
@@ -42,6 +43,7 @@ def contest_entries_list(request, year):
     params = {
         'ajax_url': reverse('archive:contest', kwargs={'year':year}),
         'year':year,
+        'archive': archive,
         'query_string': query_string,
         'band_count': band_count,
         'bands': bands,
@@ -61,9 +63,10 @@ def contest_entries_list(request, year):
 
 def contest_band_detail(request, year, pk):
     band = get_object_or_404(ContestBand, pk=pk)
-
+    archive = ArchivedYear.objects.get(archive_year=year)
     view_data = {
         'band': band,
+        'archive': archive,
         'view': request.GET.get('view', None),
         'year': year,
     }
@@ -72,19 +75,21 @@ def contest_band_detail(request, year, pk):
 
 
 def bands_list(request, year):
-
+    archive = ArchivedYear.objects.get(archive_year=year)
     bands = list(Band.objects.archived(year))
     tags = Tag.objects.all()
     random.shuffle(bands)
-    return render(request, 'archive/band_list.html', {
+    return render(request, 'archive/band_list.html', { 'archive':archive,
         'bands': bands, 'tags': tags, 'year':year
     })
 
 def band_detail(request, year, pk):
+    archive = ArchivedYear.objects.get(archive_year=year)
     band = get_object_or_404(Band, pk=pk)
     events = Event.objects.filter(band=band)
     return render(request, 'archive/band_detail.html', {
         'band': band,
+        'archive': archive,
         'year':year,
         'events': events,
         'view': request.GET.get('view', None)
@@ -92,7 +97,7 @@ def band_detail(request, year, pk):
 
 
 def timetable(request, year):
-
+    archive = ArchivedYear.objects.get(archive_year=year)
     events_byday = Event.objects.filter(band__archived=True, band__archive_year=year).dates('day', 'day')
     venues = Venue.objects.all().order_by('-name')
     tags = Tag.objects.all()
@@ -112,6 +117,7 @@ def timetable(request, year):
                     'days': days,
                     'tags':tags,
                     'venues':venues,
+                    'archive': archive,
                     'year':year,
                     'num_days': len(days),
                   })
@@ -127,11 +133,13 @@ def archive_index(request, year):
     lineup_third = list(Band.objects.archived(year).filter(lineup_order=3))
     lineup_fourth = list(Band.objects.archived(year).filter(lineup_order=4))
 
+    archive = ArchivedYear.objects.get(archive_year=year)
     days = Event.objects.order_by('day').values_list('day', flat=True).distinct()
 
     return render(request, 'archive/index.html', {
         'venues': venues,
         'year':year,
+        'archive': archive,
         'tags':tags,
         'days':days,
         'lineup_first': lineup_first,
