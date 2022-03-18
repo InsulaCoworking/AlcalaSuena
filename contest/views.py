@@ -334,7 +334,7 @@ def contest_csv_votes(request):
     writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
 
     bands = ContestBand.objects.current()
-    first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina', 'Pts total', 'Pts Criterios', 'Pts Jurado']
+    first_row = ['Banda', 'Miembros', 'Procedencia', 'Alcalaina', 'Categoria', 'Estilo', 'Pts total', 'Pts Criterios', 'Pts Jurado']
 
     juries = User.objects.filter(is_staff=True)
     for jury in juries:
@@ -345,6 +345,8 @@ def contest_csv_votes(request):
     for band in bands:
         city = band.city.encode('utf-8').strip() if band.city else ''
         results = [band.name.encode('utf-8').strip(), band.num_members, city, band.has_local_member]
+        results.append(band.tag.name.encode('utf-8'))
+        results.append(band.genre.encode('utf-8').strip() if band.genre else '')
         results.append(str(band.total_points))
         results.append(str(band.criteria_points))
         results.append(str(band.jury_points))
