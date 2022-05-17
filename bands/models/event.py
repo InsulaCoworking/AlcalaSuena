@@ -27,6 +27,19 @@ class Event(UpdateDataVersionMixin, models.Model):
         ordering = ['day', 'time']
 
     @property
+    def has_image(self):
+        return self.image or (self.bands.count() == 1 and self.bands.first().profile_image)
+
+    @property
+    def profile_image(self):
+        if self.image:
+            return self.image
+        else:
+            for band in self.bands.all():
+                if band.profile_image:
+                    return band.profile_image
+
+    @property
     def slug(self):
         return slugify(str(self))
 
