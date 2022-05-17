@@ -1,5 +1,6 @@
 import math
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFit
@@ -28,6 +29,20 @@ class Event(UpdateDataVersionMixin, models.Model):
     @property
     def slug(self):
         return slugify(str(self))
+
+    @property
+    def get_detail_url(self):
+        if self.bands.count() == 1:
+            return reverse('band_detail', kwargs={'pk': self.bands.first().pk})
+        else:
+            return reverse('event_detail_slug', kwargs={'pk': self.pk, 'slug': self.slug })
+
+    @property
+    def get_band_detail_url(self):
+        if self.bands.count() == 1:
+            return reverse('venue_detail', kwargs={'pk':self.venue.pk })
+        else:
+            return self.get_detail_url
 
 
     def __unicode__(self):
