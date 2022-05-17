@@ -34,9 +34,17 @@ def venue_detail(request, pk):
     for day in eventsbyday:
         day['events'].sort(helpers.order_latenight)
 
+    if len(eventsbyday) == 1:
+        events_col_class = 'col-md-12'
+    elif len(eventsbyday) == 2:
+        events_col_class = 'col-md-6'
+    else:
+        events_col_class = 'col-md-4'
+
     return render(request, 'venue/detail.html', {
         'venue': venue,
         'events': eventsbyday,
+        'events_col_class': events_col_class
     })
 
 
