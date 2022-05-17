@@ -67,7 +67,7 @@ text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0
          <span class="poster" style="right: 45px;top: 378px;font-size: 35px;color:#111;text-transform:uppercase;color:#333;">{{ event.day|date:"l" }}</span>
         <span class="poster" style="right: 45px;top: 320px;font-size: 48px;color:#fff; text-shadow:3px 3px 7px #5e989c, 3px -3px 7px #5e989c, -3px 3px 9px #5e989c, -3px -3px 9px #5e989c">{{event.time}} </span>
 
-
+        <span class="poster" style="box-shadow: 10px 10px 0 0 #87624f; right:25px; top:170px; color:#fff; background-color:#e17f5a;padding:6px; max-width:190px; transform-origin: 100% 0; transform:rotate(-14deg);">{{event.bands.first.genre}}</span>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static "js/scripts.js" %}?v=23"></script>
