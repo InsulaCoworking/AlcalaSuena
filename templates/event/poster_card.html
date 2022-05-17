@@ -61,13 +61,13 @@
          <span class="poster" style="left:30px;right:40px;font-size:68px;top:25px;line-height:0.8;text-align:right;color:#fff; transform:scale(1,1.23);text-transform: uppercase;
 text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0px #fff;">{{event}} </span>
         <div class="profile-circle poster" style="left:-11px;top:140px;width:345px;height:345px;"> <img src="{{event.profile_image.url}}"></div>
-         <span class="poster" style="right: 45px;top: 410px;font-size: 50px;text-transform:uppercase;
+         <span class="poster" style="right: 32px;top: 380px;font-size: 50px;text-transform:uppercase;
         text-shadow: 1px 1px 0px #dc5772, -1px -1px 0px #dc5772, -1px 1px 0px #dc5772, 1px -1px 0px #dc5772;
 ">{{ event.day|date:"j F" }}</span>
-         <span class="poster" style="right: 45px;top: 378px;font-size: 35px;color:#111;text-transform:uppercase;color:#333;">{{ event.day|date:"l" }}</span>
-        <span class="poster" style="right: 45px;top: 320px;font-size: 48px;color:#fff; text-shadow:3px 3px 7px #5e989c, 3px -3px 7px #5e989c, -3px 3px 9px #5e989c, -3px -3px 9px #5e989c">{{event.time}} </span>
-
-        <span class="poster" style="box-shadow: 10px 10px 0 0 #87624f; right:25px; top:170px; color:#fff; background-color:#e17f5a;padding:6px; max-width:190px; transform-origin: 100% 0; transform:rotate(-14deg);">{{event.bands.first.genre}}</span>
+         <span class="poster" style="right: 32px;top: 353px;font-size: 35px;color:#111;text-transform:uppercase;color:#333;">{{ event.day|date:"l" }}</span>
+        <span class="poster" style="right: 32px;top: 301px;font-size: 48px;color:#fff; text-shadow:3px 3px 7px #5e989c, 3px -3px 7px #5e989c, -3px 3px 9px #5e989c, -3px -3px 9px #5e989c">{{event.time}} </span>
+        <span class="poster" style="right: 36px;top: 442px;max-width:225px;text-align:right;line-height:0.8;font-size: 23px;color:#111;color:#333;">{{ event.venue }}</span>
+        <span class="poster" style="box-shadow: 10px 10px 0 0 #87624f; right:25px; top:170px; color:#fff; background-color:#e17f5a;padding:6px; max-width:190px; transform-origin: 100% 0; transform:rotate(-11deg);">{{event.bands.first.genre}}</span>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static "js/scripts.js" %}?v=23"></script>
