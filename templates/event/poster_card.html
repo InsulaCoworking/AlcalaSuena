@@ -38,6 +38,14 @@
         <style>
             body{ width:600px; height:600px; margin:auto; border:1px solid #fff; position:relative; overflow:hidden;}
             .poster{position:absolute;font-family: 'Kodchasan', sans-serif; color:#dc5772; }
+
+            .profile-circle{
+                box-shadow:
+                    0 0 0 10px #8ba8a4,
+                    0 0 0 20px #87624f,
+                    0 0 0 30px #e17f5a;
+                border: 10px solid #dc5772;
+            }
         </style>
     </head>
 
@@ -52,8 +60,10 @@
         <div style="position:absolute;top:-50px;left:-50px;width:130%;height:250px;background-color:#dc5772;transform:rotate(-7deg);"></div>
          <span class="poster" style="left:30px;right:40px;font-size:68px;top:25px;line-height:0.8;text-align:right;color:#fff; transform:scale(1,1.23);text-transform: uppercase;
 text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0px #fff;">{{event}} </span>
-        <div class="profile-circle poster" style="left:-9px;top:120px;width:380px;height:380px;"> <img src="{{event.profile_image.url}}"></div>
-         <span class="poster" style="right: 45px;top: 410px;font-size: 50px;text-transform:uppercase;">{{ event.day|date:"j F" }}</span>
+        <div class="profile-circle poster" style="left:-11px;top:140px;width:345px;height:345px;"> <img src="{{event.profile_image.url}}"></div>
+         <span class="poster" style="right: 45px;top: 410px;font-size: 50px;text-transform:uppercase;
+        text-shadow: 1px 1px 0px #dc5772, -1px -1px 0px #dc5772, -1px 1px 0px #dc5772, 1px -1px 0px #dc5772;
+">{{ event.day|date:"j F" }}</span>
          <span class="poster" style="right: 45px;top: 378px;font-size: 35px;color:#111;text-transform:uppercase;color:#333;">{{ event.day|date:"l" }}</span>
         <span class="poster" style="right: 45px;top: 320px;font-size: 48px;color:#fff; text-shadow:3px 3px 7px #5e989c, 3px -3px 7px #5e989c, -3px 3px 9px #5e989c, -3px -3px 9px #5e989c">{{event.time}} </span>
 
