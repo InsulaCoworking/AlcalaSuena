@@ -2,6 +2,18 @@
 <script type="text/javascript" src="{% static "js/jquery.textfill.min.js" %}"></script>
 <script type="text/javascript">
     $('.lineup-line').each(function(i,elem){
-    $(elem).textfill({widthOnly:true, maxFontPixels:120});
-});
+        $(elem).textfill({widthOnly:true, maxFontPixels:120});
+    });
+    lastLine = $('.lineup-line').last();
+    lastSize = parseInt(lastLine.find('span').css('font-size'));
+    prevSize = parseInt(lastLine.prev().find('span').css('font-size'));
+
+    if (lastSize > prevSize){
+        lastLine.find('span').css({
+            'font-size': prevSize+'px',
+            'text-align': 'center',
+            'display': 'block'
+        });
+    }
+
 </script>
