@@ -53,6 +53,18 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
+
+            {% if SCHEDULE_ACTIVE %}
+                {% for event in events %}
+                {% if event.tickets_url %}
+                <div class="card main text-center" style="max-width:450px;margin:auto;margin-top:-3.8em;">
+                    Para acceder a este concierto es necesario adquirir una entrada previamente, bien en taquilla (de forma gratuita) o mediante reserva online.<br><br>
+                    <a class="btn btn-primary btn-lg" href="{{event.tickets_url}}" target="_blank" role="button">Reservar entradas <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+
             <p>{{band.description|linebreaks}}</p>
             {%if band.genre %}<h5><strong>Estilo:</strong> {{band.genre}}</h5>{% endif %}
             {%if band.city %}<h5><strong>Procedencia:</strong> {{band.city}}</h5>{% endif %}
