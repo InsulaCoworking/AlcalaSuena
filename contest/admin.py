@@ -1,12 +1,11 @@
 # coding=utf-8
 from django.contrib import admin
-# Register your models here.
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from archive.admin import ArchiveFilter
 from bands.models import Band
-from contest.models import BandMember, ContestBand, ContestJuryVote
+from contest.models import BandMember, ContestBand, ContestJuryVote, ContestPublicVote
 
 
 class BandAdmin(admin.ModelAdmin):
@@ -83,6 +82,13 @@ class BandAdmin(admin.ModelAdmin):
     archive.short_description = "Archivar"
 
 
+class PublicVoteAdmin(admin.ModelAdmin):
+    list_display = ['band', 'voted_by', 'timestamp']
+    ordering = ['timestamp']
+    search_fields = ['band__name', 'voted_by__username']
+
+
 admin.site.register(ContestBand, BandAdmin)
 admin.site.register(BandMember)
 admin.site.register(ContestJuryVote)
+admin.site.register(ContestPublicVote, PublicVoteAdmin)
