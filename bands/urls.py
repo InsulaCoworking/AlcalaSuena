@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
+
 from . import views
 
 urlpatterns = [
@@ -28,4 +30,6 @@ urlpatterns = [
     url(r'^billing/list/$', views.billing_list, name='billing'),
     url(r'^billing/download/$', views.download_csv, name='download_csv'),
 
+    url(r'^brbl/gift/$', TemplateView.as_view(template_name="regalo.html"), name='regalo'),
+    url(r'^brbl/wut/$', TemplateView.as_view(template_name="regalo.html"), name='regalo2'),
 ]
