@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^billing/download/$', views.download_csv, name='download_csv'),
 
     url(r'^brbl/gift/$', TemplateView.as_view(template_name="regalo.html"), name='regalo'),
-    url(r'^brbl/wut/$', TemplateView.as_view(template_name="regalo.html"), name='regalo2'),
+    url(r'^brbl/wut/$', TemplateView.as_view(template_name="regalo2.html"), name='regalo2'),
 ]
