@@ -1,3 +1,4 @@
 *.pyc
 .idea/
 alcalasuena/settings_secret.py
+static/img/Thumbs.db
