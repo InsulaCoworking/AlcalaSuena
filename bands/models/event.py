@@ -11,7 +11,7 @@ from bands.models import Band, Venue
 
 
 class Event(UpdateDataVersionMixin, models.Model):
-    venue = models.ForeignKey(Venue, related_name="venue")
+    venue = models.ForeignKey(Venue, related_name="venue", on_delete=models.CASCADE)
     bands = models.ManyToManyField(Band, related_name="band_events")
     day = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
@@ -57,6 +57,10 @@ class Event(UpdateDataVersionMixin, models.Model):
         else:
             return self.get_detail_url
 
+    def __str__(self):
+        if (self.bands.all()):
+            return ' + '.join([bandname for bandname in self.bands.values_list('name', flat=True)])
+        return str(self.day)
 
     def __unicode__(self):
         if (self.bands.all()):

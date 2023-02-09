@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import functools
+
 from django.conf import settings
 from django.forms import model_to_dict
 from django.http import HttpResponseBadRequest, JsonResponse
@@ -68,7 +70,7 @@ def search(request):
         day['events'].append(event)
 
     for day in eventsbyday:
-        day['events'].sort(helpers.order_latenight)
+        day['events'].sort(key=functools.cmp_to_key(helpers.order_latenight))
 
     return render(request, 'search.html', {
                     'days': eventsbyday,

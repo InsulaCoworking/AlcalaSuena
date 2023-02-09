@@ -1,4 +1,5 @@
 # coding=utf-8
+import functools
 import random
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
@@ -49,7 +50,6 @@ def contest_entries_list(request, year):
         'bands': bands,
         'page': page
     }
-    print params['ajax_url']
 
     if request.is_ajax():
         response = render(request, 'archive/contest_search_results.html', params)
@@ -102,15 +102,14 @@ def timetable(request, year):
     venues = Venue.objects.all().order_by('-name')
     tags = Tag.objects.all()
     days = []
-    print events_byday
+
     for day in events_byday:
-        print day
         daydate = {
             'day': day,
             'venues': venues,
             'events':  list(Event.objects.filter(day=day).order_by('time'))
         }
-        daydate['events'].sort(helpers.order_latenight)
+        daydate['events'].sort(key=functools.cmp_to_key(helpers.order_latenight))
         days.append(daydate)
 
     return render(request, 'archive/timetable.html', {

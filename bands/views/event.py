@@ -1,5 +1,6 @@
 import csv
 import datetime
+import functools
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -88,7 +89,7 @@ def timetable2(request):
             'venues': venues,
             'events':  list(Event.objects.filter(day=day).order_by('time'))
         }
-        daydate['events'].sort(helpers.order_latenight)
+        daydate['events'].sort(key=functools.cmp_to_key(helpers.order_latenight))
 
 
         days.append(daydate)

@@ -25,4 +25,3 @@ class Command(BaseCommand):
             BandToken.objects.filter(band=band).delete()
             token = get_random_string(length=12)
             new_token = BandToken.objects.create(band=band, token=token)
-            print band.name + ';' + new_token.token

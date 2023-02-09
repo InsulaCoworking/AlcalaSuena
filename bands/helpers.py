@@ -56,7 +56,6 @@ def get_query(query_string, search_fields):
     query = None  # Query to search for every search term
     terms = normalize_query(query_string)
 
-    print terms
     for term in terms:
         if len(term) < 3:
             continue
@@ -89,7 +88,7 @@ def send_template_email(title, destination, template_name, template_params):
             html_message=msg_html,
         )
     else:
-        print 'Email not configured...'
+        print('Email not configured...')
 
 
 def get_media_urls(media_info):

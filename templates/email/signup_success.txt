@@ -1,9 +1,9 @@
 {% load settings_value %}
 
-CONCURSO ALCALÁ SUENA 2022
+CONCURSO ALCALÁ SUENA 2023
 
 Hola {{name}},
-Te informamos de que tu inscripción para Alcalá Suena 2022 ha quedado correctamente registrada. ¡Mucha suerte!
+Te informamos de que tu inscripción para Alcalá Suena 2023 ha quedado correctamente registrada. ¡Mucha suerte!
 
 {% url 'contest_band_detail' id as link %}
 {% settings_value 'BASESITE_URL' as basesite %}

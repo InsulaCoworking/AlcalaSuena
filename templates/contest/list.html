@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}Bandas concursantes{% endblock%}
 
 
@@ -10,7 +10,7 @@
         <h1>BANDAS Concursantes</h1>
         {% if CONTEST_ACTIVE and not CONTEST_CLOSED%}
       <p class="description">
-            ¿Tienes una banda y aún no te has apuntado a Alcalá Suena 2022?  <a href="{% url 'contest_signup' %}" class="btn-primary btn no-margin">Incríbete</a>
+            ¿Tienes una banda y aún no te has apuntado a Alcalá Suena 2023?  <a href="{% url 'contest_signup' %}" class="btn-primary btn no-margin">Incríbete</a>
         </p>
           {% endif %}
       </div>

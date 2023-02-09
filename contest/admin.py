@@ -59,7 +59,6 @@ class BandAdmin(admin.ModelAdmin):
         # All requests here will actually be of type POST
         # so we will need to check for our special key 'apply'
         # rather than the actual request type
-        print queryset
 
         if 'apply' in request.POST:
             # The user clicked submit on the intermediate form.

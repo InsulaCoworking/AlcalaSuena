@@ -161,7 +161,7 @@ def contest_band_detail(request, pk):
 
     if settings.PUBLIC_VOTE:
         voted = False
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             voted = ContestPublicVote.objects.filter(band=band, voted_by=request.user).count() > 0
             view_data['voted'] = voted
 
@@ -317,7 +317,7 @@ def contest_band_validate(request, pk):
 
 def contest_user_votes(request,):
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return redirect('contest_social_login')
 
     votes = ContestPublicVote.objects.filter(voted_by=request.user)
@@ -501,7 +501,7 @@ def contest_participants_info(request):
     return response
 
 def social_login(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return redirect('contest_user_votes')
 
     band = request.GET.get('band', None)
@@ -517,7 +517,7 @@ def social_login(request):
 def contest_public_vote(request, pk):
     band = get_object_or_404(ContestBand, pk=pk)
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
 
         if request.method == "POST":
 

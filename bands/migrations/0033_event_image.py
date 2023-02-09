@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='event',
             name='image',
-            field=imagekit.models.fields.ProcessedImageField(blank=True, null=True, upload_to=bands.helpers.RandomFileName(b'event/'), verbose_name=b'Imagen del evento'),
+            field=imagekit.models.fields.ProcessedImageField(blank=True, null=True, upload_to=bands.helpers.RandomFileName('event/'), verbose_name='Imagen del evento'),
         ),
     ]

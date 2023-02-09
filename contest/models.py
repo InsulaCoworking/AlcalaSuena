@@ -26,7 +26,7 @@ CRITERIA3_CHOICES = (
 
 class ContestBand(models.Model):
     name = models.CharField(null=False, verbose_name='Nombre de la banda/solista', max_length=240)
-    tag = models.ForeignKey(Tag, related_name="contest_bands", verbose_name='Categoría del concurso')
+    tag = models.ForeignKey(Tag, related_name="contest_bands", verbose_name='Categoría del concurso', on_delete=models.CASCADE)
     genre = models.CharField(null=True, blank=True, verbose_name='Género/Estilo', max_length=240)
     profile_image = ProcessedImageField(null=True, blank=True, upload_to=RandomFileName('contest/'),
                                         processors=[ResizeToFit(512, 512, upscale=False)], format='JPEG',
@@ -70,7 +70,7 @@ class ContestBand(models.Model):
     instagram_link = models.CharField(null=True, blank=True, verbose_name='Perfil de Instagram', max_length=250)
 
     is_validated = models.BooleanField(default=False, verbose_name='Criterios validados')
-    validated_by = models.ForeignKey(User, null=True, blank=True, verbose_name='Validado por')
+    validated_by = models.ForeignKey(User, null=True, blank=True, verbose_name='Validado por', on_delete=models.SET_NULL)
 
     criteria1 = models.BooleanField(default=False, verbose_name='¿El 50% de tus músicos o más tienen menos de 21 años?')
     criteria2 = models.BooleanField(default=False, verbose_name='¿Has realizado al menos un concierto en el último año?')
@@ -150,7 +150,7 @@ class ContestBand(models.Model):
 
 
 class BandMember(models.Model):
-    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='Miembros')
+    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='Miembros', on_delete=models.CASCADE)
     full_name = models.CharField(null=False, blank=False, verbose_name='Nombre y apellidos', max_length=350)
     dni = models.CharField(null=False, blank=False, verbose_name='Documento identidad', max_length=30)
     is_underage = models.BooleanField(default=False, verbose_name='Menor de edad')
@@ -160,14 +160,17 @@ class BandMember(models.Model):
         verbose_name_plural = 'Miembros de bandas'
         ordering = ['band']
 
+    def __str__(self):
+        return self.band.name + ': ' + self.full_name
+
     def __unicode__(self):
         return self.band.name + ': ' + self.full_name
 
 
 class ContestJuryVote(models.Model):
 
-    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='jury_votes')
-    voted_by = models.ForeignKey(User, verbose_name='Jurado', related_name='contest_votes')
+    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='jury_votes', on_delete=models.CASCADE)
+    voted_by = models.ForeignKey(User, verbose_name='Jurado', related_name='contest_votes', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(null=True, verbose_name='Timestamp')
     vote = models.IntegerField(default=0, verbose_name='Voto')
 
@@ -178,14 +181,17 @@ class ContestJuryVote(models.Model):
         unique_together = (("band", "voted_by"),)
         permissions = (("can_mange_jury", "Puede acceder al jurado"),)
 
+    def __str__(self):
+        return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.vote)
+
     def __unicode__(self):
         return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.vote)
 
 
 class ContestPublicVote(models.Model):
 
-    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='public_votes')
-    voted_by = models.ForeignKey(User, verbose_name='Votante', related_name='public_votes')
+    band = models.ForeignKey(ContestBand, verbose_name='Banda', related_name='public_votes', on_delete=models.CASCADE)
+    voted_by = models.ForeignKey(User, verbose_name='Votante', related_name='public_votes', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(null=True, verbose_name='Timestamp')
 
     class Meta:
@@ -193,6 +199,9 @@ class ContestPublicVote(models.Model):
         verbose_name_plural = 'Votos del público'
         ordering = ['band']
         unique_together = (("band", "timestamp"),)
+
+    def __str__(self):
+        return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.timestamp)
 
     def __unicode__(self):
         return self.band.name + ': ' + self.voted_by.username + ': ' + str(self.timestamp)

@@ -24,7 +24,7 @@ SECRET_KEY = 'zbkckcq9&-n%clm(g45*2nyetxndk7tlysc1&a&b1onf#jwz*r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 ALLOWED_HOSTS = ['localhost', '10.0.0.52', 'ec2-52-211-39-126.eu-west-1.compute.amazonaws.com', 'alcalasuena.es', 'www.alcalasuena.es']
 
 
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -108,11 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GoogleOAuth',
     'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.yahoo.YahooOpenId',
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
@@ -164,4 +161,4 @@ PUBLIC_VOTE = False
 ARCHIVE_YEARS = []
 DELETE_ENABLED = False
 
-from settings_secret import *
+from alcalasuena.settings_secret import *
