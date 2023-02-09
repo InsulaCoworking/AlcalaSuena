@@ -44,6 +44,9 @@ def signup(request):
     if settings.CONTEST_CLOSED:
         return render(request, 'contest/form_closed.html', {})
 
+    if settings.CONTEST_OPENING:
+        return render(request, 'contest/form_opening.html', {})
+
     members_factory = BandMemberForm.getMembersFormset()
 
     if request.method == "POST":
