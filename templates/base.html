@@ -60,8 +60,8 @@
                     <li {% if request.resolver_match.url_name == "index" %}class="active"{% endif %}><a href="{% url 'index' %}">Inicio </a></li>
 
                   {% if CONTEST_ACTIVE %}
+                      {% if not CONTEST_CLOSED and not CONTEST_OPENING %}
                       <li {% if request.resolver_match.url_name == "bases" %}class="active"{% endif %}><a href="{% url 'bases' %}">Bases del Concurso</a></li>
-                      {% if not CONTEST_CLOSED %}
                       <li {% if request.resolver_match.url_name == "contest_signup" %}class="active"{% endif %}><a href="{% url 'contest_signup' %}">Inscripción</a></li>
                       {% endif %}
                   {% endif %}
@@ -74,7 +74,9 @@
                       {% endif %}
                       <li {% if request.resolver_match.url_name == "contest_index" %}class="active"{% endif %}><a href="{% url 'contest_index' %}">Concurso</a></li>
                   {% else %}
+                      {% if not CONTEST_OPENING %}
                       <li {% if request.resolver_match.url_name == "contest_entries_list" %}class="active"{% endif %}><a href="{% url 'contest_entries_list' %}">Bandas</a></li>
+                      {% endif %}
                   {% endif %}
 
                   {% if perms.contest.can_mange_jury %}
