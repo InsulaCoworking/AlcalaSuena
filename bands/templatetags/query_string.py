@@ -1,8 +1,8 @@
 
 try:
-    from urllib.parse import urlparse
+    import urllib.parse as urlparse
 except ImportError:
-     from urlparse import urlparse
+     import urlparse as urlparse
 
 from django import template
 from django.template.defaultfilters import stringfilter
