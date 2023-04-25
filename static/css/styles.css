@@ -1217,7 +1217,7 @@ a.lineup-band{
     text-shadow: 0 0 3px rgba(0,0,0,0.2) !important;
 }
 
-a.lineup-band:hover{
+a.lineup-band:hover, .lineup-line.rest a.lineup-band:hover{
     text-decoration:none;
     text-shadow: 0 0 13px #e4cb64, 0 0 18px #e4cb64 !important;
 }
