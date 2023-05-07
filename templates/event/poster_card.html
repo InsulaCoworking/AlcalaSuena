@@ -55,10 +55,10 @@
         {% block home_header %}{% endblock home_header %}
 
         {% block content %}{% endblock content %}
-
+    <img src="{% static 'img/band-header2023.jpg'%}" style="width:145%;position:absolute;opacity:0.6;top:70px;left:80px;">
 <img class="img-responsive double-sep poster" style="max-width:100%;bottom:0px;" src="{% static "img/poster_footer.png" %}?v=3">
         <div style="position:absolute;top:-50px;left:-50px;width:130%;height:250px;background-color:#e4cb64;transform:rotate(-7deg);"></div>
-         <span class="poster" style="left:30px;right:30px;font-size:74px;top:25px;line-height:0.8;text-align:right;color:#fff; transform:scale(1,1.23);text-transform: uppercase;
+         <span class="poster" style="left:30px;right:30px;font-size:74px;top:25px;line-height:0.8;text-align:right;color:#fff; transform:scale(1,1.23);text-transform: uppercase; line-height:0.85em;
 font-family: 'Amboy', sans-serif;">{{event}} </span>
         <div class="profile-circle poster" style="left:-11px;top:140px;width:345px;height:345px;"> <img src="{{event.profile_image.url}}"></div>
          <span class="poster" style="right: 32px;top: 380px;font-size: 50px;text-transform:uppercase; color:#fff;
