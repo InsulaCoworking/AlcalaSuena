@@ -161,4 +161,9 @@ PUBLIC_VOTE = False
 ARCHIVE_YEARS = []
 DELETE_ENABLED = False
 
+# Old Google Universal Analytics ID (starts with "UA-")
+GOOGLE_ANALYTICS_UA = ''
+# New Google Analytics Tag ID (starts with "G-")
+GOOGLE_ANALYTICS_TAG = ''
+
 from alcalasuena.settings_secret import *

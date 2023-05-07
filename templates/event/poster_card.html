@@ -36,38 +36,38 @@
         <meta name="theme-color" content="#bb4e87">
 
         <style>
-            body{ width:600px; height:600px; margin:auto; border:1px solid #fff; position:relative; overflow:hidden;}
-            .poster{position:absolute;font-family: 'Kodchasan', sans-serif; color:#dc5772; }
+            body{ width:600px; height:600px; margin:auto; border:1px solid #fff; position:relative; overflow:hidden; transform-origin:center top; transform:scale(1.25);}
+            .poster{position:absolute;font-family: 'Kodchasan', sans-serif; color:#f2bcba; }
 
             .profile-circle{
                 box-shadow:
-                    0 0 0 10px #8ba8a4,
-                    0 0 0 20px #87624f,
-                    0 0 0 30px #e17f5a;
-                border: 10px solid #dc5772;
+                    0 0 0 10px #f2d970,
+                    0 0 0 20px #807867,
+                    0 0 0 30px #ffa09d;
+                border: 10px solid #cec699;
             }
         </style>
     </head>
 
     <body {% block bodyattrs %}{% endblock%}>
-        <div class="body-bg poster" style="height:100%; background-size: cover;background-image:url('{% static "img/sunburst_bg.png" %}');"></div>
+        <div class="body-bg poster" style="height:100%; background:linear-gradient(to top, #9a9078 0%, #ebe3b5 100%);"></div>
 
         {% block home_header %}{% endblock home_header %}
 
         {% block content %}{% endblock content %}
 
 <img class="img-responsive double-sep poster" style="max-width:100%;bottom:0px;" src="{% static "img/poster_footer.png" %}?v=3">
-        <div style="position:absolute;top:-50px;left:-50px;width:130%;height:250px;background-color:#dc5772;transform:rotate(-7deg);"></div>
-         <span class="poster" style="left:30px;right:40px;font-size:68px;top:25px;line-height:0.8;text-align:right;color:#fff; transform:scale(1,1.23);text-transform: uppercase;
-text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0px #fff;">{{event}} </span>
+        <div style="position:absolute;top:-50px;left:-50px;width:130%;height:250px;background-color:#e4cb64;transform:rotate(-7deg);"></div>
+         <span class="poster" style="left:30px;right:30px;font-size:74px;top:25px;line-height:0.8;text-align:right;color:#fff; transform:scale(1,1.23);text-transform: uppercase;
+font-family: 'Amboy', sans-serif;">{{event}} </span>
         <div class="profile-circle poster" style="left:-11px;top:140px;width:345px;height:345px;"> <img src="{{event.profile_image.url}}"></div>
-         <span class="poster" style="right: 32px;top: 380px;font-size: 50px;text-transform:uppercase;
-        text-shadow: 1px 1px 0px #dc5772, -1px -1px 0px #dc5772, -1px 1px 0px #dc5772, 1px -1px 0px #dc5772;
+         <span class="poster" style="right: 32px;top: 380px;font-size: 50px;text-transform:uppercase; color:#fff;
+        text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0px #fff;
 ">{{ event.day|date:"j F" }}</span>
          <span class="poster" style="right: 32px;top: 353px;font-size: 35px;color:#111;text-transform:uppercase;color:#333;">{{ event.day|date:"l" }}</span>
-        <span class="poster" style="right: 32px;top: 301px;font-size: 48px;color:#fff; text-shadow:3px 3px 7px #5e989c, 3px -3px 7px #5e989c, -3px 3px 9px #5e989c, -3px -3px 9px #5e989c">{{event.time}} </span>
-        <span class="poster" style="right: 36px;top: 442px;max-width:225px;text-align:right;line-height:0.8;font-size: 23px;color:#111;color:#333;">{{ event.venue }}</span>
-        <span class="poster" style="box-shadow: 10px 10px 0 0 #87624f; right:25px; top:170px; color:#fff; background-color:#e17f5a;padding:6px; max-width:190px; transform-origin: 100% 0; transform:rotate(-11deg);">{{event.bands.first.genre}}</span>
+        <span class="poster" style="right: 32px;top: 301px;font-size: 48px;color:#ffa09d; text-shadow:3px 3px 7px #aaa184, 3px -3px 7px #aaa184, -3px 3px 9px #aaa184, -3px -3px 9px #aaa184">{{event.time}} </span>
+        <span class="poster" style="right: 36px;top: 442px;max-width:225px;text-align:right;line-height:0.8;font-size: 23px;color:#111;color:#333;">{{ event.venue.name }}</span>
+        <span class="poster" style="box-shadow: 10px 10px 0 0 #87624f; right:25px; top:170px; color:#fff; background-color:#ffa09d;padding:6px; max-width:190px; transform-origin: 100% 0; transform:rotate(-11deg);">{{event.bands.first.genre}}</span>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static "js/scripts.js" %}?v=23"></script>

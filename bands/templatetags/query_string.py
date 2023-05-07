@@ -1,4 +1,8 @@
-import urllib
+
+try:
+    from urllib.parse import quote_plus
+except ImportError:
+     from urllib import quote_plus
 
 from django import template
 from django.template.defaultfilters import stringfilter
@@ -70,7 +74,7 @@ def get_query_string(p, new_params, remove, context):
             p[k] = v
 
     return mark_safe(
-        '?' + '&amp;'.join([u'%s=%s' % (urllib.parse.quote_plus(str(k)), urllib.parse.quote_plus(str(v))) for k, v in p.items()]))
+        '?' + '&amp;'.join([u'%s=%s' % (quote_plus(str(k)), quote_plus(str(v))) for k, v in p.items()]))
 
 
 # Taken from lib/utils.py
