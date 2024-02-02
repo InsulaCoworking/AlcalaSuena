@@ -168,7 +168,7 @@
             </div>
             {% endif %}
 
-        {% if CONTEST_ACTIVE and PUBLIC_VOTE %}
+        {% if CONTEST_ACTIVE and not CONTEST_OPENING and PUBLIC_VOTE %}
         </div>
         <div class="row">
         <div class="col-sm-6 text-center double-sep">
