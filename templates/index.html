@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load chunks %}
-{% block title %}Alcalá Suena: Fiesta de la Música 2023{% endblock%}
+{% block title %}Alcalá Suena: Fiesta de la Música 2024{% endblock%}
 {% block extra_styles %}
 <meta name="google-site-verification" content="IzNi0uNVMjNNPfbFNn8-DOfxR775nqSlxqzy3G9mA3g" />
 {% endblock extra_styles %}
@@ -10,16 +10,16 @@
     <div class="jumbo-header home" >
         <div class="jumbotron">
           <div class="container text-center hidden-md hidden-lg">
-              <img class="img-responsive" style="max-width:85%;margin-top:5vw;margin-bottom:-10vw;z-index:100;" src="{% static "img/logo_title2023.png" %}?v=2">
-              <img class="img-responsive" style="max-width:85%;z-index:10;" src="{% static "img/logo2023.png" %}?v=2">
+              <img class="img-responsive" style="max-width:85%;margin-top:5vw;margin-bottom:-20vw;z-index:100;" src="{% static "img/logo_title2024.png" %}?v=2">
+              <img class="img-responsive" style="max-width:85%;z-index:-10;position:relative;margin-bottom:-50px;" src="{% static "img/logo2024.png" %}?v=2">
               <!--<a class="showmore smoothscroll" href="#more"><i class="fa fa-angle-down" aria-hidden="true"></i></a>-->
           </div>
             <div class="row  hidden-xs hidden-sm">
                 <div class="col-md-6 text-center">
-                    <img class="img-responsive" style="max-width:85%;z-index:10;" src="{% static "img/logo2023.png" %}?v=2">
+                    <img class="img-responsive" style="max-width:85%;margin-bottom:-50px;z-index:10;" src="{% static "img/logo2024.png" %}?v=2">
                 </div>
                 <div class="col-md-6">
-                    <img class="img-responsive" style="max-width:95%;margin-left:-5vw;margin-top:5vw;margin-bottom:-10vw;z-index:100;" src="{% static "img/logo_title2023.png" %}?v=2">
+                    <img class="img-responsive" style="max-width:95%;margin-left:-5vw;margin-top:5vw;margin-bottom:-10vw;z-index:100;" src="{% static "img/logo_title2024.png" %}?v=2">
 
                 </div>
 
@@ -29,7 +29,7 @@
     </div>
 
 <a name="more" id="more"></a>
-<section class="header-bar no-margin">
+<section class="header-bar no-margin" style="z-index:-20;position:relative;">
 </section>
 {% endblock %}
 
@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <p class="lead "><span>
-                    El casco histórico de Alcalá de Henares se volverá a llenar de música en directo para acoger a los 60 grupos premiados y finalistas del concurso ALCALÁ SUENA 2023. Cinco escenarios al aire libre y el Teatro Salón Cervantes acogerán la programación de esta edición.
+                    El casco histórico de Alcalá de Henares se volverá a llenar de música en directo para acoger a los más de 60 grupos premiados y finalistas del concurso ALCALÁ SUENA 2024. Cinco escenarios al aire libre y el Teatro Salón Cervantes acogerán la programación de esta edición.
                  </span></p>
             </div>
         </div>
@@ -62,7 +62,7 @@
         {% if APP_VISIBLE %}
         <div class="row double-sep">
 
-            <div class="col-sm-6"><img src="{% static 'img/app_screens2023.png' %}" class="img-responsive"/></div>
+            <div class="col-sm-6"><img src="{% static 'img/app_screens2024.png' %}" class="img-responsive"/></div>
 
             <div class="col-sm-6">
                 <p class="lead">¿Quieres acceder a toda la información actualizada de los conciertos de la forma más cómoda en tu móvil?</p>
@@ -87,7 +87,7 @@
         </div>
 
     <div class="col-sm-6 text-center">
-            <img class="img-responsive" src="{% static "img/timetable.png" %}?v=2023">
+            <img class="img-responsive" src="{% static "img/timetable.png" %}?v=2024">
         </div>
 </div>
 
@@ -141,7 +141,7 @@
             <div class="col-sm-12 text-center">
                 <h2>¿Tienes una banda?</h2>
                 <p class="lead "><span>
-                ¿Quieres tocar en <strong>Alcalá Suena 2023</strong>?<br>
+                ¿Quieres tocar en <strong>Alcalá Suena 2024</strong>?<br>
                 Desde el 20 de febrero hasta el 13 de marzo a las 20h estará abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas seleccionadas.
                     </span></p>
                 {% if not CONTEST_OPENING %} <a href="{% url 'contest_signup' %}" class="btn btn-primary btn-lg">Inscríbete!</a> {% endif %}
@@ -151,7 +151,7 @@
             <div class="col-sm-12"><hr></div>
 
             <div class="col-sm-6 text-center">
-                <img class="img-responsive" src="{% static "img/contest.png" %}?v=2023">
+                <img class="img-responsive" src="{% static "img/contest.png" %}?v=2024">
             </div>
             <div class="col-sm-6 text-center">
 
@@ -172,7 +172,7 @@
         </div>
         <div class="row">
         <div class="col-sm-6 text-center double-sep">
-                <img class="img-responsive" src="{% static "img/vota.png" %}?v=2023">
+                <img class="img-responsive" src="{% static "img/vota.png" %}?v=2024">
             </div>
             <div class="col-sm-6 double-sep">
                         <h2> VOTA A TUS GRUPOS FAVORITOS</h2>

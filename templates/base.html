@@ -10,15 +10,15 @@
         {% block social_meta %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@aemusica">
-        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2023">
+        <meta name="twitter:title" content="Alcalá Suena - Fiesta de la Música 2024">
         <meta name="twitter:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad">
-        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2023.jpg" %}">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2024.jpg" %}">
 
         <meta property="og:url" content="{{request.build_absolute_uri}}" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2023" />
+        <meta property="og:title" content="Alcalá Suena - Fiesta de la Música 2024" />
         <meta property="og:description" content="Alcalá se convierte durante 3 días en un enorme festival de música: conciertos al aire libre, de cualquier género musical y en diversos escenarios distribuidos por todo el Casco Histórico de Alcalá, Patrimonio de la Humanidad" />
-        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2023.jpg" %}" />
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% static "img/logo_banner2024.jpg" %}" />
         {% endblock %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" crossorigin="anonymous">
@@ -38,7 +38,7 @@
     </head>
 
     <body {% block bodyattrs %}{% endblock%}>
-        <div class="--body-bg"></div>
+        <div class="body-bg"></div>
         <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
@@ -128,7 +128,7 @@
         {% block content %}{% endblock content %}
 
 
-        <img class="img-responsive double-sep" style="max-width:100%;" src="{% static "img/skyline2023.png" %}?v=3">
+        <img class="img-responsive double-sep" style="width:100%;max-width:100%;" src="{% static "img/skyline2024.png" %}?v=3">
         <footer>
     <div class="container">
         <div class="row">
@@ -137,6 +137,7 @@
             <div class="col-sm-offset-0 col-sm-4 col-md-4"><img class="img-responsive" src="{% static "img/logo_alcalaesmusica.png" %}"></div>
         </div>
 
+        <!--
         <br><br>
         <div class="row">
             <div class="col-sm-offset-2 col-sm-4 col-md-4 text-center">
@@ -144,9 +145,8 @@
             </div>
             <div class="col-sm-4 col-md-4"><img class="img-responsive" src="{% static "img/logo_gigante.png" %}"></div>
         </div>
-
+        -->
         <div class="row double-sep insula">
-
             <div class="col-sm-5 text-center">
                 <p>
                 <strong>DIRECCIÓN</strong><br>
@@ -183,7 +183,7 @@
     <script type="text/javascript" src="{% static "js/scripts.js" %}?v=23"></script>
     {% block scripts %}{% endblock scripts %}
 
-    <!-- Old Universal Analytics (to remove after July 2023) -->
+    <!-- Old Universal Analytics (to remove after July 2024) -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
