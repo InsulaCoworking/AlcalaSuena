@@ -10,14 +10,14 @@
         <div class="text-center pending-vote-band" {% if voted %}style="display:none;"{% endif %}>
             <i class="fa fa-heart-o fa-5x" aria-hidden="true"><span class="num_votes">{{num_votes}}</span></i>
             <p> Da "like" para que esta banda <br>participe en Alcalá Suena!</p>
-            <button class="btn btn-primary btn-block btn-add-vote" data-vote="{% url 'contest_public_vote' band.pk %}">¡Votar!</button>
+            <button class="btn btn-primary btn-block btn-add-vote" data-vote="{% url 'contest_public_vote' band.pk %}">¡Me gusta!</button>
     <div class="alert alert-warning text-center" style="display:none;" role="alert"><span>Ya has dado like al máximo de bandas posibles</span><br><a href="{% url 'contest_user_votes' %}" class="btn-primary btn btn-block">Ver mis votos</a></div>
         </div>
     {% else %}
         <div class="text-center">
             <i class="fa fa-heart-o fa-5x" aria-hidden="true"><span class="num_votes">{{num_votes}}</span></i>
             <p> Da "like" para que esta banda <br>participe en Alcalá Suena!</p>
-            <a href="{% url 'contest_social_login' %}?band={{band.pk}}" class="btn btn-primary btn-block">¡Votar!</a>
+            <a href="{% url 'contest_social_login' %}?band={{band.pk}}" class="btn btn-primary btn-block">¡Me gusta!</a>
             </div>
     {% endif %}
 </div>
