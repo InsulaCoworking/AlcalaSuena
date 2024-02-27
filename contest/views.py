@@ -517,6 +517,21 @@ def social_login(request):
     return render(request, 'contest/social_login.html')
 
 
+def social_login2(request):
+    if request.user.is_authenticated:
+        return redirect('contest_user_votes')
+
+    band = request.GET.get('band', None)
+    if band:
+        request.session['band'] = band
+    else:
+        if request.session.get('band', False):
+           del request.session['band']
+
+    return render(request, 'contest/social_login_test.html')
+
+
+
 def contest_public_vote(request, pk):
     band = get_object_or_404(ContestBand, pk=pk)
 

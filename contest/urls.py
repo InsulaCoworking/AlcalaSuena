@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^privacidad/$', views.PrivacyPolicies.as_view(), name='privacy'),
 
     url(r'^contest/login/$', views.social_login, name='contest_social_login'),
+    url(r'^contest/logintest/$', views.social_login2, name='contest_social_login2'),
     url(r'^contest/bands/(?P<pk>\d+)/vote/$', views.contest_public_vote, name='contest_public_vote'),
     url(r'^contest/my_vote/$', views.contest_user_votes, name='contest_user_votes'),
 
