@@ -244,6 +244,9 @@ def contest_jury_list(request):
         votes = ContestJuryVote.objects.filter(voted_by=request.user).values_list('band',flat=True)
         bands = bands.exclude(pk__in=votes)
 
+    if 'tovalidate' in request.GET:
+        bands = bands.exclude(is_validated=True)
+
     paginator = Paginator(bands, 9)
 
     page = request.GET.get('page')

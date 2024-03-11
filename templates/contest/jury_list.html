@@ -34,7 +34,15 @@
                       </span>
                     <div class="input-group-text"><strong>Pendientes de voto</strong>
                     </div>
-                </div></div>
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-addon" > <input type="checkbox" name="tovalidate" id="tovalidate">
+                      </span>
+                    <div class="input-group-text"><strong>Pendientes de validar</strong>
+                    </div>
+                </div>
+                </div>
 
                 <div class="secondary header-bar margin-top"> <h5><i class="fa fa-tag right-margin" aria-hidden="true"></i> Por etiqueta</h5> </div>
                 <div class="clearfix tags margin-top margin-bottom text-center">
@@ -70,6 +78,7 @@ var tags = $('.tags');
 var list = $('#bands-list');
 var search = $('#search');
 var tovote = $('#tovote');
+var tovalidate = $('#tovalidate');
 
 function reloadResults(){
     var filters = {}
@@ -81,9 +90,13 @@ function reloadResults(){
     if (q && q !== ''){
         filters['q'] = q;
     }
-    if(tovote.is(':checked')){
+    if (tovote.is(':checked')){
         filters['tovote']=true;
     }
+    if (tovalidate.is(':checked')){
+        filters['tovalidate']=true;
+    }
+
     list.ajaxLoader('?' + $.param(filters));
 }
 
@@ -102,6 +115,7 @@ tags.on('click', '.tag-filter', function(){
 
 tovote.on('change', reloadResults);
 search.on('change', reloadResults);
+tovalidate.on('change', reloadResults);
 list.ajaxLoader();
 
 </script>
