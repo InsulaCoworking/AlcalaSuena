@@ -395,6 +395,28 @@ def contest_csv_bands(request):
     return response
 
 
+@login_required
+def contest_csv_band_public_votes(request, pk):
+    if not request.user.is_staff:
+        return HttpResponse('Unauthorized', status=401)
+
+    now = datetime.datetime.now()
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="votes_alcalasuena_' + pk + '_' + now.strftime('%Y%m%d') + '.csv"'
+    response.write(u'\ufeff'.encode('utf-8'))
+    writer = csv.writer(response, dialect='excel', delimiter=str(';'), quotechar=str('"'))
+
+    band = get_object_or_404(ContestBand, pk=pk)
+    first_row = ['Timestamp', 'Usuario', 'Email', 'nombre', 'Registro']
+
+    writer.writerow(first_row)
+
+    votes = ContestPublicVote.objects.filter(band=band)
+    for vote in votes:
+        results = [str(vote.timestamp), vote.voted_by.username, vote.voted_by.email, vote.voted_by.get_full_name().encode('utf-8').strip(), str(vote.voted_by.date_joined) ]
+        writer.writerow(results)
+
+    return response
 
 @login_required
 def contest_csv_user_votes(request):

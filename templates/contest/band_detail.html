@@ -281,6 +281,15 @@
                         {% endfor %}
                     </tbody>
                 </table>
+
+                <div class="text-center">
+                    <br>
+                    <h4 style="display:inline;">Votos del público: </h4> <span class="lead">{{band.public_votes.all.count}}</span><br>
+
+                    <a href="{% url 'contest_csv_band_public_votes' band.pk %}" class="btn btn-primary red">Descargar CSV con votos</a><br><br>
+                </div>
+
+
             </div>
 
         </div>

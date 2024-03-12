@@ -20,6 +20,9 @@ urlpatterns = [
     url(r'^contest/jury/csv_receiver_info/$', views.contest_receiver_info, name='contest_receiver_info'),
     url(r'^contest/jury/csv_participants_info/$', views.contest_participants_info, name='contest_participants_info'),
     url(r'^contest/jury/csv_riders/$', views.contest_rider_info, name='contest_riders_info'),
+    url(r'^contest/jury/bands/(?P<pk>\d+)/csv_public_votes/$', views.contest_csv_band_public_votes, name='contest_csv_band_public_votes'),
+
+
 
     url(r'^contest/privacy_policy/$', views.privacy_policy, name='privacy_policy'),
     url(r'^privacidad/$', views.PrivacyPolicies.as_view(), name='privacy'),
