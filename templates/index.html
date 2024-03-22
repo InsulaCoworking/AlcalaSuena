@@ -161,9 +161,13 @@
                     Próximamente se dará a conocer el fallo del jurado!<br><br>
                     <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
                 {% else %}
+                    {% if not CONTEST_CLOSED %}
                     <p class="lead"> <span>Desde el 2 de febrero hasta las 20h del 23 de febrero estará abierto el plazo de inscripción de bandas para formar parte del cartel, con diferentes premios en metálico para todas las bandas seleccionadas. </span></p>
-
                     <a href="{% url 'bases' %}" class="btn btn-primary btn-lg">Bases del concurso</a><br>
+                    {% else %}
+                        <p class="lead"> <span>Las bandas del cartel de Alcalá Suena se eligieron en un concurso abierto en el que podían inscribirse para su posterior elección por un jurado, con el público pudiendo seleccionar las bandas que más le gustaban. </span></p>
+                    <a href="{% url 'contest_index' %}" class="btn btn-primary btn-lg">Más información</a><br>
+                    {% endif %}
                 {% endif %}
             </div>
             {% endif %}

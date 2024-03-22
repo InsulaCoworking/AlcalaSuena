@@ -1195,11 +1195,11 @@ a.lineup-band{
 }
 
 .lineup-line:nth-child(odd) a.lineup-band:nth-child(odd) {
-    color:#f1fefb !important;
+    color:#d82856 !important;
     text-shadow: 0 0 6px rgba(0,0,0,0.2);
  }
 .lineup-line:nth-child(even) a.lineup-band:nth-child(even) {
-    color:#f1fefb !important;
+    color:#d82856 !important;
     text-shadow: 0 0 6px rgba(0,0,0,0.2);
 }
 
@@ -1209,10 +1209,10 @@ a.lineup-band{
 
 a.lineup-band:hover, .lineup-line.rest a.lineup-band:hover{
     text-decoration:none;
-    text-shadow: 0 0 13px #d82856, 0 0 18px #d82856 !important;
+    text-shadow: 0 0 13px #feaa95, 0 0 18px #feaa95 !important;
 }
 .lineup-line:nth-child(odd) a.lineup-band:nth-child(odd):hover, .lineup-line:nth-child(even) a.lineup-band:nth-child(even):hover{
-    text-shadow: 0 0 13px #f2bcba, 0 0 18px #f2bcba !important;
+    text-shadow: 0 0 13px #feaa95, 0 0 18px #feaa95 !important;
 }
 
 .jury_points{
