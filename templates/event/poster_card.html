@@ -50,7 +50,7 @@
     </head>
 
     <body {% block bodyattrs %}{% endblock%}>
-        <div class="body-bg poster" style="width:122%;height:100%;"></div>
+        <div class="body-bg poster" style="width:109%;height:100%;"></div>
 
         {% block home_header %}{% endblock home_header %}
 
@@ -62,7 +62,7 @@ font-family: 'Amboy', sans-serif;">{{event}} </span>
         <div class="profile-circle poster" style="left:-11px;top:140px;width:345px;height:345px;"> <img src="{{event.profile_image.url}}"></div>
          <span class="poster" style="right: 32px;top: 380px;font-size: 50px;text-transform:uppercase; color:#fff;
         text-shadow: 1px 1px 0px #fff, -1px -1px 0px #fff, -1px 1px 0px #fff, 1px -1px 0px #fff;
-">{{ event.day|date:"j F" }}</span>
+"><span style="color:#d82856;text-shadow:1px 1px #d82856, -1px 1px #d82856, 1px -1px #d82856, -1px -1px #d82856;">{{ event.day|date:"j" }}</span> {{ event.day|date:"F" }}</span>
          <span class="poster" style="right: 32px;top: 353px;font-size: 35px;color:#111;text-transform:uppercase;color:#333;">{{ event.day|date:"l" }}</span>
         <span class="poster" style="right: 32px;top: 301px;font-size: 48px;color:#d82856; text-shadow:1px 1px #d82856, 1px -1px #d82856, -1px 1px #d82856, -1px -1px #d82856">{{event.time}} </span>
         <span class="poster" style="right: 36px;top: 438px;max-width:225px;text-align:right;line-height:0.8;font-size: 23px;color:#111;color:#333;">{{ event.venue.name }}</span>
